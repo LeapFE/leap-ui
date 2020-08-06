@@ -1,0 +1,388 @@
+.fl-btn {
+  &.ant-btn {
+    height: 32px;
+  }
+
+  &.ant-btn-lg {
+    height: 40px;
+  }
+
+  &.ant-btn-sm {
+    height: 22px;
+  }
+}
+
+.fl-btn.ant-btn,
+.ant-btn {
+  font-size: 14px;
+  // 线框按钮/次按钮
+  color: rgba(6, 27, 54, 0.6);
+  background: rgba(255, 255, 255, 1);
+  border-color: rgba(223, 225, 230, 1);
+
+  & > i {
+    color: rgba(6, 27, 54, 0.6);
+  }
+
+  &:hover > i {
+    color: #2a5dff;
+  }
+
+  &.ant-btn-lg {
+    font-size: 16px;
+  }
+
+  &[disabled] {
+    background: rgba(250, 250, 250, 1);
+    color: rgba(6, 27, 54, 0.3);
+  }
+
+  &:not([disabled]) {
+    &:hover,
+    &:focus,
+    &:active {
+      color: rgba(42, 93, 255, 1);
+      border-color: rgba(42, 93, 255, 1);
+    }
+
+    &:focus,
+    &:active {
+      box-shadow: 0 0 0 2px rgba(58, 104, 255, 0.2) inset;
+    }
+
+    & > .anticon,
+    & > .ifont,
+    & > .flfont,
+    & > .iconfont {
+      & + span {
+        margin-left: 4px;
+      }
+    }
+  }
+
+  // /.线框按钮/次按钮
+  // 主操作按钮
+  &.ant-btn-primary {
+    &[disabled] {
+      background: rgba(52, 93, 229, 0.5);
+      border: none;
+      color: rgba(255, 255, 255, 1);
+    }
+
+    &:not([disabled]) {
+      background: rgba(42, 93, 255, 1);
+      border-color: rgba(42, 93, 255, 1);
+      color: #fff;
+
+      &.ant-btn-background-ghost {
+        color: rgba(42, 93, 255, 1);
+
+        &:hover,
+        &:focus,
+        &:active {
+          color: rgba(42, 93, 255, 1);
+          border-color: rgba(33, 74, 204, 1);
+        }
+
+        &:focus,
+        &:active {
+          box-shadow: 0 0 0 2px rgba(58, 104, 255, 0.2) inset !important;
+        }
+      }
+
+      &:hover {
+        background-color: rgba(33, 74, 204, 1);
+        border-color: rgba(33, 74, 204, 1);
+      }
+
+      &:focus,
+      &:active {
+        background: rgba(52, 93, 229, 1);
+        border-color: rgba(52, 93, 229, 1);
+      }
+    }
+  }
+
+  // /.主操作按钮
+  // 文字按钮
+
+  &.ant-btn-text {
+    border: none;
+    padding: 0;
+
+    &[disabled] {
+      color: rgba(6, 27, 54, 0.3);
+      background: none;
+    }
+
+    &:not([disabled]) {
+      &:hover,
+      &:focus,
+      &:active {
+        color: rgba(42, 93, 255, 1);
+        box-shadow: none !important;
+        outline: 0;
+      }
+    }
+  }
+
+  // /.文字按钮
+  // 幽灵按钮
+  &.ant-btn-background-ghost {
+    border-color: rgba(130, 132, 140, 1);
+
+    &[disabled] {
+      color: rgba(255, 255, 255, 0.6);
+      border-color: rgba(130, 132, 140, 0.6);
+    }
+
+    &:not([disabled]) {
+      color: #fff;
+
+      &:hover {
+        background: rgba(255, 255, 255, 1) !important;
+        border-color: rgba(255, 255, 255, 1);
+        color: rgba(6, 27, 54, 0.6);
+      }
+
+      &:focus,
+      &:active {
+        background: transparent !important;
+        border-color: rgba(58, 104, 255, 1);
+        color: #fff;
+      }
+    }
+  }
+
+  // /.幽灵按钮
+
+  &.ant-btn-danger {
+    &:not([disabled]) {
+      i {
+        color: rgba(255, 73, 90, 1) !important;
+      }
+
+      color: rgba(255, 73, 90, 1) !important;
+      background-color: #fff;
+      box-shadow: none !important;
+
+      &:hover,
+      &:active,
+      &:focus {
+        border-color: rgba(255, 73, 90, 1) !important;
+        background: none !important;
+      }
+
+      &:active,
+      &:focus {
+        box-shadow: 0 0 0 2px rgba(255, 73, 90, 0.2) inset !important;
+      }
+    }
+  }
+
+  // 包含Icon的按钮
+  & > .iconfont + span,
+  & > .flfont + span,
+  & > .ifont + span,
+  & > span + .ifont {
+    margin-left: 8px;
+  }
+
+  &.ant-btn-icon-danger {
+    &:not([disabled]) {
+      & > .iconfont,
+      & > .flfont,
+      & > .anticon,
+      & > .ifont {
+        color: rgba(255, 73, 90, 1) !important;
+      }
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: rgba(255, 73, 90, 1) !important;
+        border-color: rgba(255, 73, 90, 1) !important;
+      }
+
+      &:active,
+      &:focus {
+        box-shadow: 0 0 0 2px rgba(255, 73, 90, 0.2) inset !important;
+      }
+    }
+  }
+
+  &.ant-btn-icon-primary {
+    &:not([disabled]) {
+      & > .iconfont,
+      & > .flfont,
+      & > .anticon,
+      & > .ifont {
+        color: rgba(42, 93, 255, 1) !important;
+      }
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: rgba(42, 93, 255, 1) !important;
+        border-color: rgba(42, 93, 255, 1) !important;
+      }
+
+      &:active,
+      &:focus {
+        box-shadow: 0 0 0 2px rgba(58, 104, 255, 0.2) inset !important;
+      }
+    }
+  }
+
+  &.ant-btn-icon-danger,
+  &.ant-btn-icon-primary {
+    &.right {
+      border: 0;
+      box-shadow: none !important;
+      outline: none;
+      padding-left: 0;
+      padding-right: 0;
+
+      & > .iconfont,
+      & > .flfont,
+      & > .anticon,
+      & > .ifont {
+        margin-left: 23px;
+      }
+
+      &:hover,
+      &:active,
+      &:focus {
+        border: 0;
+        box-shadow: none !important;
+        outline: none;
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  }
+
+  // /.包含Icon的按钮
+  // loading按钮
+  &.ant-btn-loading {
+    &:not([disabled])::before {
+      background: none;
+    }
+  }
+
+  // /.loading按钮
+  // 只有一个icon的button
+  &.ant-btn-sigle-icon {
+    padding-left: 8px;
+    padding-right: 8px;
+    width: 32px;
+
+    & > .iconfont,
+    & > .flfont,
+    & > .ifont,
+    & > .anticon {
+      color: rgba(179, 186, 197, 1);
+    }
+
+    &:hover {
+      & > .iconfont,
+      & > .flfont,
+      & > .ifont,
+      & > .anticon {
+        color: rgba(42, 93, 255, 1);
+      }
+    }
+
+    &.active {
+      & > .iconfont,
+      & > .flfont,
+      & > .ifont,
+      & > .anticon {
+        color: rgba(42, 93, 255, 1);
+      }
+    }
+  }
+
+  // /.只有一个icon的button
+
+  // 有icon 没有边框的按钮
+  &.ant-btn-link-icon,
+  &.ant-btn-link-icon-primary {
+    border: none;
+    padding-left: 0;
+    padding-right: 0;
+    box-shadow: none !important;
+
+    & > .iconfont,
+    & > .flfont,
+    & > .anticon,
+    & > .ifont {
+      color: rgba(190, 201, 218, 1);
+    }
+  }
+
+  &.ant-btn-link-icon-primary {
+    & > .iconfont,
+    & > .flfont,
+    & > .anticon,
+    & > .ifont,
+    & > span {
+      color: rgba(42, 93, 255, 1);
+    }
+  }
+
+  // /.有icon 没有边框的按钮
+}
+
+// 按钮组
+.fl-btn-group.ant-btn-group {
+  & > .ant-btn.active {
+    color: rgba(42, 93, 255, 1) !important;
+    border-color: rgba(42, 93, 255, 1) !important;
+    box-shadow: 0 0 0 2px rgba(58, 104, 255, 0.2) inset;
+  }
+
+  &[type="spice"] {
+    & > .ant-btn {
+      border-radius: 4px;
+      margin: 0 8px;
+      min-width: 88px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .ant-btn-primary {
+    &:first-child:not(:last-child) {
+      border-right-color: rgba(42, 93, 255, 1);
+    }
+
+    &:last-child:not(:first-child),
+    & + .ant-btn-primary {
+      border-left-color: rgba(42, 93, 255, 1);
+    }
+
+    & > i {
+      color: #fff;
+    }
+
+    & + .ant-btn-primary {
+      margin-left: 1px;
+    }
+  }
+}
+
+// 对modal的按钮有影响 暂时先这么处理
+.ant-modal-confirm.delete .ant-modal-confirm-btns .ant-btn.ant-btn-default {
+  &:focus,
+  &:active,
+  &:hover {
+    box-shadow: none;
+  }
+}

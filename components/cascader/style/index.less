@@ -1,0 +1,102 @@
+.fl_cascader_popup.ant-cascader-menus {
+  box-shadow: none;
+  background: transparent;
+  color: rgba(6, 27, 54, 0.8);
+
+  .ant-cascader-menu {
+    box-shadow: 0px 2px 10px 0px rgba(72, 92, 121, 0.15);
+    border-radius: 4px;
+    margin-right: 4px;
+    border: none;
+    background-color: #fff;
+    max-height: 180px;
+    height: auto;
+  }
+
+  .ant-cascader-menu-item {
+    font-size: 12px;
+
+    &:not(.ant-cascader-menu-item-disabled):hover {
+      background: rgba(42, 93, 255, 0.05);
+      color: rgba(6, 27, 54, 0.8);
+    }
+
+    &.ant-cascader-menu-item-active {
+      &:not(.ant-cascader-menu-item-disabled) {
+        &,
+        &:hover {
+          color: rgba(42, 93, 255, 1);
+          background-color: rgba(42, 93, 255, 0.05);
+          font-weight: normal;
+        }
+      }
+    }
+  }
+
+  & > div {
+    display: flex;
+    align-items: stretch;
+  }
+}
+
+.fl_cascader.ant-cascader-picker {
+  .ant-cascader-input.ant-input {
+    font-size: 12px;
+    border-color: #dfe1e6;
+  }
+
+  .ant-cascader-picker-arrow {
+    line-height: 12px !important;
+
+    &::after {
+      content: "\e661";
+      font-family: "flfont";
+      transform: scale(0.8);
+      color: #a5adba;
+      display: block;
+    }
+
+    svg {
+      display: none !important;
+    }
+  }
+
+  .ant-cascader-picker-label {
+    font-size: 12px;
+    color: rgba(6, 27, 54, 0.8);
+  }
+
+  .ant-cascader-picker-disabled {
+    .ant-cascader-picker-label {
+      color: rgba(6, 27, 54, 0.3);
+    }
+  }
+
+  .ant-cascader-picker-focused .ant-cascader-input,
+  .ant-cascader-picker-label:hover + .ant-cascader-input,
+  .ant-cascader-picker:focus .ant-cascader-input {
+    border-color: rgba(42, 93, 255, 1) !important;
+    box-shadow: 0px 0px 0px 2px inset rgba(58, 104, 255, 0.2) !important;
+  }
+
+  // placeholder样式
+  ::-webkit-input-placeholder {
+    /* WebKit, Blink, Edge */
+    color: rgba(6, 27, 54, 0.3);
+  }
+
+  :-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: rgba(6, 27, 54, 0.3);
+  }
+
+  ::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: rgba(6, 27, 54, 0.3);
+  }
+
+  :-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: rgba(6, 27, 54, 0.3);
+  }
+}
