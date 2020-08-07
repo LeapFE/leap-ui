@@ -1,4 +1,5 @@
 import { Menu as AntdMenu } from "antd";
-import "antd/lib/menu/style/css.js";
+
+import "./style";
 
 export default AntdMenu;

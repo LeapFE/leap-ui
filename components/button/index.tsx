@@ -2,7 +2,6 @@ import React, { FunctionComponent } from "react";
 import { Button as AntdButton } from "antd";
 import { ButtonProps, ButtonGroupProps } from "antd/lib/button";
 
-import "antd/lib/button/style/css.js";
 import "./style";
 
 const ButtonGroup: FunctionComponent<ButtonGroupProps> = (props) => {
