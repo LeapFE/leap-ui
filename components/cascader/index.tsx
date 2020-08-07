@@ -2,7 +2,7 @@ import React, { FunctionComponent } from "react";
 import { Cascader as AntdCascader } from "antd";
 import { CascaderProps } from "antd/lib/cascader";
 
-import "antd/lib/cascader/style";
+import "antd/lib/cascader/style/css.js";
 import "./style";
 
 const Cascader: FunctionComponent<CascaderProps> = (props) => {

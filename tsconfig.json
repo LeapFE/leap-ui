@@ -8,6 +8,7 @@
     "removeComments": true,
     "jsx": "react",
     "declaration": true,
+    "allowJs": true,
 
     /* Strict Checks */
     "alwaysStrict": true,
