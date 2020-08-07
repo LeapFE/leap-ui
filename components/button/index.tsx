@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, LegacyRef } from "react";
 import { Button as AntdButton } from "antd";
 import { ButtonProps, ButtonGroupProps } from "antd/lib/button";
 
@@ -12,13 +12,13 @@ const ButtonGroup: FunctionComponent<ButtonGroupProps> = (props) => {
   );
 };
 
-interface FishButtonProps extends ButtonProps {
-  id?: string;
+interface LeapButtonProps extends ButtonProps {
+  ref?: LegacyRef<AntdButton>;
 }
 interface ButtonComponent<P> extends FunctionComponent<P> {
   Group: typeof ButtonGroup;
 }
-const Button: ButtonComponent<FishButtonProps> = (props) => {
+const Button: ButtonComponent<LeapButtonProps> = (props) => {
   return (
     <AntdButton {...props} className="fl-btn">
       {props.children}
