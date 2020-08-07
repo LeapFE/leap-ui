@@ -6,8 +6,8 @@
   "module": "es/index.js",
   "typings": "es/index.d.ts",
   "files": [
-    "es",
-    "lib"
+    "es/",
+    "lib/"
   ],
   "scripts": {
     "eslint": "eslint --config .eslintrc --ext .tsx,.ts components/",
