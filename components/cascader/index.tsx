@@ -1,6 +1,7 @@
 import React, { LegacyRef } from "react";
 import { Cascader as AntdCascader } from "antd";
 import * as AntdCascaderInterface from "antd/lib/cascader";
+import ClassNames from "classnames";
 
 import "./style";
 
@@ -13,8 +14,8 @@ class Cascader extends React.Component<CascaderProps> {
     return (
       <AntdCascader
         {...this.props}
-        className="fl_cascader"
-        popupClassName="fl_cascader_popup"
+        className={ClassNames("fl_cascader", this.props.className)}
+        popupClassName={ClassNames("fl_cascader_popup", this.props.popupClassName)}
         ref={this.props.ref}
       />
     );
