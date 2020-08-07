@@ -1,10 +1,10 @@
 import React, { FunctionComponent, LegacyRef } from "react";
 import { Button as AntdButton } from "antd";
-import { ButtonProps, ButtonGroupProps } from "antd/lib/button";
+import * as AntdButtonInterface from "antd/lib/button";
 
 import "./style";
 
-const ButtonGroup: FunctionComponent<ButtonGroupProps> = (props) => {
+const ButtonGroup: FunctionComponent<AntdButtonInterface.ButtonGroupProps> = (props) => {
   return (
     <AntdButton.Group {...props} className="fl-btn-group">
       {props.children}
@@ -12,7 +12,7 @@ const ButtonGroup: FunctionComponent<ButtonGroupProps> = (props) => {
   );
 };
 
-interface LeapButtonProps extends ButtonProps {
+interface LeapButtonProps extends AntdButtonInterface.ButtonProps {
   ref?: LegacyRef<AntdButton>;
 }
 interface ButtonComponent<P> extends FunctionComponent<P> {
@@ -27,4 +27,7 @@ const Button: ButtonComponent<LeapButtonProps> = (props) => {
 };
 
 Button.Group = ButtonGroup;
+
+export { AntdButton, AntdButtonInterface };
+
 export default Button;

@@ -1,15 +1,14 @@
 {
   // More tsconfig info see https://www.typescriptlang.org/docs/handbook/tsconfig-json.html
-  "include": ["components/**/*", "typings/*"],
+  "include": ["typings/*", "stories/**/*"],
   "exclude": ["lib", "es"],
   "compilerOptions": {
     "listFiles": true,
     /* Project Options */
     "target": "ES6",
+    "module": "ESNext",
     "removeComments": true,
     "jsx": "react",
-    "declaration": true,
-    "allowJs": true,
 
     /* Strict Checks */
     "alwaysStrict": true,
@@ -22,11 +21,14 @@
     "strictPropertyInitialization": true,
 
     /* Module Resolution */
-    "rootDir": ".",
+    "rootDir": "stories/",
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "esModuleInterop": true,
     "moduleResolution": "node",
+    "paths": {
+      "leap-ui": ["./components"]
+    },
 
     /* Linter Checks */
     "noUnusedLocals": true,

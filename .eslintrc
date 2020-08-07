@@ -1,7 +1,10 @@
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
-  "parserOptions": { "project": ["./tsconfig.json"] },
+  "parserOptions": { "project": ["./tsconfig.json", "./tsconfig.story.json"] },
   "extends": ["leap"],
-  "env": { "es2017": true }
+  "env": { "es2017": true },
+  "rules": {
+    "import/no-extraneous-dependencies": "off"
+  }
 }

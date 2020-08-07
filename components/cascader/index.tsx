@@ -1,22 +1,26 @@
-import React, { FunctionComponent, LegacyRef } from "react";
+import React, { LegacyRef } from "react";
 import { Cascader as AntdCascader } from "antd";
-import { CascaderProps as AntdCascaderProps } from "antd/lib/cascader";
+import * as AntdCascaderInterface from "antd/lib/cascader";
 
 import "./style";
 
-interface CascaderProps extends AntdCascaderProps {
+interface CascaderProps extends AntdCascaderInterface.CascaderProps {
   ref?: LegacyRef<AntdCascader>;
 }
 
-const Cascader: FunctionComponent<CascaderProps> = (props) => {
-  return (
-    <AntdCascader
-      {...props}
-      className="fl_cascader"
-      popupClassName="fl_cascader_popup"
-      ref={props.ref}
-    />
-  );
+class Cascader extends React.Component<CascaderProps> {
+  render() {
+    return (
+      <AntdCascader
+        {...this.props}
+        className="fl_cascader"
+        popupClassName="fl_cascader_popup"
+        ref={this.props.ref}
+      />
+    );
+  }
 }
+
+export { AntdCascader, AntdCascaderInterface };
 
 export default Cascader;
