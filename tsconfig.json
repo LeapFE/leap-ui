@@ -3,7 +3,6 @@
   "include": ["components/**/*", "typings/*"],
   "exclude": ["lib", "es"],
   "compilerOptions": {
-    "listFiles": true,
     /* Project Options */
     "target": "ES6",
     "removeComments": true,
@@ -22,7 +21,6 @@
     "strictPropertyInitialization": true,
 
     /* Module Resolution */
-    "rootDir": ".",
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "esModuleInterop": true,

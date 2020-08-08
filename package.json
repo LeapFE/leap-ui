@@ -19,8 +19,8 @@
     "stylelint": "stylelint components/**/*.{css,less}",
     "prepublishOnly": "npm run build",
     "build": "npm run build:es && npm run build:cjs && npm run build:css",
-    "build:es": "rimraf es && tsc --module ESNext --outDir es",
-    "build:cjs": "rimraf lib && tsc --module CommonJS --outDir lib",
+    "build:es": "rimraf es && tsc -p tsconfig.json --module ESNext --outDir es",
+    "build:cjs": "rimraf lib && tsc -p tsconfig.json --module CommonJS --outDir lib",
     "build:css": "gulp",
     "storybook": "start-storybook -p 8000 -c .storybook",
     "dev": "npm run build && start-storybook -p 8000 -c .storybook",
@@ -37,6 +37,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/preset-env": "^7.7.1",
     "@babel/preset-react": "^7.7.0",
     "@babel/preset-typescript": "^7.7.2",

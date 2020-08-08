@@ -1,0 +1,58 @@
+.ant-message {
+  .ant-message-notice {
+    display: flex;
+    justify-content: center;
+  }
+
+  .ant-message-notice-content {
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+
+    .ant-message-custom-content {
+      background: #fff;
+      min-width: 180px;
+      text-align: left;
+      display: flex;
+      padding: 0;
+      align-items: center;
+      box-shadow: 0 2px 10px 0 rgba(72, 92, 121, 0.15);
+      border-radius: 4px;
+      overflow: hidden;
+      font-size: 14px;
+      color: rgba(6, 27, 54, 0.8);
+      margin-bottom: 8px;
+      padding-right: 12px;
+
+      &::before {
+        content: "";
+        width: 4px;
+        height: 40px;
+        background: rgba(102, 205, 5, 1);
+        margin-right: 12px;
+      }
+
+      &.ant-message-error {
+        &::before {
+          background: rgba(255, 73, 90, 1);
+        }
+      }
+
+      &.ant-message-warning {
+        &::before {
+          background: rgba(253, 208, 46, 1);
+        }
+      }
+
+      &.ant-message-info {
+        &::before {
+          background: rgba(193, 199, 208, 1);
+        }
+      }
+
+      .anticon {
+        display: none;
+      }
+    }
+  }
+}
