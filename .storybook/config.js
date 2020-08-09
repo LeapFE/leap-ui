@@ -11,6 +11,7 @@ function loadStories() {
   require("../stories/story/select");
   require("../stories/story/slider");
   require("../stories/story/switch");
+  require("../stories/story/table");
 }
 
 configure(loadStories, module);

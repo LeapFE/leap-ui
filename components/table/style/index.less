@@ -1,0 +1,332 @@
+// //目前项目中用到的表格，1.普通，2.无表框，3.可拖拽，4.合并行列，5.固定表头或者左右列，6.增删行，7.隔行，8.展开
+// //最后一列的列宽不确定时，不用居右16px。空页面有两种样式，一种没有表头，一种有
+
+//.fixed_last_th作用于表格上:是表格最后一列，th和th左对齐，且距右侧16px。(要求最后一列)
+.no_datatable {
+  .ant-pagination.ant-table-pagination {
+    display: none !important;
+  }
+}
+
+.no_border {
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 2px !important;
+
+  .ant-table-thead > tr > th {
+    background-color: rgba(244, 245, 247, 1) !important;
+  }
+}
+
+//表格样式引用方法如下:
+//例如： <Table
+//  className="fixed_table"
+//  className="nor_table"
+//  className="no_bor_table"></Table>
+//fixed_table适用于头部或者左右侧固定的表格。如果需要最后一列距右16px，单独表格再添加样式
+// 隐藏展开按钮列
+.hide_expand_btn {
+  .ant-table-thead {
+    .ant-table-expand-icon-th {
+      display: none;
+    }
+  }
+
+  .ant-table-tbody {
+    .ant-table-row-expand-icon-cell {
+      display: none;
+    }
+
+    .ant-table-expanded-row {
+      & > td:first-child {
+        display: none;
+      }
+    }
+  }
+}
+
+.common_table {
+  &:not(.simple) {
+    .ant-table-thead > tr > th,
+    .ant-table-tbody > tr > td {
+      &:last-child {
+        width: 1%;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  .ant-table-tbody > tr.ant-table-expanded-row {
+    & td {
+      p {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .ant-table-row-expand-icon:focus,
+  .ant-table-row-expand-icon:hover {
+    color: #2a5dff;
+  }
+
+  .ant-table-tbody > tr.ant-table-row-hover > td,
+  .ant-table-tbody > tr:hover td,
+  .ant-table-tbody > tr:hover th {
+    background-color: rgba(42, 93, 255, 0.05) !important;
+  }
+
+  .ant-table-fixed-left,
+  .ant-table-fixed-right {
+    width: -webkit-min-content;
+  }
+
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 1px 2px 6px 2px rgba(242, 243, 248, 0.5);
+  border-radius: 4px;
+  border: 1px solid rgba(223, 225, 233, 0.6);
+
+  .ant-table-thead > tr > th,
+  .ant-table-tbody > tr > td {
+    vertical-align: baseline;
+    font-weight: 400;
+    background-color: #fff;
+
+    &:first-child {
+      padding-left: 16px;
+    }
+
+    &:last-child {
+      padding-right: 16px;
+    }
+  }
+
+  .ant-table-thead {
+    & > tr {
+      & > th {
+        font-size: 14px;
+        line-height: 20px;
+        padding: 15px 10px 13px 10px;
+
+        .ant-table-column-title {
+          white-space: nowrap;
+        }
+
+        & > span {
+          color: rgba(6, 27, 54, 0.4);
+        }
+      }
+    }
+  }
+
+  .ant-table-tbody {
+    //可展开的表格
+    .ant-table-expanded-row > td {
+      background-color: rgba(250, 251, 252, 1);
+    }
+
+    & > tr {
+      .ant-table-row-selected > td {
+        background-color: #fff;
+      }
+
+      & > td {
+        font-size: 12px;
+        color: rgba(6, 27, 54, 0.8);
+        line-height: 18px;
+        padding: 16px 10px 14px 10px;
+      }
+    }
+  }
+
+  .ant-table-pagination.ant-pagination {
+    margin-right: 20px;
+    display: flex;
+    justify-content: flex-end;
+    float: none;
+
+    .ant-pagination-total-text {
+      margin-right: auto;
+      padding-left: 20px;
+      color: rgba(6, 27, 54, 0.8);
+
+      & > span {
+        color: #2a5dff;
+      }
+    }
+  }
+
+  .ant-pagination-item,
+  .ant-pagination-prev,
+  .ant-pagination-next,
+  .ant-pagination-jump-prev,
+  .ant-pagination-jump-next {
+    min-width: 28px;
+    height: 28px;
+    line-height: 26px;
+
+    .ant-pagination-item-link:after {
+      height: 26px;
+    }
+
+    &:not(.ant-pagination-disabled) {
+      &:focus,
+      &:hover {
+        border-color: #2a5dff;
+
+        a,
+        .ant-pagination-item-link {
+          color: #2a5dff;
+          border-color: #2a5dff;
+        }
+
+        &::after {
+          color: #2a5dff;
+        }
+      }
+    }
+  }
+
+  .ant-pagination-item-active {
+    &,
+    &:focus,
+    &:hover {
+      background-color: #2a5dff !important;
+      border-color: #2a5dff;
+
+      a {
+        color: #fff !important;
+      }
+    }
+  }
+
+  //表格里面td里面的类名，最好统一
+  //例如
+  //   render: (text) => (
+  //         <div className="over_text" >{text}</div>
+  // )
+  .over_text {
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    button {
+      cursor: pointer;
+    }
+
+    .icon_blue {
+      color: #2a5dff;
+    }
+
+    .icon_green {
+      color: rgba(102, 205, 5, 1);
+    }
+
+    .icon_red {
+      color: rgba(255, 73, 90, 1);
+    }
+
+    i {
+      font-size: 12px;
+    }
+
+    span {
+      cursor: pointer;
+      padding: 0 8px;
+
+      &:first-child {
+        padding-left: 0;
+      }
+
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+  }
+
+  //最后一列是操作，里面的字体是蓝色
+  //例如
+  //   render: (text) => (
+  //         <div className="over_text operation" >
+  //            <span>详情1</span>
+  //            <span>详情1</span>
+  //         </div>
+  // )
+  .operation {
+    color: #2a5dff;
+    cursor: pointer;
+
+    span {
+      cursor: pointer;
+      padding: 0 8px;
+
+      &:first-child {
+        padding-left: 0;
+      }
+
+      &:last-child {
+        padding-right: 0;
+      }
+
+      display: inline-block;
+      white-space: nowrap;
+    }
+  }
+
+  // 表格中有溢出隐藏的内容
+  //例如：溢出隐藏列的render如下
+  //   render: (text) => (
+  //         <div className="over_text nowrap_text">
+  //             <div>{text||'--'}</div>
+  //         </div>
+  // )
+  .nowrap_text {
+    position: relative;
+
+    & > div {
+      position: absolute;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      width: 100%;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  //可选择的table(带复选框)
+  .ant-checkbox-checked .ant-checkbox-inner {
+    background-color: #2a5dff;
+    border-color: #2a5dff;
+  }
+
+  .ant-checkbox-wrapper:hover .ant-checkbox-inner,
+  .ant-checkbox:hover .ant-checkbox-inner,
+  .ant-checkbox-input:focus + .ant-checkbox-inner {
+    border-color: #2a5dff;
+  }
+
+  .ant-table-placeholder {
+    &::after {
+      content: "暂无数据~";
+      display: block;
+      font-size: 12px;
+      color: rgba(6, 27, 54, 0.6);
+    }
+
+    .ant-empty {
+      display: none;
+    }
+
+    &::before {
+      content: "";
+      display: block;
+      height: 100px;
+      width: 90px;
+      margin: 32px auto 8px;
+      background: url(./../img/img_kong.png) no-repeat center;
+      background-size: 100%;
+    }
+  }
+}
