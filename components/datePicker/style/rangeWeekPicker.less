@@ -1,0 +1,46 @@
+.range_week_picker {
+  display: inline-block;
+  position: relative;
+
+  .ant-calendar-picker {
+    position: relative;
+    z-index: 1;
+
+    .ant-calendar-picker-input:not(.ant-input-disabled) {
+      opacity: 0;
+    }
+  }
+
+  .top_render {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0 12px;
+    line-height: 30px;
+    font-size: 12px;
+    border-radius: 4px;
+    width: 100%;
+    border: 1px solid rgba(223, 225, 230, 1);
+
+    .placeholder {
+      color: rgba(6, 27, 54, 0.3);
+    }
+
+    .value {
+      color: rgba(6, 27, 54, 0.8);
+      display: flex;
+
+      span:nth-child(2) {
+        width: 35px;
+        text-align: center;
+      }
+    }
+  }
+
+  &:hover,
+  &:focus {
+    .top_render {
+      border: 1px solid rgba(58, 104, 255, 1);
+    }
+  }
+}

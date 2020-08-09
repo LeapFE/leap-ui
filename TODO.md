@@ -25,6 +25,10 @@ Tooltip(done)
 Tree(undone)
 TreeSelect(undone)
 
+
+zhCN
+enUS
+
 ##
 Affix(done)
 Alert
