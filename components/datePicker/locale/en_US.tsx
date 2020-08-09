@@ -1,6 +1,6 @@
-import CalendarLocale from 'rc-picker/lib/locale/en_US';
-import timePickerLocale, { TimePickerLocale } from '../../timePicker/locale/en_US';
-import { Locale as RcPickerLocale } from 'rc-picker/lib/interface';
+import CalendarLocale from "rc-picker/lib/locale/en_US";
+import timePickerLocale, { TimePickerLocale } from "../../timePicker/locale/en_US";
+import { Locale as RcPickerLocale } from "rc-picker/lib/interface";
 
 export type PickerLocale = {
   lang: RcPickerLocale & AdditionalPickerLocaleLangProps;
@@ -29,15 +29,15 @@ export type AdditionalPickerLocaleLangProps = {
 // Merge into a locale object
 const locale: PickerLocale = {
   lang: {
-    placeholder: 'Select date',
-    yearPlaceholder: 'Select year',
-    quarterPlaceholder: 'Select quarter',
-    monthPlaceholder: 'Select month',
-    weekPlaceholder: 'Select week',
-    rangePlaceholder: ['Start date', 'End date'],
-    rangeYearPlaceholder: ['Start year', 'End year'],
-    rangeMonthPlaceholder: ['Start month', 'End month'],
-    rangeWeekPlaceholder: ['Start week', 'End week'],
+    placeholder: "Select date",
+    yearPlaceholder: "Select year",
+    quarterPlaceholder: "Select quarter",
+    monthPlaceholder: "Select month",
+    weekPlaceholder: "Select week",
+    rangePlaceholder: ["Start date", "End date"],
+    rangeYearPlaceholder: ["Start year", "End year"],
+    rangeMonthPlaceholder: ["Start month", "End month"],
+    rangeWeekPlaceholder: ["Start week", "End week"],
     ...CalendarLocale,
   },
   timePickerLocale: {

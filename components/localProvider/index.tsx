@@ -13,6 +13,5 @@ export interface EnhancedLocale extends Locale {
     defaultValidateMessages: ValidateMessages;
   };
   PageHeader?: Object;
-
 }
 export default LocalProvider;

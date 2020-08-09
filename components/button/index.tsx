@@ -12,7 +12,7 @@ const ButtonGroup: FunctionComponent<AntdButtonInterface.ButtonGroupProps> = (pr
       {props.children}
     </AntdButton.Group>
   );
-}
+};
 
 class Button extends Component<AntdButtonInterface.ButtonProps> {
   static Group: typeof ButtonGroup;

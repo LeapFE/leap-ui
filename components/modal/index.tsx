@@ -9,7 +9,6 @@ import SingleModal from "./SingleModal";
 
 import "./style";
 
-
 const confirm: ModalFunc = ({ className, icon = "", ...otherProps }) => {
   const { okType, width } = otherProps;
   return AntdModal.confirm({
