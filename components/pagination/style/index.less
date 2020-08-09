@@ -1,0 +1,83 @@
+.ant-pagination {
+  .ant-pagination-item {
+    border-color: rgba(223, 225, 230, 1);
+
+    a {
+      color: rgba(6, 27, 54, 0.6);
+    }
+
+    &:hover,
+    &:focus {
+      border-color: rgba(42, 93, 255, 1);
+
+      a {
+        color: rgba(42, 93, 255, 1);
+      }
+    }
+  }
+
+  .ant-pagination-item-active {
+    &,
+    &:hover,
+    &:focus {
+      background: rgba(42, 93, 255, 1);
+      border-color: rgba(42, 93, 255, 1);
+
+      a {
+        color: #fff;
+      }
+    }
+  }
+
+  .ant-pagination-prev:not(.ant-pagination-disabled),
+  .ant-pagination-next:not(.ant-pagination-disabled) {
+    .ant-pagination-item-link {
+      border-color: rgba(223, 225, 230, 1);
+
+      .anticon {
+        color: rgba(6, 27, 54, 0.6);
+      }
+
+      &:hover {
+        border-color: rgba(42, 93, 255, 1);
+
+        .anticon {
+          color: rgba(42, 93, 255, 1);
+        }
+      }
+    }
+  }
+
+  .ant-pagination-jump-prev,
+  .ant-pagination-jump-next {
+    .ant-pagination-item-container {
+      &::after {
+        content: "…";
+        color: rgba(6, 27, 54, 0.6);
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        transition: all 0.2s;
+      }
+
+      .ant-pagination-item-ellipsis {
+        display: none;
+      }
+
+      .ant-pagination-item-link-icon {
+        color: rgba(42, 93, 255, 1);
+      }
+    }
+
+    &:hover,
+    &:focus {
+      .ant-pagination-item-container {
+        &::after {
+          opacity: 0;
+        }
+      }
+    }
+  }
+}

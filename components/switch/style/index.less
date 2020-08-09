@@ -1,0 +1,62 @@
+button.ant-switch,
+.ant-switch {
+  background: rgba(236, 237, 242, 1);
+  width: 54px;
+  height: 32px;
+
+  &::after {
+    width: 28px;
+    height: 28px;
+  }
+
+  &.ant-switch-checked {
+    background-color: rgba(42, 93, 255, 1);
+
+    .ant-switch-inner {
+      margin-left: 0;
+      color: #fff;
+    }
+  }
+
+  &.ant-switch-small {
+    width: 46px;
+    height: 24px;
+
+    .ant-switch-inner {
+      font-size: 12px;
+      margin-right: 0;
+      padding: 0 8px;
+    }
+
+    &::after {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .ant-switch-inner {
+    font-size: 14px;
+    margin-right: 0;
+    color: rgba(6, 27, 54, 0.3);
+    text-align: left;
+    padding: 0 8px;
+  }
+}
+.switch_show {
+  width: 54px;
+  height: 22px !important;
+  &:after {
+    width: 18px !important;
+    height: 18px !important;
+  }
+  &.ant-switch-checked {
+    .ant-switch-inner {
+      margin-left: 6px !important;
+    }
+  }
+  .ant-switch-inner {
+    font-size: 12px !important;
+    padding: 0 !important;
+    margin-left: 22px;
+  }
+}

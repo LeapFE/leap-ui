@@ -1,0 +1,339 @@
+.fl-input.ant-input,
+.ant-input,
+.fl-input.ant-input-affix-wrapper .ant-input,
+.ant-input-affix-wrapper .ant-input,
+.fl-input.ant-input-group > .ant-input,
+.ant-input-group > .ant-input {
+  background: rgba(255, 255, 255, 1);
+  border-color: rgba(223, 225, 230, 1);
+  color: rgba(6, 27, 54, 1);
+  font-size: 12px;
+  padding: 4px 8px;
+
+  &:not(.ant-input-disabled):hover,
+  &:not(.ant-input-disabled):focus {
+    border-color: rgba(58, 104, 255, 1);
+  }
+
+  &:not(.ant-input-disabled):focus {
+    box-shadow: 0 0 0 2px rgba(58, 104, 255, 0.2) inset;
+  }
+
+  &.ant-input-disabled {
+    background: rgba(250, 250, 250, 1);
+    border-color: rgba(223, 225, 230, 1);
+    color: rgba(6, 27, 54, 0.3);
+  }
+}
+
+.ant-input-group {
+  &:hover {
+    & > .fl-input,
+    & > .ant-btn {
+      border-color: rgba(58, 104, 255, 1);
+    }
+  }
+
+  &:focus {
+    & > .fl-input,
+    & > .ant-btn {
+      border-color: rgba(58, 104, 255, 1);
+      box-shadow: 0 0 0 2px rgba(58, 104, 255, 0.2) inset;
+    }
+  }
+}
+
+.ant-input-affix-wrapper {
+  &.success,
+  &.error,
+  &.rightError {
+    position: relative;
+    width: auto;
+
+    & > .ant-input {
+      border-color: rgba(255, 73, 90, 1);
+    }
+
+    .input-msg {
+      padding-top: 5px;
+      line-height: 18px;
+      position: absolute;
+      top: 32px;
+      color: rgba(255, 73, 90, 1);
+      background: rgba(255, 255, 255, 0.5);
+
+      & > .anticon {
+        margin-right: 3px;
+
+        &,
+        + span {
+          font-size: 12px;
+        }
+      }
+    }
+
+    .right-msg {
+      position: absolute;
+      top: 0;
+      color: rgba(255, 73, 90, 1);
+      left: 100%;
+      padding-left: 10px;
+      z-index: 10;
+      white-space: nowrap;
+      background: rgba(255, 255, 255, 0.5);
+    }
+  }
+
+  &.success {
+    & > .ant-input {
+      border-color: rgba(102, 205, 5, 1);
+    }
+
+    .input-msg {
+      color: rgba(102, 205, 5, 1);
+
+      & > .anticon {
+        &:first-child {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &.error {
+    .input-msg > .anticon {
+      &:nth-child(2) {
+        display: none;
+      }
+    }
+  }
+
+  &:hover {
+    .ant-input:not(.ant-input-disabled) {
+      border-color: rgba(58, 104, 255, 1) !important;
+    }
+  }
+
+  .ant-input-prefix,
+  .ant-input-suffix {
+    color: rgba(193, 199, 208, 1);
+  }
+
+  &.loading {
+    width: auto;
+    position: relative;
+
+    .loading-msg {
+      width: 100%;
+      height: 32px;
+      background: rgba(255, 255, 255, 1);
+      box-shadow: 0px 2px 10px 0px rgba(72, 92, 121, 0.15);
+      border-radius: 4px;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 8px;
+      position: absolute;
+      align-items: center;
+      top: 36px;
+      left: 0;
+      font-size: 12px;
+
+      span {
+        color: rgba(6, 27, 54, 0.3);
+      }
+
+      .anticon {
+        color: rgba(58, 104, 255, 1);
+      }
+    }
+  }
+
+  &.input-popover {
+    position: relative;
+    width: auto;
+
+    &.ant-input {
+      padding-right: 20px;
+    }
+
+    .popover-icon-wrapper {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+
+      & > .anticon {
+        font-size: 12px;
+        color: rgba(253, 208, 46, 1);
+        padding-right: 8px;
+      }
+    }
+  }
+}
+
+.ant-input-group {
+  & > .ant-btn {
+    background: rgba(250, 251, 252, 1);
+
+    & > .flfont,
+    & > .anticon,
+    & > .ifont {
+      color: rgba(193, 199, 208, 1);
+      font-size: 12px;
+    }
+  }
+
+  & > .ant-input:not(.ant-input-disabled) {
+    &:hover {
+      & + .ant-btn {
+        border-color: rgba(58, 104, 255, 1);
+        color: rgba(58, 104, 255, 1);
+      }
+    }
+  }
+
+  & > .ant-input-disabled {
+    & + .ant-btn {
+      &:hover,
+      &:focus {
+        background: rgba(250, 251, 252, 1);
+        border-color: rgba(223, 225, 230, 1);
+        box-shadow: none;
+      }
+    }
+  }
+
+  .ant-input-affix-wrapper.error {
+    .ant-input {
+      border-right-width: 2px;
+    }
+  }
+}
+
+.ant-input-group-addon {
+  color: rgba(6, 27, 54, 0.6) !important;
+}
+
+.ant-input-group.ant-input-group-compact {
+  display: flex !important;
+}
+
+.input-msg-popover {
+  & > .ant-popover-content > .ant-popover-arrow {
+    border-bottom-color: #fff;
+    right: 10px;
+  }
+
+  .ant-popover-inner {
+    padding: 8px 12px;
+  }
+
+  .ant-popover-title {
+    color: rgba(6, 27, 54, 0.8);
+    border-bottom: 0;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 0;
+    min-height: 20px;
+  }
+
+  .ant-popover-title + .ant-popover-inner-content {
+    margin-top: 4px;
+  }
+
+  .ant-popover-inner-content {
+    color: rgba(6, 27, 54, 0.8);
+    font-size: 12px;
+    line-height: 18px;
+    padding: 0;
+  }
+}
+
+// 带有计数功能的textarea
+.text-area-count {
+  position: relative;
+  display: inline-block;
+  width: auto;
+
+  .num {
+    font-size: 12px;
+    color: rgba(6, 27, 54, 0.3);
+    line-height: 18px;
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background: rgba(255, 255, 255, 0.5);
+
+    .primary {
+      color: rgba(58, 104, 255, 1);
+    }
+  }
+}
+
+.ant-input-group-addon {
+  background: rgba(250, 251, 252, 1);
+  color: rgba(6, 27, 54, 0.8);
+  font-size: 12px;
+
+  .ant-select {
+    font-size: 12px;
+    color: rgba(6, 27, 54, 0.8);
+  }
+}
+
+// placeholder样式
+::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: rgba(6, 27, 54, 0.3);
+}
+
+:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: rgba(6, 27, 54, 0.3);
+}
+
+::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: rgba(6, 27, 54, 0.3);
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: rgba(6, 27, 54, 0.3);
+}
+
+.ant-input-search {
+  .ant-input-search-icon {
+    width: 30px;
+    height: 30px;
+    line-height: 32px;
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+    background: #fafbfc;
+    border-left: #dfe1e6 1px solid;
+    color: #c1c7d0;
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  &.ant-input-affix-wrapper .ant-input-suffix {
+    right: 1px;
+  }
+
+  .ant-input {
+    &:hover,
+    &:focus {
+      & + .ant-input-suffix .ant-input-search-icon {
+        border-left-color: rgba(58, 104, 255, 1);
+      }
+    }
+
+    &:focus {
+      & + .ant-input-suffix .ant-input-search-icon {
+        box-shadow: 0 0 0 2px rgba(58, 104, 255, 0.2) inset;
+      }
+    }
+  }
+}

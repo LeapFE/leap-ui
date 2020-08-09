@@ -1,10 +1,8 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 
-// @ts-ignore
 import { Cascader } from "leap-ui";
 
-// @ts-ignore
 import markdown from "../markdown/cascader.md";
 
 function onChange(value) {

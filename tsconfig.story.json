@@ -3,7 +3,7 @@
   "include": ["typings/*", "stories/**/*"],
   "exclude": ["lib", "es"],
   "compilerOptions": {
-    "listFiles": true,
+    // "listFiles": true,
     /* Project Options */
     "target": "ES6",
     "module": "ESNext",

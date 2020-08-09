@@ -1,0 +1,202 @@
+.ant-select:not(.coustom_tree_select) {
+  width: 180px;
+  font-size: 12px;
+  color: rgba(6, 27, 54, 0.8);
+
+  .ant-select-selection__clear {
+    right: 8px;
+  }
+
+  .ant-select-selection--multiple .ant-select-selection__placeholder {
+    margin-left: 0;
+  }
+
+  &.ant-select-disabled {
+    color: rgba(6, 27, 54, 0.3);
+  }
+
+  .ant-select-selection {
+    border-radius: 4px;
+    border: 1px solid rgba(223, 225, 230, 1);
+
+    &:hover {
+      border-color: rgba(58, 104, 255, 1);
+    }
+
+    .ant-select-selection__placeholder {
+      font-size: 12px;
+      color: rgba(6, 27, 54, 0.3);
+    }
+
+    .ant-select-selection__rendered {
+      margin-left: 12px;
+    }
+
+    .ant-select-arrow {
+      right: 8px;
+      transition: all 0.2s;
+      .ant-select-arrow-icon {
+        line-height: 12px;
+      }
+
+      &::after {
+        content: "\e661";
+        font-family: "flfont";
+        transform: scale(0.8);
+        color: #a5adba;
+        display: block;
+      }
+
+      svg {
+        display: none;
+      }
+    }
+  }
+
+  &.ant-select-focused .ant-select-selection,
+  .ant-select-selection:focus,
+  .ant-select-selection:active {
+    // box-shadow: 0px 0px 0px 2px inset rgba(58, 104, 255, 0.2);
+    border-color: rgba(58, 104, 255, 1);
+  }
+
+  &.ant-select-open {
+    .ant-select-selection {
+      .ant-select-arrow {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .ant-select-selection--multiple {
+    .ant-select-selection__choice {
+      background: rgba(244, 245, 247, 1);
+      height: 22px;
+      border: none;
+      border-radius: 4px;
+    }
+
+    & > ul > li,
+    .ant-select-selection__rendered > ul > li {
+      margin-top: 4px;
+    }
+
+    .ant-select-selection__choice__content {
+      padding-right: 4px;
+      font-size: 12px;
+      color: rgba(6, 27, 54, 0.4);
+    }
+  }
+}
+
+.ant-select-dropdown {
+  .ant-select-dropdown-menu-item {
+    font-size: 12px;
+    color: rgba(6, 27, 54, 0.8);
+  }
+
+  .ant-select-dropdown-menu-item-disabled {
+    color: rgba(6, 27, 54, 0.3);
+  }
+
+  .ant-select-selection-selected-value {
+    color: rgba(6, 27, 54, 0.8);
+    font-size: 12px;
+  }
+
+  .ant-select-dropdown-menu-item-active:not(.ant-select-dropdown-menu-item-disabled) {
+    background: rgba(42, 93, 255, 0.05);
+  }
+
+  .ant-select-dropdown-menu-item:hover:not(.ant-select-dropdown-menu-item-disabled) {
+    background: rgba(42, 93, 255, 0.05);
+  }
+
+  .ant-select-dropdown-menu-item-active {
+    &:hover {
+      background: rgba(42, 93, 255, 0.05);
+    }
+  }
+
+  // .ant-select-dropdown-menu-item-selected {
+  //   color: rgba(42, 93, 255, 1);
+  //   background: rgba(42, 93, 255, 0.05);
+  // }
+
+  .ant-select-dropdown-menu-item-selected,
+  .ant-select-dropdown-menu-item-selected:hover {
+    color: rgba(42, 93, 255, 1) !important;
+    background: rgba(42, 93, 255, 0.05);
+    font-weight: normal;
+  }
+
+  &.ant-select-dropdown--multiple {
+    .ant-select-dropdown-menu-item-selected {
+      .ant-select-selected-icon,
+      &:hover .ant-select-selected-icon {
+        color: rgba(42, 93, 255, 1) !important;
+      }
+    }
+  }
+}
+
+.ant-select-open {
+  & {
+    .ant-select-focused .ant-select-selection,
+    .ant-select-selection:focus,
+    .ant-select-selection:active {
+      box-shadow: none;
+      border-color: #3a68ff;
+    }
+  }
+}
+
+.ant-select-open .ant-select-selection {
+  box-shadow: none;
+}
+
+//不可点
+.ant-select-disabled:not(.coustom_tree_select) {
+  &,
+  &:hover {
+    background: rgba(250, 250, 250, 1);
+
+    .ant-select-selection__placeholder {
+      color: rgba(6, 27, 54, 0.3);
+    }
+
+    .ant-select-focused .ant-select-selection,
+    .ant-select-selection:hover,
+    .ant-select-selection:focus,
+    .ant-select-selection:active {
+      border: 1px solid rgba(223, 225, 230, 1);
+    }
+  }
+}
+
+.coustom_tree_select_wip {
+  position: relative;
+
+  .ant-select {
+    &::after {
+      right: 8px;
+      transition: all 0.2s;
+      position: absolute;
+      top: 50%;
+      content: "\e661";
+      font-family: "flfont";
+      transform: scale(0.7);
+      color: #a5adba;
+      display: block;
+      line-height: 16px;
+      margin-top: -8px;
+      height: 16px;
+    }
+
+    &.ant-select-open {
+      &::after {
+        transform: scale(0.7) rotate(180deg);
+      }
+    }
+  }
+}

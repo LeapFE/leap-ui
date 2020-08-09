@@ -1,0 +1,135 @@
+.ant-notification {
+  width: auto;
+  margin-right: 20px;
+
+  .fl_notice {
+    &.ant-notification-notice {
+      max-width: 529px;
+      background: rgba(255, 255, 255, 1);
+      box-shadow: 0px 2px 10px 0px rgba(72, 92, 121, 0.15);
+      border-radius: 4px;
+      padding: 12px 16px;
+      min-width: 310px;
+
+      .ant-notification-notice-icon {
+        font-size: 14px;
+        margin-left: -8px;
+        line-height: 14px;
+        margin-top: 2px;
+      }
+
+      .ant-notification-notice-message,
+      .ant-notification-notice-description {
+        margin-left: 14px;
+      }
+
+      .ant-notification-notice-message {
+        color: rgba(6, 27, 54, 0.8);
+        line-height: 20px;
+        margin-bottom: 0;
+
+        & + .ant-notification-notice-description {
+          margin-top: 8px;
+        }
+      }
+
+      .ant-notification-notice-close {
+        top: 11px;
+        right: 16px;
+      }
+
+      .ant-notification-notice-description {
+        color: rgba(6, 27, 54, 0.6);
+        font-size: 12px;
+        line-height: 18px;
+      }
+
+      // open并且没有传type
+      &.fl_undefined_notice {
+        position: relative;
+
+        &::before {
+          content: "";
+          width: 4px;
+          height: 100%;
+          background: rgba(193, 199, 208, 1);
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+      }
+
+      &.fl_hide_icon {
+        position: relative;
+
+        .ant-notification-notice-icon {
+          width: 4px;
+          height: 100%;
+          background: rgba(193, 199, 208, 1);
+          position: absolute;
+          top: 0;
+          left: 0;
+          margin: 0;
+
+          svg {
+            display: none;
+          }
+        }
+
+        .ant-notification-notice-message,
+        .ant-notification-notice-description {
+          margin-left: 0;
+        }
+      }
+
+      &.fl_info_notice {
+        .ant-notification-notice-icon {
+          color: #0293ff;
+        }
+
+        &.fl_hide_icon {
+          .ant-notification-notice-icon {
+            background: #20b8d9;
+          }
+        }
+      }
+
+      &.fl_success_notice {
+        .ant-notification-notice-icon {
+          color: #66cd05;
+        }
+
+        &.fl_hide_icon {
+          .ant-notification-notice-icon {
+            background: #66cd05;
+          }
+        }
+      }
+
+      &.fl_error_notice {
+        .ant-notification-notice-icon {
+          color: #ff495a;
+        }
+
+        &.fl_hide_icon {
+          .ant-notification-notice-icon {
+            background: #ff495a;
+          }
+        }
+      }
+
+      &.fl_warning_notice,
+      &.fl_warni {
+        .ant-notification-notice-icon {
+          color: #fdd02e;
+        }
+
+        &.fl_hide_icon {
+          .ant-notification-notice-icon {
+            background: #fdd02e;
+          }
+        }
+      }
+    }
+  }
+}

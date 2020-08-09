@@ -11,5 +11,12 @@ export { default as Menu } from "./menu";
 export { default as Message } from "./message";
 export { default as Modal } from "./modal";
 export { default as NoData } from "./noData";
+export { default as notification } from "./notification";
+export { default as Pagination } from "./pagination";
+export { default as Popconfirm } from "./popconfirm";
 export { default as Popover } from "./popover";
-
+export { default as Radio } from "./radio";
+export { default as Select } from "./select";
+export { default as Slider } from "./slider";
+export { default as Switch } from "./switch";
+export { default as Tooltip } from "./toolTip";

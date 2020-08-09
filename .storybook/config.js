@@ -6,6 +6,11 @@ function loadStories() {
   require("../stories/story/cascader");
   require("../stories/story/drawer");
   require("../stories/story/noData");
+  require("../stories/story/notification");
+  require("../stories/story/pagination");
+  require("../stories/story/select");
+  require("../stories/story/slider");
+  require("../stories/story/switch");
 }
 
 configure(loadStories, module);
