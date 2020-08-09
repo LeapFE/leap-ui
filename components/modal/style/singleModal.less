@@ -1,0 +1,49 @@
+.single_warning {
+  .ant-modal-content {
+    border-top: none !important;
+    padding: 32px 46px 16px 46px;
+
+    .ant-modal-close,
+    .ant-modal-header {
+      display: none;
+    }
+
+    .ant-modal-body {
+      padding: 0 !important;
+
+      .warn_content {
+        display: flex;
+        margin-bottom: 16px;
+
+        i {
+          font-size: 16px;
+          color: #fdd02e;
+          padding-right: 8px;
+        }
+
+        div {
+          font-size: 14px;
+          color: rgba(6, 27, 54, 0.8);
+          line-height: 20px;
+        }
+      }
+
+      .warn_footer {
+        height: 54px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        button:nth-of-type(1) {
+          margin-right: 8px;
+        }
+      }
+    }
+
+    .ant-modal-footer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

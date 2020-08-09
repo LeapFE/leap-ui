@@ -1,0 +1,130 @@
+.ant-modal-mask {
+  background-color: rgba(9, 30, 66, 0.3) !important;
+}
+
+.fl_modal.ant-modal {
+  .ant-modal-content {
+    border-top: 8px solid #2a5dff;
+  }
+
+  .ant-modal-header {
+    padding: 11px 16px;
+    border-bottom-color: rgba(236, 237, 242, 1);
+  }
+
+  .ant-modal-title {
+    font-size: 16px;
+    color: rgba(6, 27, 54, 0.8);
+    line-height: 24px;
+    font-weight: 400;
+  }
+
+  .ant-modal-close-x {
+    font-size: 12px;
+    color: #8993a4;
+    line-height: 47px;
+    height: 47px;
+  }
+
+  .ant-modal-body {
+    padding: 16px 16px 12px 16px;
+    font-size: 12px;
+    color: rgba(6, 27, 54, 0.8);
+    line-height: 18px;
+  }
+
+  .ant-modal-footer {
+    border-top: none;
+    padding: 11px 16px;
+    & > div {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+  .bottom-footer {
+    padding-bottom: 0;
+  }
+}
+//
+.title_warning {
+  .ant-modal-content {
+    .ant-modal-body {
+      padding: 32px 46px 16px 46px;
+      .ant-modal-confirm-body {
+        i {
+          color: #ff495a !important;
+          font-size: 16px;
+          margin-right: 8px;
+          height: 20px;
+          display: flex;
+          align-items: center;
+        }
+        .ant-modal-confirm-title {
+          font-size: 14px;
+          color: rgba(6, 27, 54, 0.8);
+          line-height: 20px;
+          margin-bottom: 12px;
+          font-weight: normal;
+        }
+        .ant-modal-confirm-content {
+          font-size: 12px;
+          color: rgba(6, 27, 54, 0.6);
+          line-height: 18px;
+          margin-bottom: 16px;
+          margin-left: 25px;
+        }
+      }
+      .ant-modal-confirm-btns {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-flow: row-reverse;
+        margin: 11px 0;
+        button:nth-of-type(2) {
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+}
+.btn_warning {
+  .ant-modal-content {
+    .ant-modal-body {
+      padding: 32px 46px 16px 46px;
+      .ant-modal-confirm-body {
+        i {
+          font-size: 16px;
+          color: #66cd05;
+          margin-right: 8px;
+        }
+        .ant-modal-confirm-title {
+          font-size: 14px;
+          font-weight: 400;
+          color: rgba(6, 27, 54, 1);
+          line-height: 20px;
+          display: block;
+          margin-bottom: 12px;
+        }
+        .ant-modal-confirm-content {
+          font-size: 12px;
+          font-weight: 400;
+          color: rgba(6, 27, 54, 0.6);
+          line-height: 18px;
+          padding-bottom: 16px;
+          margin-left: 25px;
+        }
+      }
+      .ant-modal-confirm-btns {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin: 11px 0;
+      }
+    }
+  }
+}
+.modal_scroll {
+  .ant-modal-footer {
+    box-shadow: 0px -4px 10px 0px rgba(72, 92, 121, 0.1);
+  }
+}

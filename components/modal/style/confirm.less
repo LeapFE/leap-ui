@@ -1,0 +1,67 @@
+.fl_confirm {
+  &.ant-modal-confirm {
+    .ant-modal-body {
+      padding: 32px 46px 27 32px;
+    }
+
+    .ant-modal-confirm-body {
+      .ant-modal-confirm-title {
+        font-size: 14px;
+        color: rgba(6, 27, 54, 0.8);
+        line-height: 20px;
+        margin-bottom: 12px;
+        font-weight: normal;
+      }
+
+      .ant-modal-confirm-content {
+        font-size: 12px;
+        color: rgba(6, 27, 54, 0.6);
+        line-height: 20px;
+        margin-top: 0;
+      }
+
+      & > .anticon {
+        font-size: 16px;
+        margin-right: 8px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+
+        & + .ant-modal-confirm-content,
+        & + .ant-modal-confirm-title + .ant-modal-confirm-content {
+          margin-left: 25px;
+        }
+      }
+    }
+
+    .ant-modal-confirm-btns {
+      margin-top: 27px;
+      float: none;
+      display: flex;
+      justify-content: center;
+      flex-flow: row-reverse;
+
+      .ant-btn + .ant-btn {
+        margin-left: 0;
+        margin-right: 8px;
+      }
+    }
+
+    &.ant-modal-confirm-warning,
+    &.ant-modal-confirm-confirm {
+      .ant-modal-confirm-body {
+        & > .anticon {
+          color: #fdd02e;
+        }
+      }
+    }
+
+    &.danger {
+      .ant-modal-confirm-body {
+        & > .anticon {
+          color: #ff495a;
+        }
+      }
+    }
+  }
+}
