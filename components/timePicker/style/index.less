@@ -1,0 +1,104 @@
+.ant-time-picker.fl_time_picker {
+  .ant-time-picker-input {
+    font-size: 12px;
+    border-color: #dfe1e6;
+    font-size: 12px;
+
+    &[disabled] {
+      color: rgba(6, 27, 54, 0.3);
+    }
+
+    &:not([disabled]) {
+      color: rgba(6, 27, 54, 0.8);
+
+      &:hover,
+      &:focus {
+        border-color: #3a68ff;
+      }
+    }
+  }
+
+  // placeholder样式
+  .ant-time-picker-input::-webkit-input-placeholder {
+    /* WebKit, Blink, Edge */
+    color: rgba(6, 27, 54, 0.3);
+  }
+
+  .ant-time-picker-input:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: rgba(6, 27, 54, 0.3);
+  }
+
+  .ant-time-picker-input::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: rgba(6, 27, 54, 0.3);
+  }
+
+  .ant-time-picker-input:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: rgba(6, 27, 54, 0.3);
+  }
+
+  .ant-time-picker-icon {
+    color: rgba(193, 199, 208, 1);
+  }
+}
+
+.ant-time-picker-panel.fl_time_picker_popup {
+  color: rgba(6, 27, 54, 0.8);
+
+  .ant-time-picker-panel-inner {
+    margin-top: 36px;
+    padding: 4px 0;
+    box-shadow: 0px 2px 10px 0px rgba(72, 92, 121, 0.15);
+  }
+
+  .ant-time-picker-panel-input-wrap {
+    border-bottom-color: rgba(223, 225, 230, 1);
+    opacity: 0;
+    height: 0;
+    padding: 0;
+  }
+
+  .ant-time-picker-panel-select {
+    font-size: 12px;
+    border-left-color: rgba(223, 225, 230, 1);
+
+    li {
+      margin: 4px auto;
+      width: 38px;
+      height: 24px;
+      border-radius: 15px;
+      padding: 0;
+      text-align: center;
+      line-height: 24px;
+
+      &:not(.ant-time-picker-panel-select-option-disabled) {
+        &:hover {
+          background-color: rgba(42, 93, 255, 0.05);
+          color: rgba(6, 27, 54, 0.8);
+        }
+      }
+
+      &.ant-time-picker-panel-select-option-selected {
+        background-color: rgba(42, 93, 255, 1);
+        color: #fff;
+        font-weight: normal;
+
+        &:hover {
+          background-color: rgba(42, 93, 255, 1);
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  .ant-time-picker-panel-addon {
+    text-align: right;
+    padding-bottom: 4px;
+
+    .ant-btn {
+      font-size: 12px;
+    }
+  }
+}

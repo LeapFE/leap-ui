@@ -1,0 +1,74 @@
+.fl_tabs.ant-tabs {
+  font-size: 14px;
+  color: rgba(6, 27, 54, 0.4);
+
+  .ant-tabs-bar {
+    margin-bottom: 0;
+  }
+
+  .ant-tabs-ink-bar {
+    background-color: rgba(42, 93, 255, 1);
+    height: 4px;
+  }
+
+  .ant-tabs-nav {
+    .ant-tabs-tab-active {
+      font-weight: normal;
+      color: rgba(42, 93, 255, 1);
+    }
+
+    .ant-tabs-tab-disabled {
+      color: rgba(6, 27, 54, 0.25);
+    }
+
+    .ant-tabs-tab {
+      padding-left: 31px;
+      padding-right: 31px;
+      margin-right: 0;
+    }
+
+    .ant-tabs-tab:not(.ant-tabs-tab-disabled) {
+      &:hover {
+        color: rgba(42, 93, 255, 1);
+      }
+    }
+  }
+
+  &.ant-tabs-card {
+    .ant-tabs-card-bar {
+      .ant-tabs-nav-container {
+        height: 38px;
+      }
+
+      .ant-tabs-tab {
+        height: 38px;
+        margin-right: 12px;
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+
+      .ant-tabs-tab-active {
+        font-weight: normal;
+        height: 39px;
+      }
+
+      .ant-tabs-tab:not(.ant-tabs-tab-disabled) {
+        border-color: rgba(236, 237, 242, 1);
+        background: rgba(244, 245, 247, 1);
+      }
+
+      .ant-tabs-tab-active:not(.ant-tabs-tab-disabled) {
+        background: #fff;
+        color: rgba(42, 93, 255, 1);
+      }
+    }
+  }
+
+  &.ant-tabs-no-animation {
+    & > .ant-tabs-content {
+      & > .ant-tabs-tabpane-inactive {
+        height: 0 !important;
+      }
+    }
+  }
+}
