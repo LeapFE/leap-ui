@@ -33,7 +33,9 @@
   "license": "ISC",
   "dependencies": {
     "antd": "3.26.18",
-    "classnames": "^2.2.6"
+    "classnames": "^2.2.6",
+    "rc-field-form": "^1.8.0",
+    "rc-picker": "^1.15.1"
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",

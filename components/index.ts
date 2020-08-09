@@ -1,7 +1,9 @@
 export { default as Affix } from "./affix";
-export { default as Button } from './button';
+export { default as Button } from "./button";
+export { default as Calendar } from "./calendar";
 export { default as Cascader } from "./cascader";
 export { default as Checkbox } from "./checkbox";
+export { default as ConfigProvider } from "./configProvider";
 export { default as DatePicker } from "./datePicker";
 export { default as Drawer } from "./drawer";
 export { default as Form } from "./form";
