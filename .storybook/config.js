@@ -4,6 +4,7 @@ function loadStories() {
   require("../stories/index");
   require("../stories/story/button");
   require("../stories/story/cascader");
+  require("../stories/story/input");
   require("../stories/story/drawer");
   require("../stories/story/noData");
   require("../stories/story/notification");

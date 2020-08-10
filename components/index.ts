@@ -48,6 +48,8 @@ export { default as Empty } from "./empty";
 
 export { default as Form } from "./form";
 
+export { default as Icon } from "./icon";
+
 export { default as Input } from "./input";
 
 export { default as InputNumber } from "./inputNumber";
@@ -65,6 +67,8 @@ export { default as Mentions } from "./mentions";
 export { default as Modal } from "./modal";
 
 export { default as Statistic } from "./statistic";
+
+export { default as NoData } from "./noData";
 
 export { default as notification } from "./notification";
 

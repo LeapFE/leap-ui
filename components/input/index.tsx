@@ -81,7 +81,7 @@ export interface InputProps extends AntdInputInterface.InputProps {
 }
 // REVIEW invoke `onChange` will pass `event` object instead of `event.target.value`
 class Input extends Component<InputProps> {
-  static Textarea: typeof TextArea;
+  static TextArea: typeof TextArea;
   static Search: typeof Search;
   static SearchGroup: typeof SearchGroup;
   static Group: typeof AntdInput.Group;
@@ -133,7 +133,7 @@ class Input extends Component<InputProps> {
 }
 
 Input.Search = Search;
-Input.Textarea = TextArea;
+Input.TextArea = TextArea;
 Input.SearchGroup = SearchGroup;
 Input.Group = AntdInput.Group;
 export { AntdInput, AntdInputInterface };
