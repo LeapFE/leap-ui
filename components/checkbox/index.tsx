@@ -6,7 +6,9 @@ import ClassNames from "classnames";
 import "./style";
 
 const Group: FunctionComponent<AntdCheckboxInterface.CheckboxGroupProps> = (props) => {
-  return <AntdCheckbox.Group {...props} className={ClassNames("fl_checkbox_group", props.className)} />
+  return (
+    <AntdCheckbox.Group {...props} className={ClassNames("fl_checkbox_group", props.className)} />
+  );
 };
 
 class Checkbox extends Component<AntdCheckboxInterface.CheckboxProps> {

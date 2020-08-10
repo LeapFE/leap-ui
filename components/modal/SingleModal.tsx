@@ -7,7 +7,6 @@ import Icon from "../icon";
 
 import Modal from "./index";
 
-
 export interface SingleModalProps extends AntdModalInterface.ModalProps {
   // REVIEW confirm this props type correctly
   fl_single_btn?: boolean;

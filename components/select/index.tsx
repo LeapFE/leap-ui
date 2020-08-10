@@ -114,13 +114,15 @@ class Select<
         title={this.tipTitle()}
         overlayStyle={{ width: width || 180, maxWidth: width || 180 }}
       >
-        {/* REVIEW */}
-        <AntdSelect
-          {...this.props}
-          maxTagPlaceholder={maxTagPlaceholder}
-          showArrow
-          onChange={this.onChange}
-        />
+        {
+          // @ts-ignore
+          <AntdSelect
+            {...this.props}
+            maxTagPlaceholder={maxTagPlaceholder}
+            showArrow
+            onChange={this.onChange}
+          />
+        }
       </Tooltip>
     );
   }

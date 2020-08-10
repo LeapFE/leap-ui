@@ -24,11 +24,17 @@ const Group = forwardRef<AntdRadioInterface.Group, AntdRadioInterface.RadioGroup
   },
 );
 
-const Button = forwardRef<any, AntdRadioButtonInterface.RadioButtonProps>((props, ref) => {
-  return (
-    <AntdRadio.Group ref={ref} {...props} className={ClassNames("fl_radio_btn", props.className)} />
-  );
-});
+const Button = forwardRef<AntdRadioInterface.Button, AntdRadioButtonInterface.RadioButtonProps>(
+  (props, ref) => {
+    return (
+      <AntdRadio.Button
+        ref={ref}
+        {...props}
+        className={ClassNames("fl_radio_btn", props.className)}
+      />
+    );
+  },
+);
 
 interface CompoundedComponent
   extends React.ForwardRefExoticComponent<

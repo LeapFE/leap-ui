@@ -209,5 +209,5 @@ class Slider extends Component<SliderProps, SliderState> {
   }
 }
 
-export { AntdSlider,AntdSliderInterface };
+export { AntdSlider, AntdSliderInterface };
 export default Slider;

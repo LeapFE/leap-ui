@@ -1,10 +1,28 @@
+@font-face {
+  font-family: "flfont"; /* project id 1642665 */
+  src: url("//at.alicdn.com/t/font_1642665_sfs1t4yw9k.eot");
+  src: url("//at.alicdn.com/t/font_1642665_sfs1t4yw9k.eot?#iefix") format("embedded-opentype"),
+    url("//at.alicdn.com/t/font_1642665_sfs1t4yw9k.woff2") format("woff2"),
+    url("//at.alicdn.com/t/font_1642665_sfs1t4yw9k.woff") format("woff"),
+    url("//at.alicdn.com/t/font_1642665_sfs1t4yw9k.ttf") format("truetype"),
+    url("//at.alicdn.com/t/font_1642665_sfs1t4yw9k.svg#iconfont") format("svg");
+}
+
+.flfont {
+  font-family: "flfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .fl_cascader_popup.ant-cascader-menus {
   box-shadow: none;
   background: transparent;
   color: rgba(6, 27, 54, 0.8);
 
   .ant-cascader-menu {
-    box-shadow: 0px 2px 10px 0px rgba(72, 92, 121, 0.15);
+    box-shadow: 0 2px 10px 0 rgba(72, 92, 121, 0.15);
     border-radius: 4px;
     margin-right: 4px;
     border: none;
@@ -76,27 +94,23 @@
   .ant-cascader-picker-label:hover + .ant-cascader-input,
   .ant-cascader-picker:focus .ant-cascader-input {
     border-color: rgba(42, 93, 255, 1) !important;
-    box-shadow: 0px 0px 0px 2px inset rgba(58, 104, 255, 0.2) !important;
+    box-shadow: 0 0 0 2px inset rgba(58, 104, 255, 0.2) !important;
   }
 
   // placeholder样式
   ::-webkit-input-placeholder {
-    /* WebKit, Blink, Edge */
     color: rgba(6, 27, 54, 0.3);
   }
 
   :-moz-placeholder {
-    /* Mozilla Firefox 4 to 18 */
     color: rgba(6, 27, 54, 0.3);
   }
 
   ::-moz-placeholder {
-    /* Mozilla Firefox 19+ */
     color: rgba(6, 27, 54, 0.3);
   }
 
   :-ms-input-placeholder {
-    /* Internet Explorer 10-11 */
     color: rgba(6, 27, 54, 0.3);
   }
 }
