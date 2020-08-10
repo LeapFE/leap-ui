@@ -2,13 +2,13 @@ export { default as Affix } from "./affix";
 
 export { default as Anchor } from "./anchor";
 
-export { default as AutoComplete } from "./autoComplete";
+export { default as AutoComplete } from "./auto-complete";
 
 export { default as Alert } from "./alert";
 
 export { default as Avatar } from "./avatar";
 
-export { default as BackTop } from "./backTop";
+export { default as BackTop } from "./back-top";
 
 export { default as Badge } from "./badge";
 
@@ -32,9 +32,9 @@ export { default as Col } from "./col";
 
 export { default as Comment } from "./comment";
 
-export { default as ConfigProvider } from "./configProvider";
+export { default as ConfigProvider } from "./config-provider";
 
-export { default as DatePicker } from "./datePicker";
+export { default as DatePicker } from "./date-picker";
 
 export { default as Descriptions } from "./descriptions";
 
@@ -52,7 +52,7 @@ export { default as Icon } from "./icon";
 
 export { default as Input } from "./input";
 
-export { default as InputNumber } from "./inputNumber";
+export { default as InputNumber } from "./input-number";
 
 export { default as Layout } from "./layout";
 
@@ -72,7 +72,7 @@ export { default as NoData } from "./noData";
 
 export { default as notification } from "./notification";
 
-export { default as PageHeader } from "./pageHeader";
+export { default as PageHeader } from "./page-header";
 
 export { default as Pagination } from "./pagination";
 
@@ -106,15 +106,15 @@ export { default as Table } from "./table";
 
 export { default as Transfer } from "./transfer";
 
-export { default as Tree } from './tree';
+export { default as Tree } from "./tree";
 
-// export { default as TreeSelect } from './treeSelect';
+// export { default as TreeSelect } from './tree-select';
 
 export { default as Tabs } from "./tabs";
 
 export { default as Tag } from "./tag";
 
-export { default as TimePicker } from "./timePicker";
+export { default as TimePicker } from "./time-picker";
 
 export { default as Timeline } from "./timeline";
 
