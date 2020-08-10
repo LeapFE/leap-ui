@@ -42,10 +42,9 @@ class Search extends Component<AntdInputInterface.SearchProps> {
   }
 }
 
-interface SearchGroupProps extends AntdInputInterface.GroupProps {
+interface SearchGroupProps extends AntdInputInterface.SearchProps {
   nullResult?: boolean;
 }
-// REVIEW deprecated `onSubmit`
 class SearchGroup extends Component<SearchGroupProps> {
   render() {
     const { nullResult = "", className, ...props } = this.props;
@@ -53,7 +52,7 @@ class SearchGroup extends Component<SearchGroupProps> {
     if (nullResult) {
       return (
         <div className="null-result">
-          <Input.Search
+          <AntdInput.Search
             {...props}
             allowClear={true}
             className={ClassNames("fl_input_search", className)}
@@ -64,7 +63,7 @@ class SearchGroup extends Component<SearchGroupProps> {
     }
 
     return (
-      <Input.Search
+      <AntdInput.Search
         {...props}
         allowClear={true}
         className={ClassNames("fl_input_search", className)}
@@ -85,6 +84,7 @@ class Input extends Component<InputProps> {
   static Textarea: typeof TextArea;
   static Search: typeof Search;
   static SearchGroup: typeof SearchGroup;
+  static Group: typeof AntdInput.Group;
   render() {
     const { error, success, rightError, loading, popover, className, ...props } = this.props;
     // 带气泡提示
@@ -109,7 +109,7 @@ class Input extends Component<InputProps> {
       // 带loading
       return (
         <div className="ant-input-affix-wrapper loading">
-          <AntdInput {...props} className={`fl-input ${className}`} />
+          <AntdInput {...props} className={ClassNames("fl-input", className)} />
           <div className="loading-msg">
             <span>加载中…</span>
             <Icon type="loading" />
@@ -119,21 +119,22 @@ class Input extends Component<InputProps> {
     // 带错误提示或成功提示
     if (error || success || rightError)
       return (
-        <div className={`ant-input-affix-wrapper ${success ? "success" : "error"}`}>
-          <AntdInput {...props} className={`fl-input ${className}`} />
-          <div className={`input-msg ${rightError ? "right-msg" : ""}`}>
+        <div className={ClassNames("ant-input-affix-wrapper", { success: success })}>
+          <AntdInput {...props} className={ClassNames("fl-input", className)} />
+          <div className={ClassNames("input-msg", { "right-msg": rightError })}>
             <Icon type="close-circle" theme="filled" />
             <Icon type="check-circle" theme="filled" />
             <span>{error || success || rightError}</span>
           </div>
         </div>
       );
-    return <AntdInput {...props} className={`fl-input ${className}`} />;
+    return <AntdInput {...props} className={ClassNames("fl-input", className)} />;
   }
 }
 
 Input.Search = Search;
 Input.Textarea = TextArea;
 Input.SearchGroup = SearchGroup;
+Input.Group = AntdInput.Group;
 export { AntdInput, AntdInputInterface };
 export default Input;
