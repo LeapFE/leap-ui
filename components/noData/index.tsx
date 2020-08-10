@@ -3,7 +3,7 @@ import ClassNames from "classnames";
 
 import "./style";
 
-interface NoDataProps {
+export interface NoDataProps {
   size?: "small";
   type?: "warning" | "success";
   style?: CSSProperties;

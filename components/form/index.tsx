@@ -11,5 +11,5 @@ class Form extends Component<AntdFormInterface.FormProps> {
   }
 }
 
-export { AntdForm, AntdFormInterface };
+// export { AntdForm, AntdFormInterface };
 export default Form;

@@ -5,7 +5,7 @@ import ClassNames from "classnames";
 
 import "./style";
 
-interface PopoverProps extends AntdPopoverInterface.PopoverProps {
+export interface PopoverProps extends AntdPopoverInterface.PopoverProps {
   hideArrow?: boolean;
 }
 
@@ -21,5 +21,5 @@ const Popover = forwardRef<AntdPopover, PopoverProps>((props, ref) => {
   );
 });
 
-export { AntdPopover, AntdPopoverInterface };
+// export { AntdPopover, AntdPopoverInterface };
 export default Popover;

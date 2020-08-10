@@ -128,5 +128,5 @@ class Select<
   }
 }
 
-export { AntdSelect, AntdSelectInterface };
+// export { AntdSelect, AntdSelectInterface };
 export default Select;

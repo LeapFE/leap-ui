@@ -48,5 +48,5 @@ const Radio = InternalRadio as CompoundedComponent;
 Radio.Button = Button;
 Radio.Group = Group;
 
-export { AntdRadio, AntdRadioButtonInterface, AntdRadioInterface };
+// export { AntdRadio, AntdRadioButtonInterface, AntdRadioInterface };
 export default Radio;

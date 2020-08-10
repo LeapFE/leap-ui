@@ -27,6 +27,6 @@ class Button extends Component<AntdButtonInterface.ButtonProps> {
 
 Button.Group = ButtonGroup;
 
-export { AntdButton, AntdButtonInterface };
+// export { AntdButton, AntdButtonInterface };
 
 export default Button;

@@ -22,6 +22,6 @@ class Cascader extends React.Component<CascaderProps> {
   }
 }
 
-export { AntdCascader, AntdCascaderInterface };
+// export { AntdCascader, AntdCascaderInterface };
 
 export default Cascader;

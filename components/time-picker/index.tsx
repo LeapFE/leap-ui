@@ -18,5 +18,5 @@ const TimePicker = forwardRef<AntdTimePicker, AntdTimePickerInterface.TimePicker
   },
 );
 
-export { AntdTimePicker, AntdTimePickerInterface };
+// export { AntdTimePicker, AntdTimePickerInterface };
 export default TimePicker;
