@@ -1,5 +1,5 @@
 import CalendarLocale from "rc-picker/lib/locale/en_US";
-import timePickerLocale, { TimePickerLocale } from "../../timePicker/locale/en_US";
+import timePickerLocale, { TimePickerLocale } from "../../time-picker/locale/en_US";
 import { Locale as RcPickerLocale } from "rc-picker/lib/interface";
 
 export type PickerLocale = {
