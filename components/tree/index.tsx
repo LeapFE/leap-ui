@@ -14,6 +14,7 @@ export interface TreeProps extends AntdTreeInterface.TreeProps {
 }
 
 class Tree extends Component<TreeProps> {
+  // REVIEW api changed
   static TreeNode: typeof AntdTree.TreeNode = AntdTree.TreeNode;
   static TreeParent: typeof TreeParent = TreeParent;
   static TreeSearch: typeof TreeSearch = TreeSearch;
@@ -71,9 +72,5 @@ class Tree extends Component<TreeProps> {
   }
 }
 
-// REVIEW api changed
-// Tree.TreeNode = AntdTree.TreeNode;
-// Tree.TreeParent = TreeParent;
-// Tree.TreeSearch = TreeSearch;
-export { AntdTree, AntdTreeInterface };
+// export { AntdTree, AntdTreeInterface };
 export default Tree;

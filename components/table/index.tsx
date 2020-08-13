@@ -29,5 +29,5 @@ class Table<T> extends Component<TableProps<T>> {
   }
 }
 
-export { AntdTable, AntdTableInterface };
+// export { AntdTable, AntdTableInterface };
 export default Table;

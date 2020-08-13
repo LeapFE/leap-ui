@@ -1,10 +1,10 @@
 /* eslint-disable no-template-curly-in-string */
 import Pagination from "rc-pagination/lib/locale/en_US";
-import DatePicker from "../datePicker/locale/en_US";
-import TimePicker from "../timePicker/locale/en_US";
+import DatePicker from "../date-picker/locale/en_US";
+import TimePicker from "../time-picker/locale/en_US";
 import Calendar from "../calendar/locale/en_US";
 
-import { EnhancedLocale } from "../localProvider";
+import { EnhancedLocale } from "../locale-provider";
 
 const typeTemplate = "${label} is not a valid ${type}";
 

@@ -1,9 +1,10 @@
 import React, { ChangeEvent } from "react";
 import * as AntdTreeInterface from "antd/es/tree";
 import { Tree as AntdTree } from "antd";
+import * as AntdInputInterface from "antd/es/input";
 
 import { NodeLabel } from "./index";
-import Input, { AntdInputInterface } from "../input";
+import Input from "../input";
 
 import { TreeSearchTitle } from "./TreeSearchTitle";
 import { TreeNodeNormal } from "antd/lib/tree/Tree";

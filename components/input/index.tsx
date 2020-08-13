@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import { Input as AntdInput } from "antd";
 import * as AntdInputInterface from "antd/es/input";
 import ClassNames from "classnames";
+import * as AntdPopoverInterface from "antd/es/popover";
 
-import Popover, { AntdPopoverInterface } from "./../popover";
+import Popover from "./../popover";
 import Icon from "./../icon";
 
 import "./style";
 
-interface TextAreaProps extends AntdInputInterface.TextAreaProps {
+export interface TextAreaProps extends AntdInputInterface.TextAreaProps {
   count?: number;
 }
 class TextArea extends Component<TextAreaProps> {
@@ -42,7 +43,7 @@ class Search extends Component<AntdInputInterface.SearchProps> {
   }
 }
 
-interface SearchGroupProps extends AntdInputInterface.SearchProps {
+export interface SearchGroupProps extends AntdInputInterface.SearchProps {
   nullResult?: boolean;
 }
 class SearchGroup extends Component<SearchGroupProps> {
@@ -136,5 +137,5 @@ Input.Search = Search;
 Input.TextArea = TextArea;
 Input.SearchGroup = SearchGroup;
 Input.Group = AntdInput.Group;
-export { AntdInput, AntdInputInterface };
+
 export default Input;

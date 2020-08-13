@@ -155,5 +155,5 @@ DatePicker.WeekPicker = WeekPicker;
 // NOTE api changed
 DatePicker.RangeWeekPicker = RangeWeekPicker;
 
-export { AntdDatePicker, AntdDatePickerInterface };
+// export { AntdDatePicker, AntdDatePickerInterface };
 export default DatePicker;

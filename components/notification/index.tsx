@@ -9,7 +9,7 @@ import "./style";
 
 const notification = {} as AntdNotificationInterface.NotificationApi;
 
-interface NotificationArgsProps extends AntdNotificationInterface.ArgsProps {
+export interface NotificationArgsProps extends AntdNotificationInterface.ArgsProps {
   hideIcon?: boolean;
 }
 
@@ -60,5 +60,5 @@ notification.open = (props: NotificationArgsProps) => {
   });
 };
 
-export { AntdNotification, AntdNotificationInterface };
+// export { AntdNotification, AntdNotificationInterface };
 export default notification;

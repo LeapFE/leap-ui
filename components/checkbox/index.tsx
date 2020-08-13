@@ -22,5 +22,5 @@ class Checkbox extends Component<AntdCheckboxInterface.CheckboxProps> {
 
 Checkbox.Group = Group;
 
-export { AntdCheckbox, AntdCheckboxInterface };
+// export { AntdCheckbox, AntdCheckboxInterface };
 export default Checkbox;

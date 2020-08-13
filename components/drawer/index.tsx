@@ -13,5 +13,5 @@ const Drawer: FunctionComponent<AntdDrawerInterface.DrawerProps> = (props) => {
   );
 };
 
-export { AntdDrawer, AntdDrawerInterface };
+// export { AntdDrawer, AntdDrawerInterface };
 export default Drawer;

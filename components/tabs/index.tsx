@@ -37,5 +37,5 @@ class Tabs extends Component<TabsProps> {
 
 Tabs.TabPane = AntdTabs.TabPane;
 
-export { AntdTabs, AntdTabsInterface };
+// export { AntdTabs, AntdTabsInterface };
 export default Tabs;
