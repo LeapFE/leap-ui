@@ -1,0 +1,272 @@
+@font-face {
+  font-family: "flfont"; /* project id 1642665 */
+  src: url("//at.alicdn.com/t/font_1642665_sfs1t4yw9k.eot");
+  src: url("//at.alicdn.com/t/font_1642665_sfs1t4yw9k.eot?#iefix") format("embedded-opentype"),
+    url("//at.alicdn.com/t/font_1642665_sfs1t4yw9k.woff2") format("woff2"),
+    url("//at.alicdn.com/t/font_1642665_sfs1t4yw9k.woff") format("woff"),
+    url("//at.alicdn.com/t/font_1642665_sfs1t4yw9k.ttf") format("truetype"),
+    url("//at.alicdn.com/t/font_1642665_sfs1t4yw9k.svg#iconfont") format("svg");
+}
+
+.flfont {
+  font-family: "flfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.coustom_tree_select {
+  width: 150px;
+  font-size: 12px !important;
+  color: rgba(6, 27, 54, 0.8) !important;
+
+  .ant-select-selection__clear {
+    right: 8px;
+  }
+
+  &.ant-select-disabled {
+    color: rgba(6, 27, 54, 0.3) !important;
+  }
+
+  .ant-select-arrow {
+    .anticon-down {
+      transition: all 0.2s;
+      vertical-align: top;
+
+      &::after {
+        content: "\e661";
+        font-family: "flfont";
+        transform: scale(0.8);
+        color: #a5adba;
+        display: block;
+        transition: all 0.2s;
+      }
+
+      svg {
+        display: none;
+      }
+    }
+  }
+
+  &.ant-select-open {
+    .ant-select-arrow {
+      .anticon-down {
+        line-height: 12px;
+
+        &::after {
+          transform: rotate(180deg) scale(0.8);
+        }
+      }
+    }
+  }
+
+  &.ant-select-open .ant-select-selection {
+    border-color: #2a5dff;
+    box-shadow: 0 0 0 2px inset rgba(58, 104, 255, 0.2);
+  }
+
+  .ant-select-selection--multiple {
+    .ant-select-selection__choice {
+      background: rgba(244, 245, 247, 1);
+      height: 22px;
+      border: none;
+      border-radius: 4px;
+    }
+
+    & > ul > li,
+    .ant-select-selection__rendered > ul > li {
+      margin-top: 4px;
+    }
+
+    .ant-select-selection__choice__content {
+      padding-right: 4px;
+      font-size: 12px;
+      color: rgba(6, 27, 54, 0.4);
+    }
+  }
+
+  &:not(.ant-select-disabled) {
+    .ant-select-selection {
+      &:hover,
+      &:focus,
+      &:active {
+        border-color: #2a5dff;
+      }
+
+      &:focus,
+      &:active {
+        box-shadow: 0 0 0 2px inset rgba(58, 104, 255, 0.2);
+      }
+    }
+  }
+}
+
+:root .ant-select-selection--multiple .ant-select-selection__choice__remove {
+  width: 16px;
+  height: 16px;
+  background: #c1c7d0;
+  border-radius: 100%;
+  color: #fff;
+  display: block;
+  line-height: 16px;
+  font-size: 10px;
+  transform: scale(0.8);
+  top: 2px;
+}
+
+.ant-select-dropdown {
+  .ant-select-tree {
+    max-height: 224px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 0 8px;
+    margin: 0;
+    color: rgba(6, 27, 54, 0.8);
+
+    & > li > .ant-select-tree-switcher {
+      width: 12px !important;
+    }
+
+    li {
+      overflow: hidden;
+      margin: 0;
+      font-size: 12px;
+      color: rgba(6, 27, 54, 0.8);
+
+      span.ant-select-tree-checkbox {
+        margin: 0 0 0 7px;
+      }
+
+      & > .ant-select-tree-switcher:not(.ant-select-tree-switcher-noop) {
+        color: #8993a4;
+        padding-top: 2px;
+      }
+
+      &.ant-select-tree-treenode-selected {
+        & > .ant-select-tree-switcher:not(.ant-select-tree-switcher-noop) {
+          background-color: rgba(42, 93, 255, 0.05);
+        }
+      }
+
+      .ant-select-tree-node-content-wrapper {
+        padding: 0;
+        padding-left: 8px;
+        color: rgba(6, 27, 54, 0.8);
+        height: 28px;
+        line-height: 28px;
+        width: 100%;
+        margin-bottom: 4px;
+
+        &:hover,
+        &.ant-select-tree-node-selected {
+          background-color: rgba(42, 93, 255, 0.05);
+        }
+      }
+
+      span {
+        &.ant-select-tree-switcher,
+        &.ant-select-tree-iconEle {
+          color: rgba(137, 147, 164, 1);
+          width: 17px;
+          text-align: right;
+          height: 28px;
+          vertical-align: top;
+          padding-top: 4px;
+        }
+      }
+    }
+
+    .ant-select-tree-checkbox-checked .ant-select-tree-checkbox-inner {
+      background-color: #2a5dff;
+      border-color: #2a5dff;
+    }
+
+    .ant-select-tree-checkbox-indeterminate .ant-select-tree-checkbox-inner {
+      background-color: #2a5dff;
+      border-color: #2a5dff;
+
+      &::after {
+        background-color: #fff;
+        height: 2px;
+      }
+    }
+
+    .ant-select-tree-checkbox {
+      & + .ant-select-tree-node-content-wrapper:hover {
+        background-color: transparent;
+      }
+    }
+  }
+}
+
+.ant-select-tree-dropdown {
+  .ant-select-dropdown-search {
+    padding: 0 12px;
+    position: relative;
+
+    .ant-select-search__field {
+      border-radius: 0;
+      border: none;
+      border-bottom: 1px solid #ecedf2;
+      padding: 0;
+      height: 32px;
+      padding-left: 17px;
+    }
+
+    &::after {
+      content: "\e699";
+      font-family: "flfont";
+      position: absolute;
+      top: 0;
+      left: 10px;
+      z-index: 99;
+      font-size: 12px;
+      color: #97a0af;
+      transform: scale(0.8);
+      display: flex;
+      align-items: center;
+      height: 32px;
+    }
+  }
+
+  .ant-empty-small {
+    .ant-empty-image {
+      display: none;
+    }
+
+    .ant-empty-description {
+      display: none;
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      background: url(../img/img_kong.png) no-repeat center;
+      height: 100px;
+      background-size: 80px;
+    }
+  }
+}
+
+.parent_popover {
+  &.tree_popover .ant-popover-inner-content {
+    padding: 8px;
+  }
+}
+
+.ant-select-tree-checkbox-wrapper:hover .ant-select-tree-checkbox-inner,
+.ant-select-tree-checkbox:hover .ant-select-tree-checkbox-inner,
+.ant-select-tree-checkbox-input:focus + .ant-select-tree-checkbox-inner,
+.ant-select-tree-checkbox-checked::after,
+.ant-select-focused .ant-select-selection,
+.ant-select-selection:focus,
+.ant-select-selection:active {
+  border-color: #2a5dff;
+}
+
+// .ant-select-focused .ant-select-selection,
+// .ant-select-selection:focus,
+// .ant-select-selection:active {
+//   box-shadow: 0px 0px 0px 2px inset rgba(58, 104, 255, 0.2);
+// }

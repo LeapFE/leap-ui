@@ -1,0 +1,126 @@
+.tree_select_render {
+  width: 100%;
+  min-height: 32px;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 4px;
+  border: 1px solid rgba(223, 225, 230, 1);
+  position: relative;
+
+  &:hover,
+  &:focus {
+    border-color: #3a68ff;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 2px inset rgba(58, 104, 255, 0.2);
+  }
+
+  .arrow {
+    color: rgba(0, 0, 0, 0.25);
+    font-size: 12px;
+    position: absolute;
+    padding-right: 11px;
+    top: 0;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 0;
+
+    &::after {
+      content: "\e661";
+      font-family: "flfont";
+      transform: scale(0.8);
+      color: #a5adba;
+      display: block;
+      transition: all 0.2s;
+    }
+  }
+
+  .close {
+    color: rgb(192, 192, 192);
+    font-size: 12px;
+    position: absolute;
+    padding-right: 11px;
+    top: 0;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 0;
+    cursor: pointer;
+
+    i {
+      display: block;
+      transition: all 0.4s;
+    }
+  }
+
+  &.open {
+    border-color: #3a68ff;
+    box-shadow: 0 0 0 2px inset rgba(58, 104, 255, 0.2);
+
+    .arrow {
+      &::after {
+        transform: rotate(180deg) scale(0.8);
+      }
+    }
+  }
+
+  .placeholder {
+    line-height: 30px;
+    font-size: 12px;
+    color: rgba(6, 27, 54, 0.3);
+    padding-left: 12px;
+    padding-right: 23px;
+  }
+
+  .content {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2px 23px 3px 6px;
+
+    &.tow_ellipsis {
+      flex-wrap: nowrap;
+
+      & > .lable {
+        overflow: hidden;
+      }
+    }
+  }
+
+  .lable {
+    margin: 2px 0 0 2px;
+    height: 22px;
+    background: rgba(244, 245, 247, 1);
+    color: rgba(6, 27, 54, 0.4);
+    border-radius: 4px;
+    font-size: 12px;
+    display: flex;
+    padding: 8px;
+    align-items: center;
+
+    .name {
+      line-height: 22px;
+      margin-right: 6px;
+      flex: 1;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .flfont {
+      color: rgba(193, 199, 208, 1);
+      font-size: 12px;
+      cursor: pointer;
+    }
+  }
+
+  .normal_name {
+    padding-left: 12px;
+    height: 18px;
+    font-size: 12px;
+    color: rgba(6, 27, 54, 0.8);
+    line-height: 30px;
+  }
+}
