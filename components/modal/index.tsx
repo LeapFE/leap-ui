@@ -9,6 +9,7 @@ import SingleModal from "./SingleModal";
 
 import "./style";
 
+
 const confirm: ModalFunc = ({ className, icon = "", ...otherProps }) => {
   const { okType, width } = otherProps;
   return AntdModal.confirm({
@@ -89,5 +90,5 @@ Modal.success = success;
 Modal.destroyAll = AntdModal.destroyAll;
 Modal.Single = SingleModal;
 
-// export { AntdModal, AntdModalInterface };
+export { AntdModal, AntdModalInterface };
 export default Modal;

@@ -1,0 +1,61 @@
+.fl_time_pickers {
+  display: flex;
+  justify-content: center;
+
+  .fl_time_pickers_col {
+    position: relative;
+    height: 264px;
+    overflow: hidden;
+
+    .fl_time_picker_date {
+      width: 100%;
+      height: 40px;
+      background: rgba(250, 251, 252, 1);
+      line-height: 40px;
+      text-align: center;
+      font-size: 14px;
+      color: rgba(6, 27, 54, 0.4);
+    }
+
+    &:nth-child(2) {
+      width: 139px;
+      border-left: 1px solid rgba(223, 225, 230, 1);
+    }
+  }
+
+  .ant-time-picker-panel.fl_time_picker_popup {
+    top: 0 !important;
+
+    .ant-time-picker-panel-inner {
+      padding-top: 40px;
+      box-shadow: none;
+      width: 140px;
+      padding: 0;
+    }
+
+    .ant-time-picker-panel-select {
+      width: 140px;
+      max-height: 224px;
+
+      ul {
+        width: 100%;
+      }
+    }
+
+    &.ant-time-picker-panel-column-2 {
+      .ant-time-picker-panel-select {
+        width: 70px;
+      }
+    }
+
+    &.ant-time-picker-panel-column-3 {
+      .ant-time-picker-panel-select {
+        width: 46px;
+      }
+    }
+  }
+
+  .ant-time-picker {
+    opacity: 0;
+  }
+}

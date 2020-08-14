@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import { Input as AntdInput } from "antd";
 import * as AntdInputInterface from "antd/es/input";
 import ClassNames from "classnames";
-import * as AntdPopoverInterface from "antd/es/popover";
+import { PopoverProps } from "antd/es/popover";
 
 import Popover from "./../popover";
 import Icon from "./../icon";
 
 import "./style";
 
-export interface TextAreaProps extends AntdInputInterface.TextAreaProps {
+interface TextAreaProps extends AntdInputInterface.TextAreaProps {
   count?: number;
 }
 class TextArea extends Component<TextAreaProps> {
@@ -43,9 +43,10 @@ class Search extends Component<AntdInputInterface.SearchProps> {
   }
 }
 
-export interface SearchGroupProps extends AntdInputInterface.SearchProps {
+interface SearchGroupProps extends AntdInputInterface.GroupProps {
   nullResult?: boolean;
 }
+// --REVIEW deprecated `onSubmit`  可以去掉
 class SearchGroup extends Component<SearchGroupProps> {
   render() {
     const { nullResult = "", className, ...props } = this.props;
@@ -53,7 +54,7 @@ class SearchGroup extends Component<SearchGroupProps> {
     if (nullResult) {
       return (
         <div className="null-result">
-          <AntdInput.Search
+          <Input.Search
             {...props}
             allowClear={true}
             className={ClassNames("fl_input_search", className)}
@@ -64,7 +65,7 @@ class SearchGroup extends Component<SearchGroupProps> {
     }
 
     return (
-      <AntdInput.Search
+      <Input.Search
         {...props}
         allowClear={true}
         className={ClassNames("fl_input_search", className)}
@@ -74,18 +75,17 @@ class SearchGroup extends Component<SearchGroupProps> {
 }
 
 export interface InputProps extends AntdInputInterface.InputProps {
-  popover?: AntdPopoverInterface.PopoverProps;
+  popover?: PopoverProps;
   error?: boolean;
   success?: boolean;
   rightError?: boolean;
   loading?: boolean;
 }
-// REVIEW invoke `onChange` will pass `event` object instead of `event.target.value`
+// ----REVIEW invoke `onChange` will pass `event` object instead of `event.target.value`
 class Input extends Component<InputProps> {
-  static TextArea: typeof TextArea;
+  static Textarea: typeof TextArea;
   static Search: typeof Search;
   static SearchGroup: typeof SearchGroup;
-  static Group: typeof AntdInput.Group;
   render() {
     const { error, success, rightError, loading, popover, className, ...props } = this.props;
     // 带气泡提示
@@ -110,7 +110,7 @@ class Input extends Component<InputProps> {
       // 带loading
       return (
         <div className="ant-input-affix-wrapper loading">
-          <AntdInput {...props} className={ClassNames("fl-input", className)} />
+          <AntdInput {...props} className={`fl-input ${className}`} />
           <div className="loading-msg">
             <span>加载中…</span>
             <Icon type="loading" />
@@ -120,22 +120,21 @@ class Input extends Component<InputProps> {
     // 带错误提示或成功提示
     if (error || success || rightError)
       return (
-        <div className={ClassNames("ant-input-affix-wrapper", { success: success })}>
-          <AntdInput {...props} className={ClassNames("fl-input", className)} />
-          <div className={ClassNames("input-msg", { "right-msg": rightError })}>
+        <div className={`ant-input-affix-wrapper ${success ? "success" : "error"}`}>
+          <AntdInput {...props} className={`fl-input ${className}`} />
+          <div className={`input-msg ${rightError ? "right-msg" : ""}`}>
             <Icon type="close-circle" theme="filled" />
             <Icon type="check-circle" theme="filled" />
             <span>{error || success || rightError}</span>
           </div>
         </div>
       );
-    return <AntdInput {...props} className={ClassNames("fl-input", className)} />;
+    return <AntdInput {...props} className={`fl-input ${className}`} />;
   }
 }
 
 Input.Search = Search;
-Input.TextArea = TextArea;
+Input.Textarea = TextArea;
 Input.SearchGroup = SearchGroup;
-Input.Group = AntdInput.Group;
-
+export { AntdInput, AntdInputInterface };
 export default Input;
