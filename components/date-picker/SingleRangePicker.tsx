@@ -8,12 +8,13 @@ allowClear 默认true
 import React, { CSSProperties } from "react";
 import classnames from "classnames";
 import moment from "moment";
+import { CheckboxChangeEvent } from "antd/es/checkbox";
+
 import Icon from "../icon";
 import Calendar from "./Calendar";
 import Popover from "../popover";
 import Button from "../button";
 import Checkbox from "../checkbox";
-import { CheckboxChangeEvent } from "antd/es/checkbox";
 import RangeTimePickers from "./RangeTimePickers";
 
 interface SingleRangePickerProps {
@@ -103,6 +104,7 @@ class SingleRangePicker extends React.Component<SingleRangePickerProps, SingleRa
   };
   confirm = () => {
     const { onOk } = this.props;
+    // eslint-disable-next-line prefer-const
     let { start, end, temporaryEed } = this.state;
     if (start && !end && !temporaryEed) end = start;
     this.setState({ visible: false, showTimeModule: false });
@@ -144,13 +146,13 @@ class SingleRangePicker extends React.Component<SingleRangePickerProps, SingleRa
     } = this.props;
 
     const timePickerValue = [];
-    const calanderValue = [];
+    const calendarValue = [];
     if (start) {
       timePickerValue.push(moment(start));
-      calanderValue.push(moment(start));
+      calendarValue.push(moment(start));
     }
     if (end || temporaryEed) timePickerValue.push(moment(end || temporaryEed));
-    if (end) calanderValue.push(moment(end));
+    if (end) calendarValue.push(moment(end));
 
     return (
       <Popover
@@ -183,7 +185,7 @@ class SingleRangePicker extends React.Component<SingleRangePickerProps, SingleRa
                       type="range"
                       minuteStep={minuteStep}
                       disabledDate={disabledDate}
-                      value={calanderValue}
+                      value={calendarValue}
                       defaultTimes={defaultTimes}
                       onRangeChange={([start, end]) => {
                         const returnValue = [start];

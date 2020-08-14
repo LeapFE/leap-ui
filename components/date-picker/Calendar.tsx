@@ -175,11 +175,12 @@ class Calendar extends React.Component<CalendarProps, CalendarState> {
   };
   dayCell = (child: CalenderTableCell) => {
     const { range = [], selectedDates = [], disabledDate, value, type = "multi" } = this.props;
-    let [rangeStart = "1999-01-01", rangeEnd = "9999-12-31"] = range;
+    const [rangeStart = "1999-01-01", rangeEnd = "9999-12-31"] = range;
     const disabled =
       child.str < rangeStart ||
       child.str > rangeEnd ||
       (disabledDate && disabledDate(moment(`${child.str} 23:59:59`)));
+    // eslint-disable-next-line prefer-const
     let { start, end } = getStartAndEnd(value, FORMAT_TEMPLATE);
     end = end || start;
     const today = moment().format(FORMAT_TEMPLATE) === child.str;

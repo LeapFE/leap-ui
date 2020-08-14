@@ -8,13 +8,13 @@ allowClear 默认true
 import React, { CSSProperties } from "react";
 import classnames from "classnames";
 import moment from "moment";
+import { PopoverProps } from "antd/es/popover";
+
 import Icon from "../icon";
 import Tooltip from "../toolTip";
-import { PopoverProps } from "antd/es/popover";
 import Calendar from "./Calendar";
 import Popover from "../popover";
 import Button from "../button";
-// import "./style/multipleDate.less";
 
 const format = "YYYY-MM-DD";
 
@@ -64,7 +64,7 @@ class MultipleDate extends React.Component<MultipleDateProps, MultipleDateState>
   }
 
   onChangeDate = (date: string) => {
-    let { selectedDates = [] } = this.state;
+    const { selectedDates = [] } = this.state;
     const selected = new Set(selectedDates);
     if (selected.has(date)) {
       selected.delete(date);
@@ -77,7 +77,10 @@ class MultipleDate extends React.Component<MultipleDateProps, MultipleDateState>
   onChange = (selectedDates: string[]) => {
     const { onChange } = this.props;
     this.setState({ selectedDates });
-    onChange && onChange(selectedDates);
+
+    if (typeof onChange === "function") {
+      onChange(selectedDates);
+    }
   };
 
   dateRender = () => {
