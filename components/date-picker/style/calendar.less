@@ -1,0 +1,161 @@
+.fl_calander {
+  width: 280px;
+
+  .fl_contenet {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.fl_calander_row {
+  width: 40px;
+  margin: 4px 0;
+  text-align: center;
+  line-height: 24px;
+  color: rgba(6, 27, 54, 0.8);
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  height: 24px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    display: block;
+    height: 24px;
+    left: 0;
+    right: 0;
+  }
+
+  span {
+    position: relative;
+    z-index: 1;
+    height: 24px;
+    width: 24px;
+    border-radius: 100%;
+  }
+
+  &.left_col,
+  &:nth-child(7n + 1),
+  &:not(.disabled) + &.disabled,
+  &:not(.selected) + &.selected {
+    &::before {
+      border-top-left-radius: 24px;
+      border-bottom-left-radius: 24px;
+      left: 7px;
+    }
+  }
+
+  &.right_col,
+  &:nth-child(7n) {
+    &::before {
+      border-top-right-radius: 24px;
+      border-bottom-right-radius: 24px;
+      right: 7px;
+    }
+  }
+
+  &.non_current_month {
+    color: rgba(6, 27, 54, 0.5);
+  }
+
+  &:not(.disabled) {
+    &.today {
+      color: rgba(42, 93, 255, 1);
+    }
+
+    &:hover {
+      color: rgba(42, 93, 255, 1);
+    }
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    color: rgba(6, 27, 54, 0.3);
+  }
+}
+.fl_handler {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+
+  .yy_mm {
+    height: 40px;
+    font-size: 14px;
+    color: rgba(6, 27, 54, 0.8);
+    line-height: 40px;
+    flex: 1;
+    text-align: center;
+  }
+
+  i {
+    width: 18px;
+    font-size: 12px;
+    color: #8993a4;
+    cursor: pointer;
+    line-height: 44px;
+    height: 40px;
+
+    &:hover {
+      color: #8993a4;
+    }
+
+    &:nth-child(2) {
+      margin-left: 24px;
+    }
+
+    &:nth-child(4) {
+      margin-right: 24px;
+    }
+  }
+}
+.fl_weeks {
+  height: 32px;
+  background: rgba(250, 251, 252, 1);
+  display: flex;
+  align-items: center;
+
+  span {
+    flex: 1;
+    font-size: 12px;
+    color: rgba(6, 27, 54, 0.4);
+    line-height: 18px;
+    text-align: center;
+  }
+}
+.fl_multi_calander_row {
+  &:not(.disabled) {
+    &.selected {
+      span {
+        background-color: rgba(42, 93, 255, 1);
+        color: #fff;
+      }
+    }
+  }
+
+  &.disabled {
+    &::before {
+      background: rgba(236, 237, 242, 0.4);
+    }
+  }
+}
+.fl_range_calander_row {
+  &:not(.disabled) {
+    &.selected {
+      &::before {
+        background-color: rgba(42, 93, 255, 0.05);
+      }
+
+      &.start_or_end {
+        span {
+          background-color: rgba(42, 93, 255, 1);
+          color: #fff;
+        }
+      }
+    }
+  }
+}

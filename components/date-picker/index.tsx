@@ -4,6 +4,8 @@ import * as AntdDatePickerInterface from "antd/es/date-picker/interface";
 import ClassNames from "classnames";
 import moment from "moment";
 
+import MultipleDate from "./MultipleDate";
+import SingleRangePicker from "./SingleRangePicker";
 import "./style";
 
 class RangePicker extends Component<AntdDatePickerInterface.RangePickerProps> {
@@ -84,7 +86,7 @@ class RangeWeekPicker extends Component<RangeWeekPickerProps, RangeWeekPickerSta
     const { format = "YYYY-MM-DD" } = this.props;
 
     // 计算今天是这周第几天
-    // REVIEW weekOfData is a Number???
+    // --REVIEW weekOfDay is a Number???  weekOfDay 数字字符串
     const weekOfDay = Number(dateMoment.format("E"));
     const monday = dateMoment.subtract(weekOfDay - 1, "days").format(format as string);
     const sunday = dateMoment.add(6, "days").format(format as string);
@@ -107,7 +109,7 @@ class RangeWeekPicker extends Component<RangeWeekPickerProps, RangeWeekPickerSta
     const { dropdownClassName, placeholder, ...otherProps } = this.props;
     const { monday, sunday } = this.state;
     const { format = "YYYY-MM-DD" } = otherProps;
-    
+
     return (
       <div className="range_week_picker">
         <WeekPicker
@@ -137,6 +139,8 @@ class DatePicker extends Component<AntdDatePickerInterface.DatePickerProps> {
   static MonthPicker: typeof MonthPicker;
   static WeekPicker: typeof WeekPicker;
   static RangeWeekPicker: typeof RangeWeekPicker;
+  static MultipleDate: typeof MultipleDate;
+  static SingleRangePicker: typeof SingleRangePicker;
 
   render() {
     return (
@@ -154,6 +158,8 @@ DatePicker.RangePicker = RangePicker;
 DatePicker.WeekPicker = WeekPicker;
 // NOTE api changed
 DatePicker.RangeWeekPicker = RangeWeekPicker;
+DatePicker.MultipleDate = MultipleDate;
+DatePicker.SingleRangePicker = SingleRangePicker;
 
-// export { AntdDatePicker, AntdDatePickerInterface };
+export { AntdDatePicker, AntdDatePickerInterface };
 export default DatePicker;

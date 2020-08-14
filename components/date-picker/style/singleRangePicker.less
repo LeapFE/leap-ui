@@ -1,0 +1,169 @@
+.fl_sigle_range_picker {
+  width: 280px;
+  height: 32px;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 4px;
+  border: 1px solid rgba(223, 225, 230, 1);
+  position: relative;
+  overflow: hidden;
+
+  .cot {
+    line-height: 30px;
+    padding-left: 8px;
+    padding-right: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .selected_value {
+    display: none;
+    color: rgba(6, 27, 54, 0.8);
+    font-size: 12px;
+    align-items: center;
+
+    & > span {
+      padding: 0 3px;
+    }
+  }
+
+  .placeholder {
+    display: block;
+    font-size: 12px;
+    color: rgba(6, 27, 54, 0.3);
+  }
+
+  .range_picker_icon,
+  .range_picker_clear {
+    font-size: 12px;
+    line-height: 12px;
+    color: rgba(193, 199, 208, 1);
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    transition: all 0.1s;
+  }
+
+  .range_picker_clear {
+    top: 7px;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.25);
+    right: -18px;
+    cursor: pointer;
+
+    &:hover {
+      color: rgba(0, 0, 0, 0.35);
+    }
+  }
+
+  &.selected {
+    .selected_value {
+      display: flex;
+    }
+
+    .placeholder {
+      display: none;
+    }
+
+    &:hover {
+      .allow_clear_picker_icon {
+        right: -18px;
+      }
+
+      .range_picker_clear {
+        right: 7px;
+      }
+    }
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    background-color: #fafafa;
+    color: rgba(6, 27, 54, 0.3);
+  }
+}
+
+.fl_single_range_picker_popover {
+  overflow: hidden;
+
+  .picker_header {
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+
+    span {
+      text-align: center;
+
+      &:nth-child(1),
+      &:nth-child(3) {
+        flex: 1;
+        text-align: left;
+      }
+
+      &:nth-child(1) {
+        text-align: right;
+      }
+
+      &:nth-child(2) {
+        width: 26px;
+      }
+    }
+  }
+
+  .picker_footer {
+    padding: 8px 8px 16px 8px;
+    display: flex;
+    align-items: center;
+
+    .ant-checkbox + span {
+      padding-left: 3px;
+    }
+
+    .picker_select_time_btn {
+      margin-left: auto;
+      padding: 0 16px;
+      line-height: 32px;
+      font-size: 14px;
+      color: rgba(42, 93, 255, 1);
+
+      &.disabled {
+        color: rgba(6, 27, 54, 0.25);
+        cursor: not-allowed;
+      }
+
+      &:not(.disabled) {
+        cursor: pointer;
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+
+      & + .confirm {
+        margin-left: 0;
+      }
+    }
+
+    .confirm {
+      margin-left: auto;
+    }
+  }
+
+  .fl_picker_main {
+    width: 280px;
+    height: 264px;
+
+    .fl_picker_cot {
+      display: flex;
+      align-items: flex-start;
+      transition: all 0.2s;
+    }
+
+    .fl_picker_item {
+      width: 280px;
+    }
+  }
+}
