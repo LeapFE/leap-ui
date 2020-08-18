@@ -89,5 +89,5 @@ Modal.success = success;
 Modal.destroyAll = AntdModal.destroyAll;
 Modal.Single = SingleModal;
 
-// export { AntdModal, AntdModalInterface };
+export { AntdModal, AntdModalInterface };
 export default Modal;

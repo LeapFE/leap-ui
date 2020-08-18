@@ -4,7 +4,6 @@ function loadStories() {
   require("../stories/index");
   require("../stories/story/button");
   require("../stories/story/cascader");
-  require("../stories/story/input");
   require("../stories/story/drawer");
   require("../stories/story/noData");
   require("../stories/story/notification");
@@ -13,9 +12,9 @@ function loadStories() {
   require("../stories/story/slider");
   require("../stories/story/switch");
   require("../stories/story/table");
-  require("../stories/story/tree");
   require("../stories/story/modal");
   require("../stories/story/treeselect");
+  require("../stories/story/datePicker");
 }
 
 configure(loadStories, module);
