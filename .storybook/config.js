@@ -15,6 +15,7 @@ function loadStories() {
   require("../stories/story/table");
   require("../stories/story/tree");
   require("../stories/story/modal");
+  require("../stories/story/treeselect");
 }
 
 configure(loadStories, module);

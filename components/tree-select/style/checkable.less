@@ -1,0 +1,58 @@
+.tree_popover {
+  width: 251px;
+  padding-top: 0;
+
+  .ant-popover-inner-content {
+    padding: 0;
+
+    .fl_search_tree_all {
+      padding: 0 8px;
+
+      .ant-input {
+        margin: 0 !important;
+        margin-bottom: 8px !important;
+      }
+    }
+  }
+
+  .ant-popover-arrow {
+    display: none;
+  }
+
+  .ant-tree {
+    width: 100%;
+  }
+}
+
+.checkable_tree {
+  width: 251px;
+  display: inline-block;
+}
+
+.tree_content {
+  max-height: 220px;
+  overflow: hidden;
+  overflow-y: auto;
+
+  & > .ant-tree > li > .ant-tree-switcher,
+  .check_tree > .ant-tree > li > .ant-tree-switcher {
+    padding-left: 0;
+    width: 15px;
+  }
+}
+
+.disabled {
+  .tree_select_render {
+    background: rgba(250, 250, 250, 1);
+    border: 1px solid rgba(223, 225, 230, 1);
+    cursor: not-allowed;
+
+    .normal_name {
+      color: rgba(6, 27, 54, 0.3);
+    }
+
+    .lable .flfont {
+      cursor: not-allowed;
+    }
+  }
+}

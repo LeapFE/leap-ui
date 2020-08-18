@@ -4,7 +4,7 @@ export type TreeFormat = {
   leafs?: Record<string, string>;
   allItem?: Record<string, { title?: string }>;
 };
-const TagToolTip = (label: string[] = [], maxTagCount = 0, treeFormat: TreeFormat) => {
+const TagToolTip = (label: number[] | string[] = [], maxTagCount = 0, treeFormat: TreeFormat) => {
   if (!label.length) return null;
 
   if (treeFormat) {
@@ -13,7 +13,7 @@ const TagToolTip = (label: string[] = [], maxTagCount = 0, treeFormat: TreeForma
     // REVIEW typeof keysGroup
     const keysGroup: Record<string, any[]> = {};
 
-    label.forEach((child) => {
+    label.forEach((child: string | number) => {
       const pid = leafs[child];
 
       if (pid) {

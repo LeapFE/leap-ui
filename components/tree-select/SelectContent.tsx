@@ -5,8 +5,6 @@ import Tooltip from "../toolTip";
 import Icon from "../icon";
 import { TagToolTip, TreeFormat } from "./TagToolTip";
 
-import "./selectContent.less";
-
 export interface SelectContentProps {
   width?: string | number;
   open?: boolean;
@@ -49,7 +47,7 @@ class SelectContent extends React.Component<SelectContentProps> {
       checkedKeys = [],
       allKeys = [],
       placeholder = "",
-      selectType,
+      // selectType,
       maxTagCount,
       treeFormat = {},
       width,
@@ -129,11 +127,11 @@ class SelectContent extends React.Component<SelectContentProps> {
       );
     }
 
-    if (selectType === "oneLabel") {
-      // REVIEW where `allObj` ???
-      const label = allObj[checkedKeys[0]] || {};
-      return <div className="normal_name">{label[titleName]}</div>;
-    }
+    // if (selectType === "oneLabel") {
+    //   // REVIEW where `allObj` and `titleName` ???
+    //   const label = allObj[checkedKeys[0]] || {};
+    //   return <div className="normal_name">{label[titleName]}</div>;
+    // }
 
     return <div />;
   };
