@@ -8,7 +8,7 @@ import {
 } from "antd/es/tree-select/interface";
 
 import Icon from "../icon";
-import Tooltip from "../toolTip";
+import Tooltip from "../tooltip";
 
 import Checkable from "./Checkable";
 import ParentTreeSelect from "./ParentTreeSelect";

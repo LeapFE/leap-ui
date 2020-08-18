@@ -3,7 +3,7 @@ import React, { Component, ReactNode, isValidElement, ReactText } from "react";
 import { Select as AntdSelect } from "antd";
 
 import * as AntdSelectInterface from "antd/es/select";
-import Tooltip from "./../toolTip";
+import Tooltip from "./../tooltip";
 
 import "./style";
 
