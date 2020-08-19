@@ -96,7 +96,7 @@ export default class ParentTreeSelect extends React.Component {
           overlayClassName="tree_popover parent_popover"
           trigger="click"
         >
-          <div className={disabled ? "disabled" : disabled}>
+          <div className={disabled ? "disabled" : ""}>
             <ParentSelectMain
               treeFormat={this.treeFormat}
               open={visible}

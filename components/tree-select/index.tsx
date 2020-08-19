@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from "react";
 import { TreeSelect as AntdTreeSelect } from "antd";
+import ClassNames from "classnames";
 import {
   TreeSelectProps as AntdTreeSelectProps,
   TreeNodeValue,
@@ -142,10 +143,14 @@ class TreeSelect<T extends TreeNodeValue> extends React.Component<
             <AntdTreeSelect
               {...otherProps}
               {...addProps}
-              className={`${className} ${mul_class} coustom_tree_select`}
+              className={ClassNames("coustom_tree_select", className, mul_class)}
               onChange={this.onChange}
               treeData={this.props.nodeLabel ? stateTreeData : otherProps.treeData}
-              maxTagPlaceholder={otherProps.maxTagCount === 0 && !otherProps.maxTagPlaceholder ? this.placeholderRender : undefined}
+              maxTagPlaceholder={
+                otherProps.maxTagCount === 0 && !otherProps.maxTagPlaceholder
+                  ? this.placeholderRender
+                  : undefined
+              }
             />
           </div>
         </Tooltip>
@@ -157,7 +162,7 @@ class TreeSelect<T extends TreeNodeValue> extends React.Component<
         {...otherProps}
         {...addProps}
         suffixIcon={<Icon type="down" />}
-        className={`${className} ${mul_class} coustom_tree_select`}
+        className={ClassNames("coustom_tree_select", className, mul_class)}
       />
     );
   }

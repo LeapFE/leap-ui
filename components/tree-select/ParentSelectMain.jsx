@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from "react";
+import ClassNames from "classnames";
 import Tooltip from "../tooltip";
 
 import { TagToolTip } from "./TagToolTip";
@@ -37,7 +38,7 @@ export default class ParentSelectMain extends React.Component {
   render() {
     const { width, open } = this.props;
     return (
-      <div className={`tree_select_render ${open ? "open" : ""}`} style={{ width }}>
+      <div className={ClassNames("tree_select_render", { open: open })} style={{ width }}>
         {this.selectMain()}
         <span className="arrow"></span>
       </div>

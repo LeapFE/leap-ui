@@ -140,7 +140,7 @@ export default class Checkable extends React.Component {
           overlayClassName="tree_popover"
           trigger="click"
         >
-          <div className={disabled ? "disabled" : disabled}>
+          <div className={disabled ? "disabled" : ""}>
             <SelectContent
               maxTagCount={maxTagCount}
               disabled={disabled}
