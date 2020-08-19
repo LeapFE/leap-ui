@@ -69,8 +69,8 @@ class TreeSelect<T extends TreeNodeValue> extends React.Component<
     if (nextProps.value && !this.state.value) {
       this.setState({ value: nextProps.value });
     }
-    if (nextProps.value !== this.props.value && nextProps.value) {
-      this.setState({ value: nextProps.value });
+    if (nextProps.value !== this.props.value) {
+      this.setState({ value: nextProps.value || [] });
     }
   }
 
