@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-filename-extension */
-import React from "react";
+import React, { CSSProperties } from "react";
 import { TreeSelect as AntdTreeSelect } from "antd";
 import ClassNames from "classnames";
 import {
@@ -25,6 +25,8 @@ export interface TreeSelectProps<T extends TreeNodeValue> extends AntdTreeSelect
   nodeLabel?: NodeLabel;
   parentTree?: boolean;
   tooltipType?: "parentAndLeaf";
+  popoverOverlayStyle?: CSSProperties;
+  popoverOverlayClassName?: string;
 }
 
 interface TreeSelectState {

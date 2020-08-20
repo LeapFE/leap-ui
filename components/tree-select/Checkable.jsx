@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from "react";
+import ClassNames from "classnames";
 import Popover from "../popover";
 import Tree from "../tree";
 
@@ -99,7 +100,12 @@ export default class Checkable extends React.Component {
 
   popoverContent = () => {
     // REVIEW api changed Inputplaceholder => inputPlaceholder
-    const { treeData, inputPlaceholder = "", treeCheckable, nodeLabel } = this.props;
+    const {
+      treeData,
+      inputPlaceholder = "",
+      treeCheckable,
+      nodeLabel,
+    } = this.props;
     const { checkedKeys, treeExpandedKeys, stateTreeData, visible } = this.state;
     if (!treeData || !treeData.length) return null;
     return (
@@ -121,7 +127,15 @@ export default class Checkable extends React.Component {
   };
 
   render() {
-    const { placeholder = "", allowClear, disabled, style = {}, maxTagCount } = this.props;
+    const {
+      placeholder = "",
+      allowClear,
+      disabled,
+      style = {},
+      maxTagCount,
+      popoverOverlayStyle,
+      popoverOverlayClassName,
+    } = this.props;
     const { width = "" } = style;
 
     const { checkedKeys, visible, allKeys = [] } = this.state;
@@ -136,8 +150,8 @@ export default class Checkable extends React.Component {
           placement="bottomLeft"
           visible={visible}
           content={this.popoverContent()}
-          overlayStyle={{ width }}
-          overlayClassName="tree_popover"
+          overlayStyle={{ ...style, ...popoverOverlayStyle }}
+          overlayClassName={ClassNames("tree_popover", popoverOverlayClassName)}
           trigger="click"
         >
           <div className={disabled ? "disabled" : ""}>
