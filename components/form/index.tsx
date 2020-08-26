@@ -5,11 +5,16 @@ import ClassNames from "classnames";
 
 import "./style";
 
+const FormItem = AntdForm.Item;
+
 class Form extends Component<AntdFormInterface.FormProps> {
+  static Item: typeof FormItem = FormItem;
+  static createFormField: any = AntdForm.createFormField;
+  static create: typeof AntdForm.create = AntdForm.create;
+
   render() {
     return <AntdForm className={ClassNames("fl-form", this.props.className)} {...this.props} />;
   }
 }
 
-// export { AntdForm, AntdFormInterface };
 export default Form;
