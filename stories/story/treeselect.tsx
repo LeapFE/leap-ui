@@ -186,7 +186,6 @@ class TreeselectRender extends React.Component {
             name: "父带子复选+单选子级",
             content: <TreeSelect treeData={treeData} placeholder="请选择" parentTree={true} />,
           },
-          {},
         ]}
       />
     );

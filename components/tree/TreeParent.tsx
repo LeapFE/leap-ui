@@ -173,6 +173,7 @@ class TreeParent extends React.Component<TreeParentProps, TreeParentState> {
         }
 
         const title = TreeSearchTitle(item, searchValue, nodeLabel);
+        // REVIEW `choosekeys` maybe not array
         const className = choosekeys.find((ele) => ele === itemKey) ? "choosed" : "";
 
         if (Array.isArray(itemChildren)) {

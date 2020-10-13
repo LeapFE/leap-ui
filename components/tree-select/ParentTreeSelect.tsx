@@ -1,15 +1,37 @@
-/* eslint-disable react/jsx-filename-extension */
-import React from "react";
+import React, { ReactNode } from "react";
 
 import Popover from "../popover";
 import Tree from "../tree";
 
-import TreeFormat from "./treeFormat";
+import { TreeFormat } from "./treeFormat";
 
-import ParentSelectMain from "./ParentSelectMain";
+import { ParentSelectMain } from "./ParentSelectMain";
+import { TreeNode, TreeNodeNormal } from "antd/es/tree-select/interface";
 
-export default class ParentTreeSelect extends React.Component {
-  constructor(props) {
+interface ParentTreeSelectProps {
+  nodeLabel?: Record<string, string>;
+  treeData?: Array<TreeNodeNormal>;
+  treeExpandedKeys?: string[];
+  value?: string[];
+  width?: string | number;
+  placeholder?: ReactNode;
+  disabled?: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onChange?: (selectKeys: string[], label: any, extra: any) => void;
+}
+
+interface ParentTreeSelectState {
+  treeExpandedKeys: string[];
+  checkedKeys: string[];
+  visible: boolean;
+  stateTreeData: TreeNode[];
+  selectedKeys: string[];
+}
+
+class ParentTreeSelect extends React.Component<ParentTreeSelectProps, ParentTreeSelectState> {
+  private treeFormat: TreeFormat | null;
+
+  constructor(props: ParentTreeSelectProps) {
     super(props);
 
     this.state = {
@@ -17,17 +39,20 @@ export default class ParentTreeSelect extends React.Component {
       visible: false,
       treeExpandedKeys: [],
       stateTreeData: [],
+      selectedKeys: [],
     };
+
+    this.treeFormat = null;
   }
   componentDidMount() {
     const { treeData, value = [], nodeLabel = {}, treeExpandedKeys = [] } = this.props;
     if (treeData && treeData.length && nodeLabel) {
-      // 只有这两个值都传 才会处理treeData 获取allItem、leafs、noLeafs;
       this.treeFormat = new TreeFormat(treeData, nodeLabel);
       this.setState({
-        stateTreeData: this.treeFormat.forItems(treeData),
+        stateTreeData: this.treeFormat.transformerSourceTreeData(treeData),
       });
     }
+
     this.setState({
       checkedKeys: value,
       treeExpandedKeys: [...treeExpandedKeys, ...value],
@@ -35,20 +60,19 @@ export default class ParentTreeSelect extends React.Component {
     });
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps: ParentTreeSelectProps) {
     const { nodeLabel = {} } = this.props;
-    const { keyName = "value" } = nodeLabel;
+    const { valueName = "value" } = nodeLabel;
     if (
       nextProps.treeData &&
       nextProps.treeData[0] &&
       (!this.props.treeData ||
         !this.props.treeData[0] ||
-        this.props.treeData[0][keyName] !== nextProps.treeData[0][keyName])
+        this.props.treeData[0][valueName as "value"] !== nextProps.treeData[0][valueName as "value"])
     ) {
-      // 只有这两个值都传 才会处理treeData 获取allItem、leafs、noLeafs;
       this.treeFormat = new TreeFormat(nextProps.treeData, nodeLabel);
       this.setState({
-        stateTreeData: this.treeFormat.forItems(nextProps.treeData),
+        stateTreeData: this.treeFormat.transformerSourceTreeData(nextProps.treeData),
       });
     }
     if (nextProps.value && nextProps.value[0] && !this.state.checkedKeys[0]) {
@@ -56,12 +80,12 @@ export default class ParentTreeSelect extends React.Component {
     }
   }
 
-  onSelect = (_, allKeys) => {
+  onSelect = (_: string[], allKeys: string[]) => {
     const { onChange } = this.props;
     this.setState({ checkedKeys: allKeys, visible: false });
 
     if (typeof onChange === "function") {
-      onChange(allKeys)
+      onChange(allKeys, null, null)
     };
   };
 
@@ -96,7 +120,7 @@ export default class ParentTreeSelect extends React.Component {
           overlayClassName="tree_popover parent_popover"
           trigger="click"
         >
-          <div className={disabled ? "disabled" : disabled}>
+          <div className={disabled ? "disabled" : ""}>
             <ParentSelectMain
               treeFormat={this.treeFormat}
               open={visible}
@@ -110,3 +134,5 @@ export default class ParentTreeSelect extends React.Component {
     );
   }
 }
+
+export { ParentTreeSelect };
