@@ -1,12 +1,12 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 import { TreeSelect as AntdTreeSelect } from "antd";
+import ClassNames from "classnames";
 import {
   TreeSelectProps as AntdTreeSelectProps,
   TreeNodeValue,
   TreeNode,
   TreeNodeNormal,
 } from "antd/es/tree-select/interface";
-import ClassName from "classnames";
 
 import Icon from "../icon";
 import Tooltip from "../toolTip";
@@ -26,6 +26,8 @@ export interface TreeSelectProps extends AntdTreeSelectProps<TreeNodeValue> {
   parentTree?: boolean;
   // tooltipType:parentAndLeaf tooltip显示的内容为父级:子集1-子集2-子集3的结构
   tooltipType?: "parentAndLeaf";
+  popoverOverlayStyle?: CSSProperties;
+  popoverOverlayClassName?: string;
 }
 
 interface TreeSelectState {
@@ -65,6 +67,9 @@ class TreeSelect extends React.Component<TreeSelectProps, TreeSelectState> {
   UNSAFE_componentWillReceiveProps(nextProps: TreeSelectProps) {
     if (nextProps.value && !this.state.value) {
       this.setState({ value: nextProps.value });
+    }
+    if (nextProps.value !== this.props.value) {
+      this.setState({ value: nextProps.value || [] });
     }
   }
 
@@ -170,7 +175,7 @@ class TreeSelect extends React.Component<TreeSelectProps, TreeSelectState> {
             <AntdTreeSelect
               {...reset}
               treeData={treeData}
-              className={ClassName(className, mul_class, "custom_tree_select")}
+              className={ClassNames(className, mul_class, "custom_tree_select")}
               onChange={this.onChange}
               maxTagPlaceholder={
                 maxTagCount === 0 && !maxTagPlaceholder ? this.placeholderRender : undefined
@@ -186,7 +191,7 @@ class TreeSelect extends React.Component<TreeSelectProps, TreeSelectState> {
         {...reset}
         treeData={treeData}
         suffixIcon={<Icon type="down" />}
-        className={ClassName(className, mul_class, "custom_tree_select")}
+        className={ClassNames(className, mul_class, "custom_tree_select")}
       />
     );
   }

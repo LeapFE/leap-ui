@@ -5,18 +5,16 @@ import { Tabs as AntdTabs } from "antd";
 import * as AntdTabsInterface from "antd/es/tabs";
 
 import "./style";
-type TabKey = string;
+
 type childProps = {
   key?: number;
   renderContent?: (key: number, child: any) => ReactNode;
-  [tabKey: string]: any; //-------REVIEW 我想通过props.tabKey的 来定制TabPane.tab的取值 我要如何定义这个类型
+  tabKey: string;
 };
 export interface TabsProps extends AntdTabsInterface.TabsProps {
-  // --REVIEW what typeof datas??
   datas?: childProps[];
-  tabKey?: TabKey;
-  // --REVIEW typeof child ???
-  renderContent?: (key: number | undefined, child: any) => ReactNode;
+  tabKey?: string;
+  renderContent?: (key: number | undefined, child: childProps) => ReactNode;
 }
 
 class Tabs extends Component<TabsProps> {

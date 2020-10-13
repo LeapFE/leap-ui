@@ -153,6 +153,7 @@ class TreeselectRender extends React.Component {
                 showSearch
                 placeholder="请选择"
                 style={{ width: 250 }}
+                popoverOverlayStyle={{ width: "300px" }}
               />
             ),
           },
@@ -176,9 +177,10 @@ class TreeselectRender extends React.Component {
                 treeData={treeData}
                 treeCheckable
                 placeholder="请选择"
-                maxTagCount={0}
+                maxTagCount={1}
                 style={{ width: 250 }}
                 showSearch
+                popoverOverlayStyle={{ width: "300px" }}
               />
             ),
           },

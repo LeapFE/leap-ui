@@ -89,6 +89,7 @@ class Select<
     return null;
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onChange = (value: T, option: React.ReactElement<any> | React.ReactElement<any>[]) => {
     const { onChange } = this.props;
 

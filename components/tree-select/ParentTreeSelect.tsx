@@ -1,4 +1,5 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, CSSProperties } from "react";
+import ClassNames from "classnames";
 
 import Popover from "../popover";
 import Tree from "../tree";
@@ -16,6 +17,8 @@ interface ParentTreeSelectProps {
   width?: string | number;
   placeholder?: ReactNode;
   disabled?: boolean;
+  popoverOverlayStyle?: CSSProperties;
+  popoverOverlayClassName?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onChange?: (selectKeys: string[], label: any, extra: any) => void;
 }
@@ -103,9 +106,18 @@ class ParentTreeSelect extends React.Component<ParentTreeSelectProps, ParentTree
       </div>
     );
   };
+
   render() {
-    const { width = "", placeholder = "", disabled } = this.props;
+    const {
+      width = "",
+      placeholder = "",
+      disabled,
+      popoverOverlayStyle,
+      popoverOverlayClassName,
+    } = this.props;
+
     const { checkedKeys, visible } = this.state;
+
     return (
       <div className="checkable_tree">
         <Popover
@@ -116,8 +128,8 @@ class ParentTreeSelect extends React.Component<ParentTreeSelectProps, ParentTree
           }
           visible={visible}
           content={this.popoverContent()}
-          overlayStyle={{ width }}
-          overlayClassName="tree_popover parent_popover"
+          overlayStyle={{ width, ...popoverOverlayStyle }}
+          overlayClassName={ClassNames("tree_popover parent_popover", popoverOverlayClassName)}
           trigger="click"
         >
           <div className={disabled ? "disabled" : ""}>

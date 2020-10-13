@@ -1,6 +1,6 @@
 {
   "name": "leap-ui",
-  "version": "0.0.12",
+  "version": "0.0.21",
   "description": "A UI component library based on React",
   "main": "lib/index.js",
   "module": "es/index.js",
