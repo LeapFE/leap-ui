@@ -64,8 +64,6 @@ class Select<
         value = [value];
       }
 
-      // REVIEW typeof result ???
-      // REVIEW typeof cur ???
       if (Array.isArray(value)) {
         value = (value as Array<string | number | AntdSelectInterface.LabeledValue>).reduce(
           (result: string[], cur: string | number | AntdSelectInterface.LabeledValue) => {
