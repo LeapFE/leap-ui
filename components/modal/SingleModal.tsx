@@ -8,7 +8,6 @@ import Icon from "../icon";
 import Modal from "./index";
 
 export interface SingleModalProps extends AntdModalInterface.ModalProps {
-  // --REVIEW confirm this props type correctly
   fl_single_btn?: boolean;
   fl_icon_title?: ReactNode;
   fl_content?: ReactNode;

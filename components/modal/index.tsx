@@ -9,10 +9,10 @@ import SingleModal from "./SingleModal";
 
 import "./style";
 
-const confirm: ModalFunc = ({ className, icon = "", ...otherProps }) => {
-  const { okType, width } = otherProps;
+const confirm: ModalFunc = ({ className, icon = "", ...reset }) => {
+  const { okType, width } = reset;
   return AntdModal.confirm({
-    ...otherProps,
+    ...reset,
     width: width || 460,
     okType: okType || "danger",
     className: ClassNames("title_warning", className),
@@ -20,10 +20,10 @@ const confirm: ModalFunc = ({ className, icon = "", ...otherProps }) => {
   });
 };
 
-const info: ModalFunc = ({ className, icon = "", ...otherProps }) => {
-  const { okType, width } = otherProps;
+const info: ModalFunc = ({ className, icon = "", ...reset }) => {
+  const { okType, width } = reset;
   return AntdModal.info({
-    ...otherProps,
+    ...reset,
     width: width || 460,
     okType: okType || "danger",
     className: ClassNames("title_warning", className),
@@ -31,10 +31,10 @@ const info: ModalFunc = ({ className, icon = "", ...otherProps }) => {
   });
 };
 
-const error: ModalFunc = ({ className, icon = "", ...otherProps }) => {
-  const { okType, width } = otherProps;
+const error: ModalFunc = ({ className, icon = "", ...reset }) => {
+  const { okType, width } = reset;
   return AntdModal.error({
-    ...otherProps,
+    ...reset,
     width: width || 460,
     okType: okType || "danger",
     className: ClassNames("fl_confirm fl_confirm_info", className),
@@ -42,10 +42,10 @@ const error: ModalFunc = ({ className, icon = "", ...otherProps }) => {
   });
 };
 
-const success: ModalFunc = ({ className, icon = "", ...otherProps }) => {
-  const { okType, width } = otherProps;
+const success: ModalFunc = ({ className, icon = "", ...reset }) => {
+  const { okType, width } = reset;
   return AntdModal.success({
-    ...otherProps,
+    ...reset,
     width: width || 460,
     okType: okType || "danger",
     className: ClassNames("fl_confirm fl_confirm_success", className),
@@ -53,10 +53,10 @@ const success: ModalFunc = ({ className, icon = "", ...otherProps }) => {
   });
 };
 
-const warning: ModalFunc = ({ className, icon = "", ...otherProps }) => {
-  const { okType, width } = otherProps;
+const warning: ModalFunc = ({ className, icon = "", ...reset }) => {
+  const { okType, width } = reset;
   return AntdModal.warning({
-    ...otherProps,
+    ...reset,
     width: width || 460,
     okType: okType || "danger",
     className: ClassNames("fl_confirm fl_confirm_warning", className),
@@ -89,5 +89,4 @@ Modal.success = success;
 Modal.destroyAll = AntdModal.destroyAll;
 Modal.Single = SingleModal;
 
-export { AntdModal, AntdModalInterface };
 export default Modal;
