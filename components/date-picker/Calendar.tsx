@@ -4,19 +4,9 @@ import classnames from "classnames";
 
 import Icon from "../icon";
 
-// import "./style/index.less";
+const FORMAT_TEMPLATE = "YYYY-MM-DD";
 
-export const FORMAT_TEMPLATE = "YYYY-MM-DD";
-
-type getStartAndEndProps = {
-  start: string | undefined;
-  end: string | undefined;
-};
-
-export const getStartAndEnd = (
-  value: moment.Moment[] | undefined,
-  format: string,
-): getStartAndEndProps => {
+const getStartAndEnd = (value: moment.Moment[] | undefined, format: string) => {
   return {
     start: value && value[0] && value[0].format(format),
     end: value && value[1] && value[1].format(format),
@@ -27,19 +17,25 @@ const addDays = (dayStr: string, num: number) =>
   moment(dayStr)
     .add(num, "days")
     .format(FORMAT_TEMPLATE);
+
+/**
+ * 根据语言环境获取或设置星期几。
+ * 情况一：如果语言环境将周一指定为一周的第一天，则周一到周日 [0,1,2,3,4,5,6]
+ * 情况二：如果星期日是一周的第一天，则周一到周日 [1,2,3,4,5,6,0]
+ * 以下"2020-04-27"为周一 如果返回的是0则为第一种情况，通过各项+1 得到[1,2,3,4,5,6,7]
+ *
+ * @param weekday
+ */
 const getWeekDay = (weekday: number) => {
-  // 根据语言环境获取或设置星期几。
-  // 情况一：如果语言环境将周一指定为一周的第一天，则周一到周日 [0,1,2,3,4,5,6]
-  // 情况二：如果星期日是一周的第一天，则周一到周日 [1,2,3,4,5,6,0]
-  // 以下"2020-04-27"为周一 如果返回的是0则为第一种情况，通过各项+1 得到[1,2,3,4,5,6,7]
   const weekReference = moment("2020-04-27").weekday();
   if (weekReference === 0) {
     return weekday + 1;
   }
-  // --REVIEW `weekday` maybe undefined???
-  //情况二的周日为0则返回7
+
+  // 情况二的周日为 0, 则返回 7
   return weekday || 7;
 };
+
 const setTable = (def: moment.Moment | undefined) => {
   const defaultDate = def ? def.clone() : moment();
 
@@ -119,11 +115,9 @@ class Calendar extends React.Component<CalendarProps, CalendarState> {
   }
 
   componentDidMount() {
-    this.init();
-  }
-  init = () => {
     this.getTable(this.getDefaultValue());
-  };
+  }
+
   UNSAFE_componentWillReceiveProps(nextProps: CalendarProps) {
     if (nextProps.range && this.props.range && nextProps.range[0] !== this.props.range[0]) {
       this.getTable((nextProps.range[0] && moment(nextProps.range[0])) || undefined);
@@ -150,6 +144,7 @@ class Calendar extends React.Component<CalendarProps, CalendarState> {
   onChangeYearMonth = (num: number, type: "years" | "months") => {
     this.getTable(moment(this.firstDate).add(num, type));
   };
+
   getReturnValue = (child: CalenderTableCell): moment.Moment[] => {
     const { minuteStep = 1, defaultTimes = [], value = [] } = this.props;
     const [start, end] = value;
@@ -166,6 +161,7 @@ class Calendar extends React.Component<CalendarProps, CalendarState> {
     const timeStr = start.format("HH:mm");
     return [moment(`${s} ${timeStr}`), moment(`${e} ${timeStr}`)];
   };
+
   onChange = (child: CalenderTableCell) => {
     const { onChange, onRangeChange } = this.props;
     this.getTable(moment(child.str));
@@ -173,21 +169,27 @@ class Calendar extends React.Component<CalendarProps, CalendarState> {
     const returnValue = this.getReturnValue(child);
     if (onRangeChange) onRangeChange(returnValue);
   };
+
   dayCell = (child: CalenderTableCell) => {
     const { range = [], selectedDates = [], disabledDate, value, type = "multi" } = this.props;
+
     const [rangeStart = "1999-01-01", rangeEnd = "9999-12-31"] = range;
+
     const disabled =
       child.str < rangeStart ||
       child.str > rangeEnd ||
       (disabledDate && disabledDate(moment(`${child.str} 23:59:59`)));
+
     // eslint-disable-next-line prefer-const
     let { start, end } = getStartAndEnd(value, FORMAT_TEMPLATE);
     end = end || start;
+
     const today = moment().format(FORMAT_TEMPLATE) === child.str;
+
     return (
       <div
         onClick={() => !disabled && this.onChange(child)}
-        className={classnames(`fl_calander_row fl_${type}_calander_row`, {
+        className={classnames(`fl_calendar_row fl_${type}_calendar_row`, {
           selected:
             new Set(selectedDates).has(child.str) ||
             (start && end && child.str >= start && child.str <= end),
@@ -203,10 +205,12 @@ class Calendar extends React.Component<CalendarProps, CalendarState> {
       </div>
     );
   };
+
   render() {
     const { table, YY, MM } = this.state;
+
     return (
-      <div className="fl_calander">
+      <div className="fl_calendar">
         <div className="fl_handler">
           <Icon type="double-left" onClick={() => this.onChangeYearMonth(-1, "years")} />
           <Icon type="left" onClick={() => this.onChangeYearMonth(-1, "months")} />
@@ -225,7 +229,7 @@ class Calendar extends React.Component<CalendarProps, CalendarState> {
           <span>六</span>
           <span>日</span>
         </div>
-        <div className="fl_contenet">{table.map(this.dayCell)}</div>
+        <div className="fl_content">{table.map(this.dayCell)}</div>
       </div>
     );
   }

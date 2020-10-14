@@ -71,7 +71,8 @@ class ParentTreeSelect extends React.Component<ParentTreeSelectProps, ParentTree
       nextProps.treeData[0] &&
       (!this.props.treeData ||
         !this.props.treeData[0] ||
-        this.props.treeData[0][valueName as "value"] !== nextProps.treeData[0][valueName as "value"])
+        this.props.treeData[0][valueName as "value"] !==
+          nextProps.treeData[0][valueName as "value"])
     ) {
       this.treeFormat = new TreeFormat(nextProps.treeData, nodeLabel);
       this.setState({
@@ -88,8 +89,8 @@ class ParentTreeSelect extends React.Component<ParentTreeSelectProps, ParentTree
     this.setState({ checkedKeys: allKeys, visible: false });
 
     if (typeof onChange === "function") {
-      onChange(allKeys, null, null)
-    };
+      onChange(allKeys, null, null);
+    }
   };
 
   popoverContent = () => {

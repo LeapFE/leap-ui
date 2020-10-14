@@ -86,7 +86,6 @@ class RangeWeekPicker extends Component<RangeWeekPickerProps, RangeWeekPickerSta
     const { format = "YYYY-MM-DD" } = this.props;
 
     // 计算今天是这周第几天
-    // --REVIEW weekOfDay is a Number???  weekOfDay 数字字符串
     const weekOfDay = Number(dateMoment.format("E"));
     const monday = dateMoment.subtract(weekOfDay - 1, "days").format(format as string);
     const sunday = dateMoment.add(6, "days").format(format as string);
@@ -161,5 +160,5 @@ DatePicker.RangeWeekPicker = RangeWeekPicker;
 DatePicker.MultipleDate = MultipleDate;
 DatePicker.SingleRangePicker = SingleRangePicker;
 
-export { AntdDatePicker, AntdDatePickerInterface };
+// export { AntdDatePicker, AntdDatePickerInterface };
 export default DatePicker;

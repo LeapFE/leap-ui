@@ -108,7 +108,7 @@ export { default as Transfer } from "./transfer";
 
 export { default as Tree } from "./tree";
 
-export { default as TreeSelect } from './tree-select';
+export { default as TreeSelect } from "./tree-select";
 
 export { default as Tabs } from "./tabs";
 

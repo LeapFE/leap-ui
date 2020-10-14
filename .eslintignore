@@ -8,6 +8,7 @@
 /tests/**
 /node_modules/**
 /.storybook/**
+/components/**/locale/*.tsx
 **/*.snap
 jest.config.js
 babel.config.js

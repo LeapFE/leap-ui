@@ -17,7 +17,7 @@ import Button from "../button";
 import Checkbox from "../checkbox";
 import RangeTimePickers from "./RangeTimePickers";
 
-interface SingleRangePickerProps {
+export interface SingleRangePickerProps {
   value?: moment.Moment[];
   defaultTimes?: string[];
   format?: string;
@@ -35,12 +35,12 @@ interface SingleRangePickerProps {
 }
 interface SingleRangePickerState {
   visible: boolean;
-  showTimeModule: boolean;
+  showTimeModal: boolean;
   quit: boolean;
   curFormat: string;
   start: string;
   end: string;
-  temporaryEed: string;
+  temporaryEnd: string;
 }
 
 const dayFormat = "YYYY-MM-DD";
@@ -53,80 +53,102 @@ class SingleRangePicker extends React.Component<SingleRangePickerProps, SingleRa
     this.state = {
       quit: false,
       visible: false,
-      showTimeModule: false,
+      showTimeModal: false,
       curFormat: dayFormat,
       start: "",
       end: "",
-      temporaryEed: "",
+      temporaryEnd: "",
     };
   }
 
   componentDidMount() {
     this.setDefaultValue();
   }
+
   setDefaultValue = () => {
     const { format, showTime, value = [] } = this.props;
+
     const curFormat = format || (showTime ? timeFormat : dayFormat);
+
     this.setState({
       curFormat,
       start: (value[0] && value[0].format(curFormat)) || "",
       end: (value[1] && value[1].format(curFormat)) || "",
     });
   };
+
   onChange = ([start, end]: moment.Moment[]) => {
     const { defaultTimes = [] } = this.props;
     const { curFormat } = this.state;
+
     const startDate = start && start.format(curFormat);
     const endDate = end && end.format(curFormat);
-    let temporaryEed = endDate || "";
+
+    let temporaryEnd = endDate || "";
+
     if (start && !end) {
       if (defaultTimes[1]) {
-        temporaryEed = moment(`${start.format(dayFormat)} ${defaultTimes[1]}`).format(curFormat);
+        temporaryEnd = moment(`${start.format(dayFormat)} ${defaultTimes[1]}`).format(curFormat);
       } else {
-        temporaryEed = start
+        temporaryEnd = start
           .clone()
           .add(1, "hours")
           .format(curFormat);
       }
     }
+
     this.setState({
       start: startDate,
       end: endDate,
-      temporaryEed,
+      temporaryEnd,
       quit: endDate === moment(quitDate).format(curFormat),
     });
   };
+
   onChangeQuit = (e: CheckboxChangeEvent) => {
     const { start } = this.state;
     const { checked } = e.target;
     this.setState({ quit: checked });
     if (checked) this.onChange([(start && moment(start)) || moment(), moment(quitDate)]);
   };
+
   confirm = () => {
     const { onOk } = this.props;
+
     // eslint-disable-next-line prefer-const
-    let { start, end, temporaryEed } = this.state;
-    if (start && !end && !temporaryEed) end = start;
-    this.setState({ visible: false, showTimeModule: false });
-    if (onOk) onOk([moment(start), moment(end || temporaryEed)], [start, end || temporaryEed]);
+    let { start, end, temporaryEnd } = this.state;
+    if (start && !end && !temporaryEnd) {
+      end = start;
+    }
+
+    this.setState({ visible: false, showTimeModal: false });
+
+    if (typeof onOk === "function") {
+      onOk([moment(start), moment(end || temporaryEnd)], [start, end || temporaryEnd]);
+    }
   };
+
   onVisibleChange = (visible: boolean) => {
     this.setState({
       visible,
-      showTimeModule: false,
-      temporaryEed: "",
+      showTimeModal: false,
+      temporaryEnd: "",
     });
-    if (visible) this.setDefaultValue();
+
+    if (visible) {
+      this.setDefaultValue();
+    }
   };
+
   render() {
     const {
       visible,
       start,
       end,
-      temporaryEed,
+      temporaryEnd,
       quit,
       curFormat,
-      showTimeModule = false,
+      showTimeModal = false,
     } = this.state;
     const {
       disabled,
@@ -147,11 +169,12 @@ class SingleRangePicker extends React.Component<SingleRangePickerProps, SingleRa
 
     const timePickerValue = [];
     const calendarValue = [];
+
     if (start) {
       timePickerValue.push(moment(start));
       calendarValue.push(moment(start));
     }
-    if (end || temporaryEed) timePickerValue.push(moment(end || temporaryEed));
+    if (end || temporaryEnd) timePickerValue.push(moment(end || temporaryEnd));
     if (end) calendarValue.push(moment(end));
 
     return (
@@ -165,11 +188,11 @@ class SingleRangePicker extends React.Component<SingleRangePickerProps, SingleRa
             <div className="picker_header">
               <span>{start || "开始时间"}</span>
               <span>~</span>
-              <span>{quit ? "离职" : end || temporaryEed || "结束时间"}</span>
+              <span>{quit ? "离职" : end || temporaryEnd || "结束时间"}</span>
             </div>
             <div className="fl_picker_main">
               <div className="fl_picker_cot">
-                {showTimeModule ? (
+                {showTimeModal ? (
                   <div className="fl_picker_item">
                     <RangeTimePickers
                       minuteStep={minuteStep}
@@ -216,9 +239,9 @@ class SingleRangePicker extends React.Component<SingleRangePickerProps, SingleRa
               {showTime && (
                 <div
                   className="picker_select_time_btn"
-                  onClick={() => this.setState({ showTimeModule: !showTimeModule })}
+                  onClick={() => this.setState({ showTimeModal: !showTimeModal })}
                 >
-                  {showTimeModule ? "选择日期" : "选择时分"}
+                  {showTimeModal ? "选择日期" : "选择时分"}
                 </div>
               )}
               <Button type="primary" className="confirm" onClick={this.confirm}>
@@ -229,7 +252,7 @@ class SingleRangePicker extends React.Component<SingleRangePickerProps, SingleRa
         }
       >
         <div
-          className={classnames("fl_sigle_range_picker", {
+          className={classnames("fl_single_range_picker", {
             selected: value.length,
             disabled,
           })}

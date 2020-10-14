@@ -18,7 +18,7 @@ import Button from "../button";
 
 const format = "YYYY-MM-DD";
 
-interface MultipleDateProps {
+export interface MultipleDateProps {
   value?: string[] | string;
   range?: string[];
   className?: string;
@@ -114,7 +114,7 @@ class MultipleDate extends React.Component<MultipleDateProps, MultipleDateState>
         placement="topLeft"
         title={
           dates.length > maxTagCount ? (
-            <div className="multiple_date_tootip">
+            <div className="multiple_date_tooltip">
               {dates.map((child) => (
                 <div key={child}>{child}</div>
               ))}
@@ -150,6 +150,7 @@ class MultipleDate extends React.Component<MultipleDateProps, MultipleDateState>
       allowClear,
     } = this.props;
     const { selectedDates, visible } = this.state;
+
     const dates = selectedDates;
 
     return (
@@ -157,7 +158,7 @@ class MultipleDate extends React.Component<MultipleDateProps, MultipleDateState>
         <Popover
           trigger="click"
           hideArrow
-          overlayClassName="fl_noarrow"
+          overlayClassName="fl_narrow"
           onVisibleChange={(visible) => !disabled && this.setState({ visible })}
           visible={visible}
           content={this.dateRender()}
@@ -182,7 +183,7 @@ class MultipleDate extends React.Component<MultipleDateProps, MultipleDateState>
                   allow_clear_picker_icon: allowClear !== false,
                 })}
               />
-              {allowClear !== false && (
+              {allowClear && (
                 <Icon
                   className="range_picker_clear"
                   type="close-circle"

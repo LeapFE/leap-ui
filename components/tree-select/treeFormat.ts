@@ -21,10 +21,7 @@ class TreeFormat {
     };
   }
 
-  transformerSourceTreeData(
-    treeData: Array<TreeNode>,
-    parent: TreeNode = {},
-  ) {
+  transformerSourceTreeData(treeData: Array<TreeNode>, parent: TreeNode = {}) {
     const { valueName, titleName, childrenName } = this.names;
     const result: TreeNode[] = [];
 
@@ -60,7 +57,6 @@ class TreeFormat {
   }
 }
 
-
 export function isEveryElementNumber(value: unknown[]): value is number[] {
   return value.every((v) => typeof v === "number");
 }
@@ -69,4 +65,4 @@ export function isEveryElementString(value: unknown[]): value is string[] {
   return value.every((v) => typeof v === "string");
 }
 
-export { TreeFormat }
+export { TreeFormat };

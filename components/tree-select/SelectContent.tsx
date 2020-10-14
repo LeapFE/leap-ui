@@ -25,7 +25,7 @@ class SelectContent extends React.Component<SelectContentProps> {
     const { checkedKeys = [], changeCheckedIds, disabled } = this.props;
     if (disabled) {
       return;
-    };
+    }
 
     checkedKeys.splice(key, 1);
     if (typeof changeCheckedIds === "function") {
@@ -55,8 +55,8 @@ class SelectContent extends React.Component<SelectContentProps> {
     const { allItem = {} } = treeFormat || {};
 
     if (!checkedKeys.length) {
-      return <div className="placeholder">{placeholder || "请选择"}</div>
-    };
+      return <div className="placeholder">{placeholder || "请选择"}</div>;
+    }
 
     if (!maxTagCount && maxTagCount !== 0)
       return (

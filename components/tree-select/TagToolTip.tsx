@@ -2,7 +2,11 @@ import React from "react";
 
 import { TreeFormat } from "./treeFormat";
 
-const TagToolTip = (label: number[] | string[] = [], maxTagCount = 0, treeFormat?: TreeFormat | null) => {
+const TagToolTip = (
+  label: number[] | string[] = [],
+  maxTagCount = 0,
+  treeFormat?: TreeFormat | null,
+) => {
   if (!label.length) return null;
 
   if (treeFormat) {
@@ -37,11 +41,7 @@ const TagToolTip = (label: number[] | string[] = [], maxTagCount = 0, treeFormat
                 {parent.title}
                 {parent.children ? ": " : ""}
               </span>
-              {parent.children ? (
-                <span>{children.join("-")}</span>
-              ) : (
-                <span>{parent.title}</span>
-              )}
+              {parent.children ? <span>{children.join("-")}</span> : <span>{parent.title}</span>}
             </div>
           ) : (
             <span>{children[0]}</span>
