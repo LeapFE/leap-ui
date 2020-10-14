@@ -11,6 +11,7 @@
   ],
   "scripts": {
     "eslint": "eslint --config .eslintrc --ext .tsx,.ts components/",
+    "eslint:strict": "eslint --report-unused-disable-directives --no-inline-config  --config .eslintrc --ext .tsx,.ts components/",
     "eslint:fix": "eslint --fix --config .eslintrc --ext .tsx,.ts components/",
     "format:check:style": "prettier --check 'components/**/*.{css,less}'",
     "format:check:ts": "prettier --check 'components/**/*.{ts,tsx}'",
