@@ -3,7 +3,7 @@ import React, { Component, ReactNode, isValidElement, ReactText } from "react";
 import { Select as AntdSelect } from "antd";
 
 import * as AntdSelectInterface from "antd/es/select";
-import Tooltip from "./../tooltip";
+import Tooltip from "./../toolTip";
 
 import "./style";
 
@@ -89,6 +89,7 @@ class Select<
     return null;
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onChange = (value: T, option: React.ReactElement<any> | React.ReactElement<any>[]) => {
     const { onChange } = this.props;
 

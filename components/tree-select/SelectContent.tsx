@@ -1,22 +1,23 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import ClassNames from "classnames";
 
-import Tooltip from "../tooltip";
+import Tooltip from "../toolTip";
 import Icon from "../icon";
-import { TagToolTip, TreeFormat } from "./TagToolTip";
+import { TagToolTip } from "./TagToolTip";
+import { CheckedKeys } from "./Checkable";
+import { TreeFormat } from "./treeFormat";
 
 export interface SelectContentProps {
   width?: string | number;
   open?: boolean;
   allowClear?: boolean;
   checkedKeys?: string[];
-  changeCheckedIds?: (keys: string[]) => void;
+  changeCheckedIds?: (keys: CheckedKeys) => void;
   disabled?: boolean;
-  allKeys?: string[];
-  placeholder?: string;
-  selectType?: "oneLabel";
+  allKeys?: string[] | number[];
+  placeholder?: ReactNode;
   maxTagCount?: number;
-  treeFormat: TreeFormat;
+  treeFormat: TreeFormat | null;
 }
 
 class SelectContent extends React.Component<SelectContentProps> {
@@ -47,12 +48,11 @@ class SelectContent extends React.Component<SelectContentProps> {
       checkedKeys = [],
       allKeys = [],
       placeholder = "",
-      // selectType,
       maxTagCount,
-      treeFormat = {},
+      treeFormat,
       width,
     } = this.props;
-    const { allItem = {} } = treeFormat;
+    const { allItem = {} } = treeFormat || {};
 
     if (!checkedKeys.length) {
       return <div className="placeholder">{placeholder || "请选择"}</div>
@@ -80,7 +80,7 @@ class SelectContent extends React.Component<SelectContentProps> {
       return (
         <Tooltip
           placement="top"
-          title={TagToolTip(allKeys, maxTagCount, treeFormat)}
+          title={TagToolTip(allKeys, maxTagCount)}
           overlayStyle={{ width: width || 251, maxWidth: width || 251 }}
         >
           <div className="content">
@@ -101,7 +101,7 @@ class SelectContent extends React.Component<SelectContentProps> {
       return (
         <Tooltip
           placement="top"
-          title={TagToolTip(allKeys, maxTagCount, treeFormat)}
+          title={TagToolTip(allKeys, maxTagCount)}
           overlayStyle={{ width: width || 251, maxWidth: width || 251 }}
         >
           <div className="content tow_ellipsis">
@@ -126,12 +126,6 @@ class SelectContent extends React.Component<SelectContentProps> {
         </Tooltip>
       );
     }
-
-    // if (selectType === "oneLabel") {
-    //   // REVIEW where `allObj` and `titleName` ???
-    //   const label = allObj[checkedKeys[0]] || {};
-    //   return <div className="normal_name">{label[titleName]}</div>;
-    // }
 
     return <div />;
   };

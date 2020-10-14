@@ -1,29 +1,29 @@
 import React from "react";
 
-export type TreeFormat = {
-  leafs?: Record<string, string>;
-  allItem?: Record<string, { title?: string }>;
-};
-const TagToolTip = (label: number[] | string[] = [], maxTagCount = 0, treeFormat: TreeFormat) => {
+import { TreeFormat } from "./treeFormat";
+
+const TagToolTip = (label: number[] | string[] = [], maxTagCount = 0, treeFormat?: TreeFormat | null) => {
   if (!label.length) return null;
 
   if (treeFormat) {
     const { leafs = {}, allItem = {} } = treeFormat;
 
-    // REVIEW typeof keysGroup
-    const keysGroup: Record<string, any[]> = {};
+    const keysGroup: Record<string, React.ReactNode[]> = {};
 
     label.forEach((child: string | number) => {
       const pid = leafs[child];
 
       if (pid) {
-        if (!keysGroup[pid]) keysGroup[pid] = [];
+        if (!keysGroup[pid]) {
+          keysGroup[pid] = [];
+        }
+
         const item = allItem[child] || {};
         keysGroup[pid].push(item.title);
       }
     });
 
-    const treeRender = [];
+    const treeRender: JSX.Element[] = [];
 
     for (const key in keysGroup) {
       const parent = allItem[key] || {};
@@ -31,11 +31,21 @@ const TagToolTip = (label: number[] | string[] = [], maxTagCount = 0, treeFormat
 
       treeRender.push(
         <div className="tag_item" key={key}>
-          <span>
-            {parent.title}
-            {children.length ? ": " : ""}
-          </span>
-          <span>{children.join("-")}</span>
+          {parent.title ? (
+            <div>
+              <span>
+                {parent.title}
+                {parent.children ? ": " : ""}
+              </span>
+              {parent.children ? (
+                <span>{children.join("-")}</span>
+              ) : (
+                <span>{parent.title}</span>
+              )}
+            </div>
+          ) : (
+            <span>{children[0]}</span>
+          )}
         </div>,
       );
     }

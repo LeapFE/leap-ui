@@ -11,7 +11,7 @@ import moment from "moment";
 import { PopoverProps } from "antd/es/popover";
 
 import Icon from "../icon";
-import Tooltip from "../tooltip";
+import Tooltip from "../toolTip";
 import Calendar from "./Calendar";
 import Popover from "../popover";
 import Button from "../button";

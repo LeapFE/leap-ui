@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-filename-extension */
 import React, { CSSProperties } from "react";
 import { TreeSelect as AntdTreeSelect } from "antd";
 import ClassNames from "classnames";
@@ -6,24 +5,26 @@ import {
   TreeSelectProps as AntdTreeSelectProps,
   TreeNodeValue,
   TreeNode,
+  TreeNodeNormal,
 } from "antd/es/tree-select/interface";
 
 import Icon from "../icon";
-import Tooltip from "../tooltip";
+import Tooltip from "../toolTip";
 
-import Checkable from "./Checkable";
-import ParentTreeSelect from "./ParentTreeSelect";
+import { Checkable } from "./Checkable";
+import { ParentTreeSelect } from "./ParentTreeSelect";
 
 import { TagToolTip } from "./TagToolTip";
-import TreeFormat from "./treeFormat";
+import { TreeFormat, isEveryElementString } from "./treeFormat";
 
 import "./style";
 
 export type NodeLabel = Record<"keyName" | "titleName" | "childrenName", string>;
 
-export interface TreeSelectProps<T extends TreeNodeValue> extends AntdTreeSelectProps<T> {
-  nodeLabel?: NodeLabel;
+export interface TreeSelectProps extends AntdTreeSelectProps<TreeNodeValue> {
+  nodeLabel?: Record<string, string>;
   parentTree?: boolean;
+  // tooltipType:parentAndLeaf tooltip显示的内容为父级:子集1-子集2-子集3的结构
   tooltipType?: "parentAndLeaf";
   popoverOverlayStyle?: CSSProperties;
   popoverOverlayClassName?: string;
@@ -31,24 +32,23 @@ export interface TreeSelectProps<T extends TreeNodeValue> extends AntdTreeSelect
 
 interface TreeSelectState {
   value: TreeNodeValue;
-  label: any[];
+  label: number[] | string[];
   stateTreeData: TreeNode[];
 }
 
-class TreeSelect<T extends TreeNodeValue> extends React.Component<
-  TreeSelectProps<T>,
-  TreeSelectState
-> {
+class TreeSelect extends React.Component<TreeSelectProps, TreeSelectState> {
   static TreeNode: typeof AntdTreeSelect.TreeNode;
-  static SHOW_ALL: any;
-  static SHOW_CHILD: any;
-  static SHOW_PARENT: any;
+  static SHOW_ALL: "SHOW_ALL";
+  static SHOW_CHILD: "SHOW_CHILD";
+  static SHOW_PARENT: "SHOW_PARENT";
 
-  private treeFormat: any;
+  private treeFormat: TreeFormat | null;
 
-  constructor(props: TreeSelectProps<T>) {
+  constructor(props: TreeSelectProps) {
     super(props);
     this.state = { value: [], label: [], stateTreeData: [] };
+
+    this.treeFormat = null;
   }
 
   componentDidMount() {
@@ -59,15 +59,12 @@ class TreeSelect<T extends TreeNodeValue> extends React.Component<
     }
 
     if (treeData && nodeLabel) {
-      // 只有这两个值都传 才会处理treeData 获取allItem、leafs、noLeafs;
       this.treeFormat = new TreeFormat(treeData, nodeLabel);
-      this.setState({
-        stateTreeData: this.treeFormat.forItems(treeData),
-      });
+      this.setState({ stateTreeData: this.treeFormat.transformerSourceTreeData(treeData) });
     }
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps: TreeSelectProps<T>) {
+  UNSAFE_componentWillReceiveProps(nextProps: TreeSelectProps) {
     if (nextProps.value && !this.state.value) {
       this.setState({ value: nextProps.value });
     }
@@ -76,42 +73,30 @@ class TreeSelect<T extends TreeNodeValue> extends React.Component<
     }
   }
 
-  onChange = (value: T, label: any, extra: any) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onChange = (value: TreeNodeValue, label: any, extra: any) => {
     const { onChange, showCheckedStrategy } = this.props;
+    let _value = value;
 
     this.setState({ value, label });
 
-    if (this.treeFormat && showCheckedStrategy === AntdTreeSelect.SHOW_ALL) {
-      value = this.getLeafKeys(value);
+    if (this.treeFormat && showCheckedStrategy === TreeSelect.SHOW_ALL) {
+      _value = this.getLeafKeys(value);
     }
 
     if (typeof onChange === "function") {
-      onChange(value, label, extra);
+      onChange(_value, label, extra);
     }
   };
 
-  getLeafKeys = (keys: T) => {
-    const { showCheckedStrategy } = this.props;
-    if (this.treeFormat && showCheckedStrategy === AntdTreeSelect.SHOW_ALL) {
-      const { leafs = {} } = this.treeFormat;
-      if (Array.isArray(keys)) {
-        const leafKeys = keys.reduce((result, cur) => {
-          if (leafs[cur]) result.push(cur);
-          return result;
-        }, []);
-        return leafKeys;
-      }
-    }
-    return keys;
-  };
-
-  placeholderRender = (keys: T) => {
+  placeholderRender = (keys: TreeNodeValue) => {
     if (!Array.isArray(keys)) {
       return;
     }
 
     const { showCheckedStrategy } = this.props;
-    if (this.treeFormat && showCheckedStrategy === AntdTreeSelect.SHOW_ALL) {
+
+    if (this.treeFormat && showCheckedStrategy === TreeSelect.SHOW_ALL) {
       const leafKeys = this.getLeafKeys(keys);
       return `已选${leafKeys.length}个选项…`;
     }
@@ -119,42 +104,81 @@ class TreeSelect<T extends TreeNodeValue> extends React.Component<
     return `已选${keys.length}个选项…`;
   };
 
+  getLeafKeys = (keys: TreeNodeValue) => {
+    if (!Array.isArray(keys)) {
+      return [];
+    }
+
+    if (!isEveryElementString(keys)) {
+      return [];
+    }
+
+    const { showCheckedStrategy } = this.props;
+
+    if (this.treeFormat && showCheckedStrategy === TreeSelect.SHOW_ALL) {
+      const { leafs = {} } = this.treeFormat;
+      const leafKeys = keys.reduce((result: string[], cur) => {
+        if (leafs[cur]) {
+          result.push(cur);
+        }
+        return result;
+      }, []);
+      return leafKeys;
+    }
+
+    return keys;
+  };
+
   render() {
-    const { className, tooltipType, parentTree, ...otherProps } = this.props;
-    // tooltipType:parentAndLeaf tooltip显示的内容为父级:子集1-子集2-子集3的结构
-    const { value, label, stateTreeData = [] } = this.state;
-    const addProps = {};
-    const mul_class = otherProps.treeCheckable || otherProps.multiple ? "multiple_select" : "";
+    const {
+      className,
+      tooltipType,
+      parentTree,
+      maxTagCount,
+      maxTagPlaceholder,
+      value: propsValue,
+      treeData,
+      treeCheckable,
+      ...reset
+    } = this.props;
+    const { value, label } = this.state;
 
-    if (parentTree) return <ParentTreeSelect {...otherProps} />;
+    const mul_class = treeCheckable || reset.multiple ? "multiple_select" : "";
 
-    if (otherProps.treeCheckable && otherProps.showSearch) return <Checkable {...otherProps} />;
+    if (parentTree) return <ParentTreeSelect treeData={treeData as TreeNodeNormal[]} {...reset} />;
 
-    if (otherProps.maxTagCount === 0 || otherProps.maxTagCount) {
-      const { style = {} } = otherProps;
+    if (treeCheckable && reset.showSearch)
+      return (
+        <Checkable
+          treeData={treeData as TreeNodeNormal[]}
+          value={Array.isArray(propsValue) ? propsValue : []}
+          treeCheckable={!!treeCheckable}
+          maxTagCount={maxTagCount}
+          {...reset}
+        />
+      );
+
+    if (maxTagCount === 0 || maxTagCount) {
+      const { style = {} } = reset;
       const { width } = style;
       return (
         <Tooltip
           title={TagToolTip(
             tooltipType === "parentAndLeaf" && Array.isArray(value) ? value : label,
-            otherProps.maxTagCount,
-            tooltipType === "parentAndLeaf" ? this.treeFormat : "",
+            maxTagCount,
           )}
           placement="top"
           overlayStyle={{ width: width || 150, maxWidth: width || 150 }}
           autoAdjustOverflow={false}
         >
-          <div className="coustom_tree_select_wip">
+          <div className="custom_tree_select_wip">
             <AntdTreeSelect
-              {...otherProps}
-              {...addProps}
-              className={ClassNames("coustom_tree_select", className, mul_class)}
+              {...reset}
+              treeData={treeData}
+              className={ClassNames(className, mul_class, "custom_tree_select")}
               onChange={this.onChange}
-              treeData={this.props.nodeLabel ? stateTreeData : otherProps.treeData}
               maxTagPlaceholder={
-                otherProps.maxTagCount === 0 && !otherProps.maxTagPlaceholder
-                  ? this.placeholderRender
-                  : undefined
+                maxTagCount === 0 && !maxTagPlaceholder ? this.placeholderRender : undefined
               }
             />
           </div>
@@ -164,10 +188,10 @@ class TreeSelect<T extends TreeNodeValue> extends React.Component<
 
     return (
       <AntdTreeSelect
-        {...otherProps}
-        {...addProps}
+        {...reset}
+        treeData={treeData}
         suffixIcon={<Icon type="down" />}
-        className={ClassNames("coustom_tree_select", className, mul_class)}
+        className={ClassNames(className, mul_class, "custom_tree_select")}
       />
     );
   }

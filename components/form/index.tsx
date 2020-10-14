@@ -9,6 +9,7 @@ const FormItem = AntdForm.Item;
 
 class Form extends Component<AntdFormInterface.FormProps> {
   static Item: typeof FormItem = FormItem;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   static createFormField: any = AntdForm.createFormField;
   static create: typeof AntdForm.create = AntdForm.create;
 

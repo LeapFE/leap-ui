@@ -150,6 +150,7 @@ class TreeSearch extends React.Component<TreeSearchProps, TreeSearchState> {
           const itemTitle = item.title || "";
 
           if (itemTitle.includes(searchValue)) {
+            // eslint-disable-next-line no-param-reassign
             result = [`${item.key}`, ...result, ...this.getParentKeys(item.key)];
           }
 

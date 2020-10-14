@@ -1,14 +1,23 @@
-/* eslint-disable react/jsx-filename-extension */
-import React from "react";
+import React, { ReactNode } from "react";
 import ClassNames from "classnames";
-import Tooltip from "../tooltip";
+
+import Tooltip from "../toolTip";
 
 import { TagToolTip } from "./TagToolTip";
+import { TreeFormat } from "./treeFormat";
 
-export default class ParentSelectMain extends React.Component {
+interface ParentSelectMainProps {
+  checkedKeys?: string[];
+  placeholder?: ReactNode;
+  width?: string | number;
+  treeFormat: TreeFormat | null;
+  open?: boolean;
+}
+
+class ParentSelectMain extends React.Component<ParentSelectMainProps> {
   selectMain = () => {
-    const { checkedKeys = [], placeholder = "", width, treeFormat = {} } = this.props;
-    const { allItem = {} } = treeFormat;
+    const { checkedKeys = [], placeholder = "", width, treeFormat } = this.props;
+    const { allItem = {} } = treeFormat || {};
 
     if (!checkedKeys.length) {
       return <div className="placeholder">{placeholder || "请选择"}</div>;
@@ -45,3 +54,5 @@ export default class ParentSelectMain extends React.Component {
     );
   }
 }
+
+export { ParentSelectMain };

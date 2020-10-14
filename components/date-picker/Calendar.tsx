@@ -88,7 +88,7 @@ export interface CalendarProps {
 export interface CalenderTableCell {
   months: number;
   str: string;
-  weekday: any;
+  weekday: number;
   years: number;
   date: number;
   hours: number;
