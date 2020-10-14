@@ -41,6 +41,43 @@
       box-shadow: 0 0 0 2px rgba(58, 104, 255, 0.2) inset;
     }
   }
+
+  & > .ant-btn {
+    background: rgba(250, 251, 252, 1);
+
+    & > .flfont,
+    & > .anticon,
+    & > .ifont {
+      color: rgba(193, 199, 208, 1);
+      font-size: 12px;
+    }
+  }
+
+  & > .ant-input:not(.ant-input-disabled) {
+    &:hover {
+      & + .ant-btn {
+        border-color: rgba(58, 104, 255, 1);
+        color: rgba(58, 104, 255, 1);
+      }
+    }
+  }
+
+  & > .ant-input-disabled {
+    & + .ant-btn {
+      &:hover,
+      &:focus {
+        background: rgba(250, 251, 252, 1);
+        border-color: rgba(223, 225, 230, 1);
+        box-shadow: none;
+      }
+    }
+  }
+
+  .ant-input-affix-wrapper.error {
+    .ant-input {
+      border-right-width: 2px;
+    }
+  }
 }
 
 .ant-input-affix-wrapper {
@@ -173,47 +210,15 @@
   }
 }
 
-.ant-input-group {
-  & > .ant-btn {
-    background: rgba(250, 251, 252, 1);
-
-    & > .flfont,
-    & > .anticon,
-    & > .ifont {
-      color: rgba(193, 199, 208, 1);
-      font-size: 12px;
-    }
-  }
-
-  & > .ant-input:not(.ant-input-disabled) {
-    &:hover {
-      & + .ant-btn {
-        border-color: rgba(58, 104, 255, 1);
-        color: rgba(58, 104, 255, 1);
-      }
-    }
-  }
-
-  & > .ant-input-disabled {
-    & + .ant-btn {
-      &:hover,
-      &:focus {
-        background: rgba(250, 251, 252, 1);
-        border-color: rgba(223, 225, 230, 1);
-        box-shadow: none;
-      }
-    }
-  }
-
-  .ant-input-affix-wrapper.error {
-    .ant-input {
-      border-right-width: 2px;
-    }
-  }
-}
-
 .ant-input-group-addon {
   color: rgba(6, 27, 54, 0.6) !important;
+  background: rgba(250, 251, 252, 1);
+  font-size: 12px;
+
+  .ant-select {
+    font-size: 12px;
+    color: rgba(6, 27, 54, 0.8);
+  }
 }
 
 .ant-input-group.ant-input-group-compact {
@@ -269,17 +274,6 @@
     .primary {
       color: rgba(58, 104, 255, 1);
     }
-  }
-}
-
-.ant-input-group-addon {
-  background: rgba(250, 251, 252, 1);
-  color: rgba(6, 27, 54, 0.8);
-  font-size: 12px;
-
-  .ant-select {
-    font-size: 12px;
-    color: rgba(6, 27, 54, 0.8);
   }
 }
 

@@ -15,6 +15,8 @@ interface TextAreaProps extends AntdInputInterface.TextAreaProps {
 class TextArea extends Component<TextAreaProps> {
   render() {
     const { count, value = "", className, ...props } = this.props;
+    const valueLength = Array.isArray(value) ? value.length : 0;
+
     if (count) {
       return (
         <div className="text-area-count">
@@ -25,7 +27,7 @@ class TextArea extends Component<TextAreaProps> {
             maxLength={Number(count)}
           />
           <div className="num">
-            <span className={length ? "primary" : ""}>{value.toString().length}</span>/{count}
+            <span className={valueLength ? "primary" : ""}>{valueLength}</span>/{count}
           </div>
         </div>
       );
@@ -46,7 +48,7 @@ class Search extends Component<AntdInputInterface.SearchProps> {
 interface SearchGroupProps extends AntdInputInterface.GroupProps {
   nullResult?: boolean;
 }
-// --REVIEW deprecated `onSubmit`  可以去掉
+
 class SearchGroup extends Component<SearchGroupProps> {
   render() {
     const { nullResult = "", className, ...props } = this.props;
@@ -59,7 +61,7 @@ class SearchGroup extends Component<SearchGroupProps> {
             allowClear={true}
             className={ClassNames("fl_input_search", className)}
           />
-          <div className="result-povper">{nullResult}</div>
+          <div className="result-popover">{nullResult}</div>
         </div>
       );
     }
@@ -81,7 +83,7 @@ export interface InputProps extends AntdInputInterface.InputProps {
   rightError?: boolean;
   loading?: boolean;
 }
-// ----REVIEW invoke `onChange` will pass `event` object instead of `event.target.value`
+
 class Input extends Component<InputProps> {
   static Textarea: typeof TextArea;
   static Search: typeof Search;
@@ -136,5 +138,5 @@ class Input extends Component<InputProps> {
 Input.Search = Search;
 Input.Textarea = TextArea;
 Input.SearchGroup = SearchGroup;
-export { AntdInput, AntdInputInterface };
+// export { AntdInput, AntdInputInterface };
 export default Input;
