@@ -8,9 +8,8 @@ import { TreeSearch } from "./TreeSearch";
 
 import "./style";
 
-export type NodeLabel = Record<"keyName" | "titleName" | "childrenName", string>;
 export interface TreeProps extends AntdTreeInterface.TreeProps {
-  nodeLabel?: NodeLabel;
+  nodeLabel?: Record<string, string>;
 }
 
 class Tree extends Component<TreeProps> {
@@ -22,7 +21,7 @@ class Tree extends Component<TreeProps> {
   renderTreeNodes = (data: TreeNodeNormal[]) => {
     const {
       nodeLabel = {
-        keyName: "value",
+        keyName: "key",
         titleName: "title",
         childrenName: "children",
       },
@@ -31,19 +30,27 @@ class Tree extends Component<TreeProps> {
     const { keyName, titleName, childrenName } = nodeLabel;
 
     return data.map((item) => {
-      // @ts-ignore
-      if (item[childrenName]) {
+      if (item[childrenName as "children"]) {
         return (
-          // @ts-ignore
-          <AntdTree.TreeNode title={item[titleName]} key={item[keyName] as string} dataRef={item}>
-            {// placeholder comment
-            // @ts-ignore
-            this.renderTreeNodes(item[childrenName] as TreeNodeNormal[])}
+          <AntdTree.TreeNode
+            title={item[titleName as "title"]}
+            key={item[keyName as "key"]}
+            dataRef={item}
+          >
+            {this.renderTreeNodes(item[childrenName as "children"] as TreeNodeNormal[])}
           </AntdTree.TreeNode>
         );
       }
-      // @ts-ignore
-      return <AntdTree.TreeNode key={item[keyName] as string} title={item[titleName]} {...item} />;
+      return (
+        <AntdTree.TreeNode
+          key={item[keyName as "key"]}
+          title={item[titleName as "title"]}
+          isLeaf={item.isLeaf}
+          disabled={item.disabled}
+          disableCheckbox={item.disableCheckbox}
+          selectable={item.selectable}
+        />
+      );
     });
   };
 

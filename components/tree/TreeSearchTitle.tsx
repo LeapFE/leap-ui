@@ -1,13 +1,14 @@
 import React from "react";
 import { TreeNodeNormal } from "antd/es/tree/Tree";
 
-import { NodeLabel } from "./index";
-
-const TreeSearchTitle = (item: TreeNodeNormal, searchValue: string, nodeLabel: NodeLabel) => {
+const TreeSearchTitle = (
+  item: TreeNodeNormal,
+  searchValue: string,
+  nodeLabel: Record<string, string>,
+) => {
   const { titleName } = nodeLabel;
 
-  // @ts-ignore
-  const itemTitle: string = item[titleName] || "";
+  const itemTitle: string = (item[titleName as "title"] as string) || "";
 
   const index = itemTitle.indexOf(searchValue);
 

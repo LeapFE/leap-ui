@@ -1,9 +1,8 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, ReactNode } from "react";
 import * as AntdTreeInterface from "antd/es/tree";
 import { Tree as AntdTree } from "antd";
 import * as AntdInputInterface from "antd/es/input";
 
-import { NodeLabel } from "./index";
 import Input from "../input";
 
 import { TreeSearchTitle } from "./TreeSearchTitle";
@@ -13,7 +12,7 @@ const { TreeNode } = AntdTree;
 
 export interface TreeSearchProps extends AntdTreeInterface.TreeProps {
   searchValue?: string;
-  nodeLabel?: NodeLabel;
+  nodeLabel?: Record<string, string>;
   checkedKeys?: string[];
   inputPlaceholder?: string;
   inputProps?: AntdInputInterface.InputProps;
@@ -30,7 +29,9 @@ interface TreeSearchState {
 }
 class TreeSearch extends React.Component<TreeSearchProps, TreeSearchState> {
   private timer: number;
-  private allItems: { key: string; title: string }[];
+
+  private allItems: { key: string; title: ReactNode }[];
+
   constructor(props: TreeSearchProps) {
     super(props);
 
@@ -87,8 +88,8 @@ class TreeSearch extends React.Component<TreeSearchProps, TreeSearchState> {
   getObject = (
     data?: TreeNodeNormal[],
     obj: Record<string, string> = {},
-    arr: { key: string; title: string }[] = [],
-    parent = {},
+    arr: { key: string; title: ReactNode }[] = [],
+    parent: TreeNodeNormal = { key: "1" },
   ) => {
     if (!Array.isArray(data)) {
       return { obj, arr };
@@ -96,7 +97,7 @@ class TreeSearch extends React.Component<TreeSearchProps, TreeSearchState> {
 
     const {
       nodeLabel = {
-        keyName: "value",
+        keyName: "key",
         titleName: "title",
         childrenName: "children",
       },
@@ -104,18 +105,17 @@ class TreeSearch extends React.Component<TreeSearchProps, TreeSearchState> {
 
     const { keyName, childrenName, titleName } = nodeLabel;
 
-    data.forEach((cur) => {
-      // @ts-ignore
-      arr.push({ key: cur[keyName], title: cur[titleName] });
+    data.forEach((item) => {
+      arr.push({ key: item[keyName as "key"], title: item[titleName as "title"] || "" });
 
-      // @ts-ignore
-      if (cur[childrenName] && cur[childrenName].length) {
-        // @ts-ignore
-        this.getObject(cur[childrenName], obj, arr, cur);
+      if (Array.isArray(item[childrenName as "children"])) {
+        if ((item[childrenName as "children"] as TreeNodeNormal[]).length > 0) {
+          this.getObject(item[childrenName as "children"], obj, arr, item);
+        }
       }
 
-      // @ts-ignore
-      obj[cur[keyName]] = parent[keyName] || "";
+      // eslint-disable-next-line no-param-reassign
+      obj[item[keyName as "key"]] = parent[keyName as "key"] || "";
     });
 
     return { obj, arr };
@@ -142,28 +142,32 @@ class TreeSearch extends React.Component<TreeSearchProps, TreeSearchState> {
       target: { value: searchValue },
     } = event;
 
-    clearTimeout(this.timer);
+    window.clearTimeout(this.timer);
 
-    this.timer = window.setTimeout(() => {
-      const showKeys = this.allItems
-        .reduce((result: string[], item) => {
-          const itemTitle = item.title || "";
+    if (this.allItems.length > 0) {
+      this.timer = window.setTimeout(() => {
+        const showKeys = this.allItems
+          .reduce((result: string[], item) => {
+            const itemTitle: ReactNode = item.title || "";
 
-          if (itemTitle.includes(searchValue)) {
-            // eslint-disable-next-line no-param-reassign
-            result = [`${item.key}`, ...result, ...this.getParentKeys(item.key)];
-          }
+            if (typeof itemTitle === "string") {
+              if (itemTitle.includes(searchValue)) {
+                // eslint-disable-next-line no-param-reassign
+                result = [`${item.key}`, ...result, ...this.getParentKeys(item.key)];
+              }
+            }
 
-          return result;
-        }, [])
-        .filter((item, i, self) => item && self.indexOf(item) === i);
+            return result;
+          }, [])
+          .filter((item, i, self) => item && self.indexOf(item) === i);
 
-      this.setState({
-        expandedKeys: showKeys,
-        showKeys,
-        autoExpandParent: true,
-      });
-    }, 500);
+        this.setState({
+          expandedKeys: showKeys,
+          showKeys,
+          autoExpandParent: true,
+        });
+      }, 500);
+    }
 
     const { onSearch } = this.props;
 
@@ -221,7 +225,7 @@ class TreeSearch extends React.Component<TreeSearchProps, TreeSearchState> {
       className,
       treeData,
       inputProps = {},
-      ...otherProps
+      ...reset
     } = this.props;
 
     const { expandedKeys = [], autoExpandParent, checkedKeys, selectedKeys } = this.state;
@@ -235,7 +239,7 @@ class TreeSearch extends React.Component<TreeSearchProps, TreeSearchState> {
         />
         {this.nullRender()}
         <AntdTree
-          {...otherProps}
+          {...reset}
           checkedKeys={checkedKeys}
           selectedKeys={selectedKeys}
           expandedKeys={expandedKeys}
@@ -261,7 +265,7 @@ class TreeSearch extends React.Component<TreeSearchProps, TreeSearchState> {
 
     const {
       nodeLabel = {
-        keyName: "value",
+        keyName: "key",
         titleName: "title",
         childrenName: "children",
       },
@@ -271,34 +275,31 @@ class TreeSearch extends React.Component<TreeSearchProps, TreeSearchState> {
 
     return data.map((item) => {
       let className = "";
-      // @ts-ignore
-      if (searchValue && !showKeys.find((ele) => `${item[keyName]}` === `${ele}`)) {
+      if (searchValue && !showKeys.find((ele) => `${item[keyName as "key"]}` === `${ele}`)) {
         className = "hide";
       }
+
       const title = TreeSearchTitle(item, searchValue, nodeLabel);
 
-      // @ts-ignore
-      if (Array.isArray(item[childrenName]) && item[childrenName].length > 0) {
-        return (
-          <TreeNode
-            title={title}
-            // @ts-ignore
-            key={item[keyName]}
-            className={className}
-            disabled={className === "hide"}
-          >
-            {// placeholder comment
-            // @ts-ignore
-            this.loopRender(item[childrenName])}
-          </TreeNode>
-        );
+      if (Array.isArray(item[childrenName as "children"])) {
+        if ((item[childrenName as "children"] as TreeNodeNormal[]).length > 0) {
+          return (
+            <TreeNode
+              title={title}
+              key={item[keyName as "key"]}
+              className={className}
+              disabled={className === "hide"}
+            >
+              {this.loopRender(item[childrenName as "children"])}
+            </TreeNode>
+          );
+        }
       }
 
       return (
         <TreeNode
           title={title}
-          // @ts-ignore
-          key={item[keyName]}
+          key={item[keyName as "key"]}
           className={className}
           disabled={className === "hide"}
         />

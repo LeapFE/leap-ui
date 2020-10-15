@@ -3,31 +3,29 @@ import { TreeNodeNormal, AntTreeNodeSelectedEvent } from "antd/es/tree/Tree";
 import * as AntdTreeInterface from "antd/es/tree";
 import { Tree as AntdTree } from "antd";
 
-import { NodeLabel } from "./";
 import { TreeSearchTitle } from "./TreeSearchTitle";
 
-function arrToObj<T extends string | number | symbol>(arr: T[]) {
+function arrToObj<T extends string | number | symbol>(arr: T[]): Record<string, boolean> {
   return arr.reduce((result, cur) => ({ ...result, [cur]: true }), {});
 }
 
 const { TreeNode } = AntdTree;
 
 export interface TreeParentProps extends Omit<AntdTreeInterface.TreeProps, "onSelect"> {
-  nodeLabel?: NodeLabel;
-  onSelect?: (selectedKeys: string[], allkeys: string[], e: AntTreeNodeSelectedEvent) => void;
+  nodeLabel?: Record<string, string>;
+  onSelect?: (selectedKeys: string[], allKeys: string[], e: AntTreeNodeSelectedEvent) => void;
 }
 
 interface TreeParentState {
   treeData: TreeNodeNormal[];
   searchValue: string;
-  choosekeys: string[];
+  selectedKeys: string[];
   expandedKeys: string[];
   autoExpandParent: boolean;
 }
 
 class TreeParent extends React.Component<TreeParentProps, TreeParentState> {
-  // REVIEW typeof keysObj???
-  private keysObj: Record<string, any>;
+  private keysObj: Record<string, TreeNodeNormal>;
 
   constructor(props: TreeParentProps) {
     super(props);
@@ -35,7 +33,7 @@ class TreeParent extends React.Component<TreeParentProps, TreeParentState> {
     this.state = {
       treeData: [],
       searchValue: "", //搜索的值
-      choosekeys: [], //选中的所有key值;选中父级，子集也选中；
+      selectedKeys: [], //选中的所有key值;选中父级，子集也选中；
       expandedKeys: [], //展开的key
       autoExpandParent: true,
     };
@@ -50,7 +48,7 @@ class TreeParent extends React.Component<TreeParentProps, TreeParentState> {
     if (expandedKeys && expandedKeys.length) {
       this.setState({
         expandedKeys: [...expandedKeys, ...selectedKeys],
-        choosekeys: selectedKeys,
+        selectedKeys: selectedKeys,
       });
     }
   }
@@ -71,11 +69,14 @@ class TreeParent extends React.Component<TreeParentProps, TreeParentState> {
     });
   };
 
-  // REVIEW typeof list??? typeof expandedKeysObj???
-  getKeys = (list: any, allkeys: string[], expandedKeysObj: any) => {
+  getKeys = (
+    allKeys: string[],
+    expandedKeysObj: Record<string, boolean>,
+    list?: TreeNodeNormal[],
+  ) => {
     const {
       nodeLabel = {
-        keyName: "value",
+        keyName: "key",
         titleName: "title",
         childrenName: "children",
       },
@@ -84,20 +85,26 @@ class TreeParent extends React.Component<TreeParentProps, TreeParentState> {
     const { keyName, childrenName } = nodeLabel;
 
     if (!list || !list.length) {
-      return allkeys;
+      return allKeys;
     }
 
     for (let i = 0; i < list.length; i++) {
       const item = list[i];
-      allkeys.push(item[keyName]);
-      if (item[childrenName] && item[childrenName].length) {
-        this.getKeys(item[childrenName], allkeys, expandedKeysObj);
-        expandedKeysObj[item[keyName]] = true;
+
+      allKeys.push(item[keyName as "key"]);
+
+      if (Array.isArray(item[childrenName as "children"])) {
+        if ((item[childrenName as "children"] as TreeNodeNormal[]).length > 0) {
+          this.getKeys(allKeys, expandedKeysObj, item[childrenName as "children"]);
+
+          // eslint-disable-next-line no-param-reassign
+          expandedKeysObj[item[keyName as "key"]] = true;
+        }
       }
     }
 
     return {
-      allkeys,
+      allKeys,
       expandedKeys: Object.keys(expandedKeysObj),
     };
   };
@@ -113,31 +120,35 @@ class TreeParent extends React.Component<TreeParentProps, TreeParentState> {
     } = this.props;
     const { childrenName } = nodeLabel;
 
-    let allkeys: string[] = [];
+    let allKeys: string[] = [];
     const curKey = selectedKeys[0];
 
     let { expandedKeys } = this.state;
 
     if (curKey) {
-      allkeys = [curKey];
+      allKeys = [curKey];
     }
 
-    if (curKey && this.keysObj[curKey] && this.keysObj[curKey][childrenName]) {
-      const keys = this.getKeys(this.keysObj[curKey][childrenName], allkeys, {
-        ...arrToObj(expandedKeys),
-        [curKey]: true,
-      });
+    if (curKey && this.keysObj[curKey] && this.keysObj[curKey][childrenName as "children"]) {
+      const keys = this.getKeys(
+        allKeys,
+        {
+          ...arrToObj(expandedKeys),
+          [curKey]: true,
+        },
+        this.keysObj[curKey][childrenName as "children"],
+      );
 
       if (!Array.isArray(keys)) {
-        allkeys = keys.allkeys;
+        allKeys = keys.allKeys;
         expandedKeys = keys.expandedKeys;
       }
     }
 
-    this.setState({ choosekeys: allkeys, expandedKeys });
+    this.setState({ selectedKeys: allKeys, expandedKeys });
 
     if (typeof onSelect === "function") {
-      onSelect(selectedKeys, allkeys, e);
+      onSelect(selectedKeys, allKeys, e);
     }
   };
 
@@ -154,7 +165,7 @@ class TreeParent extends React.Component<TreeParentProps, TreeParentState> {
 
     const { keyName, childrenName } = nodeLabel;
 
-    const { searchValue, expandedKeys, autoExpandParent, choosekeys } = this.state;
+    const { searchValue, expandedKeys, autoExpandParent, selectedKeys } = this.state;
 
     const loop = (data?: TreeNodeNormal[]) => {
       if (!Array.isArray(data)) {
@@ -162,19 +173,21 @@ class TreeParent extends React.Component<TreeParentProps, TreeParentState> {
       }
 
       return data.map((item) => {
-        // @ts-ignore
-        const itemKey: string = item[keyName];
-        // @ts-ignore
-        const itemChildren: TreeNodeNormal = item[childrenName];
+        const itemKey: string = item[keyName as "key"];
+        const itemChildren: TreeNodeNormal[] | undefined = item[childrenName as "children"];
 
-        // 将所有节点存在keysObj对象中
+        // 将所有节点存在 keysObj 对象中
         if (!this.keysObj[itemKey]) {
           this.keysObj[itemKey] = item;
         }
 
         const title = TreeSearchTitle(item, searchValue, nodeLabel);
-        // REVIEW `choosekeys` maybe not array
-        const className = choosekeys.find((ele) => ele === itemKey) ? "choosed" : "";
+
+        const className = Array.isArray(selectedKeys)
+          ? selectedKeys.find((ele) => ele === itemKey)
+            ? "choosed"
+            : ""
+          : "";
 
         if (Array.isArray(itemChildren)) {
           return (
@@ -189,8 +202,8 @@ class TreeParent extends React.Component<TreeParentProps, TreeParentState> {
     };
     return (
       <AntdTree
-        className="fl_tree_ddd"
         {...otherProps}
+        className="fl_tree_ddd"
         onSelect={this.onSelect}
         onExpand={this.onExpand}
         expandedKeys={expandedKeys}
