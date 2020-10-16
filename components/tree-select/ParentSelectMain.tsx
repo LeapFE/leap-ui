@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import ClassNames from "classnames";
 
-import Tooltip from "../toolTip";
+import Tooltip from "../tooltip";
 
 import { TagToolTip } from "./TagToolTip";
 import { TreeFormat } from "./treeFormat";
