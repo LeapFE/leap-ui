@@ -84,7 +84,7 @@ class Checkable extends React.Component<CheckableProps, CheckableState> {
         this.props.treeData[0][valueName as "value"] !==
           nextProps.treeData[0][valueName as "value"])
     ) {
-      this.treeFormat = new TreeFormat(nextProps.treeData, nodeLabel);
+      this.treeFormat = new TreeFormat(nextProps.treeData, nodeLabel, value);
       this.setState({
         stateTreeData: this.treeFormat.transformedSourceTreeData,
       });
