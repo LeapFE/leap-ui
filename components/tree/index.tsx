@@ -13,12 +13,13 @@ export interface TreeProps extends AntdTreeInterface.TreeProps {
 }
 
 class Tree extends Component<TreeProps> {
-  // REVIEW api changed
   static TreeNode: typeof AntdTree.TreeNode = AntdTree.TreeNode;
   static TreeParent: typeof TreeParent = TreeParent;
   static TreeSearch: typeof TreeSearch = TreeSearch;
 
-  renderTreeNodes = (data: TreeNodeNormal[]) => {
+  renderTreeNodes = (data: TreeNodeNormal[], preKey?: string) => {
+    const _preKey = preKey || "0";
+
     const {
       nodeLabel = {
         keyName: "key",
@@ -29,21 +30,24 @@ class Tree extends Component<TreeProps> {
 
     const { keyName, titleName, childrenName } = nodeLabel;
 
-    return data.map((item) => {
+    return data.map((item, i) => {
+      const key = `${_preKey}-${i}`;
+
       if (item[childrenName as "children"]) {
         return (
           <AntdTree.TreeNode
             title={item[titleName as "title"]}
-            key={item[keyName as "key"]}
+            key={item[keyName as "key"] || key}
             dataRef={item}
           >
-            {this.renderTreeNodes(item[childrenName as "children"] as TreeNodeNormal[])}
+            {this.renderTreeNodes(item[childrenName as "children"] as TreeNodeNormal[], key)}
           </AntdTree.TreeNode>
         );
       }
+
       return (
         <AntdTree.TreeNode
-          key={item[keyName as "key"]}
+          key={item[keyName as "key"] || key}
           title={item[titleName as "title"]}
           isLeaf={item.isLeaf}
           disabled={item.disabled}
@@ -69,6 +73,7 @@ class Tree extends Component<TreeProps> {
         </div>
       );
     }
+
     return !treeData ? (
       <AntdTree className={`${checkable ? "check_tree" : ""}`} {...otherProps} />
     ) : (
@@ -79,5 +84,4 @@ class Tree extends Component<TreeProps> {
   }
 }
 
-// export { AntdTree, AntdTreeInterface };
 export default Tree;

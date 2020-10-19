@@ -46,12 +46,7 @@ const options = [
 const cascaderRender = () => {
   return (
     <div style={{ marginTop: 20, marginLeft: 20 }}>
-      <Cascader
-        style={{ width: 284 }}
-        options={options}
-        onChange={onChange}
-        placeholder="请选择"
-      />
+      <Cascader style={{ width: 284 }} options={options} onChange={onChange} placeholder="请选择" />
     </div>
   );
 };

@@ -8,37 +8,50 @@ import markdown from "../markdown/treeselect.md";
 
 import Layout from "../common/layout";
 
+import ProductSelect from "./../common/productTreeSelect";
+
+function onChange(...args: any[]) {
+  // eslint-disable-next-line no-console
+  console.log("%cOnChange", "color: orange", args);
+}
+
 const treeData = [
   {
     title: "Node1",
-    value: "0-0",
+    key: "0-0",
+    value: "0-0^Node1",
     children: [
       {
         title: "Child Node1",
-        value: "0-0-0",
+        key: "0-0-0",
+        value: "0-0-0^Child Node1",
       },
     ],
   },
   {
     title: "Node2",
-    value: "0-1",
+    key: "0-1",
+    value: "0-1^Node2",
     children: [
       {
         title: "Child Node3",
-        value: "0-1-0",
+        key: "0-1-0",
+        value: "0-1-0^Child Node3",
       },
       {
         title: "Child Node4",
-        value: "0-1-1",
+        key: "0-1-1",
+        value: "0-1-1^Child Node4",
       },
       {
         title: "Child Node5",
-        value: "0-1-2",
+        key: "0-1-2",
+        value: "0-1-2^Child Node5",
       },
     ],
   },
 ];
-class TreeselectRender extends React.Component {
+class TreeSelectRender extends React.Component {
   state = {
     singleValue: "0-1-0",
     multipleValue: ["0-0-0", "0-1-0"],
@@ -49,7 +62,10 @@ class TreeselectRender extends React.Component {
       <TreeSelect
         treeData={treeData}
         value={singleValue}
-        onChange={(value) => this.setState({ singleValue: value })}
+        onChange={(value) => {
+          onChange(value);
+          this.setState({ singleValue: value });
+        }}
         placeholder="请选择"
         style={{ width: 250 }}
       />
@@ -62,7 +78,10 @@ class TreeselectRender extends React.Component {
         treeData={treeData}
         treeCheckable
         value={multipleValue}
-        onChange={(value) => this.setState({ multipleValue: value })}
+        onChange={(value) => {
+          onChange(value);
+          this.setState({ multipleValue: value });
+        }}
         placeholder="请选择"
         style={{ width: 250 }}
       />
@@ -76,7 +95,12 @@ class TreeselectRender extends React.Component {
           {
             name: "树单选",
             content: (
-              <TreeSelect treeData={treeData} placeholder="请选择" style={{ width: 250 }} />
+              <TreeSelect
+                treeData={treeData}
+                placeholder="请选择"
+                style={{ width: 250 }}
+                onChange={onChange}
+              />
             ),
           },
           {
@@ -102,6 +126,7 @@ class TreeselectRender extends React.Component {
                 treeCheckable
                 placeholder="请选择"
                 style={{ width: 250 }}
+                onChange={onChange}
               />
             ),
           },
@@ -118,6 +143,7 @@ class TreeselectRender extends React.Component {
                 placeholder="请选择"
                 maxTagCount={1}
                 style={{ width: 250 }}
+                onChange={onChange}
               />
             ),
           },
@@ -130,6 +156,7 @@ class TreeselectRender extends React.Component {
                 placeholder="请选择"
                 maxTagCount={0}
                 style={{ width: 250 }}
+                onChange={onChange}
               />
             ),
           },
@@ -141,6 +168,7 @@ class TreeselectRender extends React.Component {
                 placeholder="请选择"
                 style={{ width: 250 }}
                 showSearch
+                onChange={onChange}
               />
             ),
           },
@@ -154,6 +182,7 @@ class TreeselectRender extends React.Component {
                 placeholder="请选择"
                 style={{ width: 250 }}
                 popoverOverlayStyle={{ width: "300px" }}
+                onChange={onChange}
               />
             ),
           },
@@ -167,6 +196,7 @@ class TreeselectRender extends React.Component {
                 maxTagCount={1}
                 style={{ width: 250 }}
                 showSearch
+                onChange={onChange}
               />
             ),
           },
@@ -181,18 +211,26 @@ class TreeselectRender extends React.Component {
                 style={{ width: 250 }}
                 showSearch
                 popoverOverlayStyle={{ width: "300px" }}
+                onChange={onChange}
               />
             ),
           },
+          // REVIEW this example has problems
           {
             name: "父带子复选+单选子级",
-            content: <TreeSelect treeData={treeData} placeholder="请选择" parentTree={true} />,
+            content: (
+              <TreeSelect treeData={treeData} placeholder="请选择" parentTree onChange={onChange} />
+            ),
+          },
+          {
+            name: "产品选择",
+            content: <ProductSelect />,
           },
         ]}
       />
     );
   }
 }
-storiesOf("通用", module).add("TreeSelect 选择器", () => <TreeselectRender />, {
+storiesOf("通用", module).add("TreeSelect 选择器", () => <TreeSelectRender />, {
   notes: { markdown },
 });

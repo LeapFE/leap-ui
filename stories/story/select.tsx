@@ -23,13 +23,7 @@ const sliderRender = () => {
           <Slider range defaultValue={[20, 50]} />
         </div>
         <div style={{ margin: "30px 20px" }}>
-          <Slider
-            range
-            customBotMark={["MIN", "MAX"]}
-            max={30}
-            min={0}
-            value={[11, 20]}
-          />
+          <Slider range customBotMark={["MIN", "MAX"]} max={30} min={0} value={[11, 20]} />
         </div>
       </div>
       <div>

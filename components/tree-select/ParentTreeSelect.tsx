@@ -84,17 +84,18 @@ class ParentTreeSelect extends React.Component<ParentTreeSelectProps, ParentTree
     }
   }
 
-  onSelect = (_: string[], allKeys: string[]) => {
+  onSelect = (selectedKeys: string[], allKeys: string[]) => {
     const { onChange } = this.props;
     this.setState({ checkedKeys: allKeys, visible: false });
 
     if (typeof onChange === "function") {
-      onChange(allKeys, null, null);
+      onChange(selectedKeys, allKeys, this.treeFormat?.allItem);
     }
   };
 
   popoverContent = () => {
     const { treeData, treeExpandedKeys } = this.props;
+
     const { selectedKeys } = this.state;
     return (
       <div className="tree_content" style={{ width: "100%" }}>

@@ -8,7 +8,6 @@ const Search = Input.Search;
 
 console.log(Input.TextArea);
 
-
 const InputRender = () => {
   return (
     <div>
