@@ -30,7 +30,8 @@
     "compile:component": "tsc -p tsconfig.json --noEmit --diagnostics",
     "build-storybook": "build-storybook -c .storybook -o .out",
     "release:pre": "np prerelease --tag=beta --yolo",
-    "release:prod": "np patch --tag=latest --yolo"
+    "release:prod": "np patch --tag=latest --yolo",
+    "commit": "npm run eslint && npm run stylelint && npm run format:check:ts && npm run format:check:style && git cz"
   },
   "keywords": [],
   "author": "",
@@ -76,7 +77,6 @@
     "jest": "^25.1.0",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
-    "lint-staged": "^9.4.3",
     "np": "^6.5.0",
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.7.0",
@@ -108,17 +108,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
-  },
-  "lint-staged": {
-    "src/**/*.ts": [
-      "npm run eslint",
-      "npm run stylelint",
-      "npm run format:check:ts",
-      "npm run format:check:style"
-    ]
   }
 }
