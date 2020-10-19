@@ -28,7 +28,9 @@
     "dev": "npm run build && start-storybook -p 8000 -c .storybook",
     "compile:story": "tsc -p tsconfig.story.json --noEmit --diagnostics",
     "compile:component": "tsc -p tsconfig.json --noEmit --diagnostics",
-    "build-storybook": "build-storybook -c .storybook -o .out"
+    "build-storybook": "build-storybook -c .storybook -o .out",
+    "publish:beta": "np prepatch --tag=beta",
+    "publish:latest": "np patch --tag=latest"
   },
   "keywords": [],
   "author": "",
@@ -75,6 +77,7 @@
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
     "lint-staged": "^9.4.3",
+    "np": "^6.5.0",
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.7.0",
     "prettier": "^1.19.1",
