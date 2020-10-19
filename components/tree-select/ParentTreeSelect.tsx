@@ -79,14 +79,14 @@ class ParentTreeSelect extends React.Component<ParentTreeSelectProps, ParentTree
         this.props.treeData[0][valueName as "value"] !==
           nextProps.treeData[0][valueName as "value"])
     ) {
-      this.treeFormat = new TreeFormat(nextProps.treeData, nodeLabel);
+      this.treeFormat = new TreeFormat(nextProps.treeData, nodeLabel, value);
       this.setState({
         stateTreeData: this.treeFormat.transformedSourceTreeData,
       });
 
       if (value && Array.isArray(value) && isEveryElementString(value)) {
         this.setState({
-          checkedKeys: value,
+          checkedKeys: this.treeFormat.initCheckedNode.map((t) => t.key?.toString() || ""),
         });
       }
     }
