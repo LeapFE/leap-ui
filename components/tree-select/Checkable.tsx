@@ -73,7 +73,6 @@ class Checkable extends React.Component<CheckableProps, CheckableState> {
 
   UNSAFE_componentWillReceiveProps(nextProps: CheckableProps) {
     const { value } = nextProps;
-    const { checkedKeys } = this.state;
 
     const { nodeLabel = {} } = this.props;
     const { valueName = "value" } = nodeLabel;
@@ -89,17 +88,12 @@ class Checkable extends React.Component<CheckableProps, CheckableState> {
       this.setState({
         stateTreeData: this.treeFormat.transformedSourceTreeData,
       });
-    }
 
-    if (
-      value &&
-      Array.isArray(value) &&
-      typeof value[0] === "string" &&
-      !Array.isArray(checkedKeys)
-    ) {
-      this.setState({
-        checkedKeys: value as string[],
-      });
+      if (value && Array.isArray(value) && isEveryElementString(value)) {
+        this.setState({
+          checkedKeys: value,
+        });
+      }
     }
   }
 

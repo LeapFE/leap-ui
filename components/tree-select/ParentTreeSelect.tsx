@@ -69,6 +69,7 @@ class ParentTreeSelect extends React.Component<ParentTreeSelectProps, ParentTree
   UNSAFE_componentWillReceiveProps(nextProps: ParentTreeSelectProps) {
     const { nodeLabel = {} } = this.props;
     const { valueName = "value" } = nodeLabel;
+    const { value } = nextProps;
 
     if (
       nextProps.treeData &&
@@ -82,12 +83,13 @@ class ParentTreeSelect extends React.Component<ParentTreeSelectProps, ParentTree
       this.setState({
         stateTreeData: this.treeFormat.transformedSourceTreeData,
       });
-    }
 
-    // REVIEW why do this???
-    // if (nextProps.value && nextProps.value[0] && !this.state.checkedKeys[0]) {
-    //   this.setState({ checkedKeys: nextProps.value });
-    // }
+      if (value && Array.isArray(value) && isEveryElementString(value)) {
+        this.setState({
+          checkedKeys: value,
+        });
+      }
+    }
   }
 
   onSelect = (selectedKeys: string[], allKeys: string[]) => {

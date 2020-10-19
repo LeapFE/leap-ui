@@ -9,16 +9,92 @@ import productList from "./product.json";
 
 const initSelectedProduct = [
   {
-    product_name: "OL-SS4-N",
-    product_id: 195,
+    product_id: 42,
+    product_name: "Stage 1",
   },
   {
-    product_name: "G1A",
-    product_id: 335,
+    product_id: 43,
+    product_name: "Stage 10",
   },
   {
-    product_name: "外教小班Live一级下（已废弃）",
-    product_id: 470,
+    product_id: 44,
+    product_name: "Stage 2",
+  },
+  {
+    product_id: 45,
+    product_name: "Stage 3",
+  },
+  {
+    product_id: 48,
+    product_name: "Stage 4(入口)",
+  },
+  {
+    product_id: 48,
+    product_name: "Stage 4(升级)",
+  },
+  {
+    product_id: 50,
+    product_name: "Stage 5",
+  },
+  {
+    product_id: 51,
+    product_name: "Stage 6",
+  },
+  {
+    product_id: 52,
+    product_name: "Stage 7",
+  },
+  {
+    product_id: 53,
+    product_name: "Stage 8",
+  },
+  {
+    product_id: 54,
+    product_name: "Stage 9",
+  },
+  {
+    product_id: 44,
+    product_name: "Stage 2(入口)",
+  },
+  {
+    product_id: 312,
+    product_name: "Stage 1-129",
+  },
+  {
+    product_id: 313,
+    product_name: "Stage 2-129",
+  },
+  {
+    product_id: 314,
+    product_name: "Stage 4-129",
+  },
+  {
+    product_id: 315,
+    product_name: "Stage 3-129",
+  },
+  {
+    product_id: 324,
+    product_name: "Stage 5-129",
+  },
+  {
+    product_id: 344,
+    product_name: "Stage 1-129-HF",
+  },
+  {
+    product_id: 345,
+    product_name: "Stage 2-129-HF",
+  },
+  {
+    product_id: 346,
+    product_name: "Stage 3-129-HF",
+  },
+  {
+    product_id: 347,
+    product_name: "Stage 4-129-HF",
+  },
+  {
+    product_id: 348,
+    product_name: "Stage 5-129-HF",
   },
 ];
 
