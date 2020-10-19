@@ -59,13 +59,13 @@ class Checkable extends React.Component<CheckableProps, CheckableState> {
     const { value = [], treeExpandedKeys = [], treeData, nodeLabel = {} } = this.props;
 
     if (Array.isArray(treeData) && treeData.length > 0 && nodeLabel) {
-      this.treeFormat = new TreeFormat(treeData, nodeLabel);
-      this.setState({ stateTreeData: this.treeFormat.transformerSourceTreeData(treeData) });
+      this.treeFormat = new TreeFormat(treeData, nodeLabel, value);
+      this.setState({ stateTreeData: this.treeFormat.transformedSourceTreeData });
     }
 
-    if (Array.isArray(value) && isEveryElementString(value)) {
+    if (Array.isArray(value) && isEveryElementString(value) && this.treeFormat) {
       this.setState({
-        checkedKeys: value,
+        checkedKeys: this.treeFormat.initCheckedNode.map((t) => t.key?.toString() || ""),
         treeExpandedKeys,
       });
     }
@@ -87,7 +87,7 @@ class Checkable extends React.Component<CheckableProps, CheckableState> {
     ) {
       this.treeFormat = new TreeFormat(nextProps.treeData, nodeLabel);
       this.setState({
-        stateTreeData: this.treeFormat.transformerSourceTreeData(nextProps.treeData),
+        stateTreeData: this.treeFormat.transformedSourceTreeData,
       });
     }
 

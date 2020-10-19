@@ -4,7 +4,7 @@ import ClassNames from "classnames";
 import Popover from "../popover";
 import Tree from "../tree";
 
-import { TreeFormat } from "./treeFormat";
+import { isEveryElementString, TreeFormat } from "./treeFormat";
 
 import { ParentSelectMain } from "./ParentSelectMain";
 import { TreeNode, TreeNodeNormal } from "antd/es/tree-select/interface";
@@ -50,22 +50,26 @@ class ParentTreeSelect extends React.Component<ParentTreeSelectProps, ParentTree
   componentDidMount() {
     const { treeData, value = [], nodeLabel = {}, treeExpandedKeys = [] } = this.props;
     if (treeData && treeData.length && nodeLabel) {
-      this.treeFormat = new TreeFormat(treeData, nodeLabel);
+      this.treeFormat = new TreeFormat(treeData, nodeLabel, value);
       this.setState({
-        stateTreeData: this.treeFormat.transformerSourceTreeData(treeData),
+        stateTreeData: this.treeFormat.transformedSourceTreeData,
       });
     }
 
-    this.setState({
-      checkedKeys: value,
-      treeExpandedKeys: [...treeExpandedKeys, ...value],
-      selectedKeys: value,
-    });
+    if (Array.isArray(value) && isEveryElementString(value) && this.treeFormat) {
+      const keys = this.treeFormat.initCheckedNode.map((t) => t.key?.toString() || "");
+      this.setState({
+        checkedKeys: keys,
+        treeExpandedKeys,
+        selectedKeys: keys,
+      });
+    }
   }
 
   UNSAFE_componentWillReceiveProps(nextProps: ParentTreeSelectProps) {
     const { nodeLabel = {} } = this.props;
     const { valueName = "value" } = nodeLabel;
+
     if (
       nextProps.treeData &&
       nextProps.treeData[0] &&
@@ -76,12 +80,14 @@ class ParentTreeSelect extends React.Component<ParentTreeSelectProps, ParentTree
     ) {
       this.treeFormat = new TreeFormat(nextProps.treeData, nodeLabel);
       this.setState({
-        stateTreeData: this.treeFormat.transformerSourceTreeData(nextProps.treeData),
+        stateTreeData: this.treeFormat.transformedSourceTreeData,
       });
     }
-    if (nextProps.value && nextProps.value[0] && !this.state.checkedKeys[0]) {
-      this.setState({ checkedKeys: nextProps.value });
-    }
+
+    // REVIEW why do this???
+    // if (nextProps.value && nextProps.value[0] && !this.state.checkedKeys[0]) {
+    //   this.setState({ checkedKeys: nextProps.value });
+    // }
   }
 
   onSelect = (selectedKeys: string[], allKeys: string[]) => {

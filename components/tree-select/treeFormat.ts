@@ -6,12 +6,21 @@ class TreeFormat {
   public readonly noLeafs: Record<string, boolean>;
   public readonly treeData: Array<TreeNode>;
   public readonly names: Record<string, string>;
+  public readonly initValue: string[] | number[];
+  public readonly transformedSourceTreeData: TreeNode[];
+  public readonly initCheckedNode: TreeNode[];
 
-  constructor(treeData: Array<TreeNode>, nodeLabel: Record<string, string>) {
+  constructor(
+    treeData: Array<TreeNode>,
+    nodeLabel: Record<string, string>,
+    initValue?: string[] | number[],
+  ) {
     this.allItem = {};
     this.leafs = {};
     this.noLeafs = {};
     this.treeData = treeData;
+    this.initValue = initValue || [];
+    this.initCheckedNode = [];
     this.names = {
       valueName: "value",
       titleName: "title",
@@ -19,13 +28,21 @@ class TreeFormat {
       parentName: "pid",
       ...nodeLabel,
     };
+
+    this.transformedSourceTreeData = this.transformSourceTreeData(this.treeData);
   }
 
-  transformerSourceTreeData(treeData: Array<TreeNode>, parent: TreeNode = {}) {
+  transformSourceTreeData(treeData: Array<TreeNode>, parent: TreeNode = {}) {
     const { valueName, titleName, childrenName } = this.names;
     const result: TreeNode[] = [];
 
     treeData.forEach((item, i) => {
+      if (typeof item.value === "string" || typeof item.value === "number") {
+        if ((this.initValue as (string | number)[]).includes(item.value)) {
+          this.initCheckedNode.push(item);
+        }
+      }
+
       result[i] = {
         value: item[valueName as "value"],
         key: item.key,
@@ -37,7 +54,8 @@ class TreeFormat {
           result[i].children = item[childrenName as "children"];
         }
 
-        this.transformerSourceTreeData(item.children as TreeNodeNormal[], item);
+        this.transformSourceTreeData(item.children as TreeNodeNormal[], item);
+
         if (typeof item.value === "string") {
           this.noLeafs[item.value] = true;
         }

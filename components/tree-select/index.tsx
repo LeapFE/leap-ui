@@ -60,7 +60,7 @@ class TreeSelect extends React.Component<TreeSelectProps, TreeSelectState> {
 
     if (treeData && nodeLabel) {
       this.treeFormat = new TreeFormat(treeData, nodeLabel);
-      this.setState({ stateTreeData: this.treeFormat.transformerSourceTreeData(treeData) });
+      this.setState({ stateTreeData: this.treeFormat.transformedSourceTreeData });
     }
   }
 
