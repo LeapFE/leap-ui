@@ -37,9 +37,7 @@ const buttonRender = () => {
           </Button>
         </div>
         <div>
-          <Button
-            style={{ marginRight: 50, marginBottom: 20, display: "block" }}
-          >
+          <Button style={{ marginRight: 50, marginBottom: 20, display: "block" }}>
             <span>线框按钮/次按钮</span>
           </Button>
           <Button disabled style={{ marginRight: 50, display: "block" }}>
@@ -47,17 +45,10 @@ const buttonRender = () => {
           </Button>
         </div>
         <div>
-          <Button
-            type="text"
-            style={{ marginRight: 50, marginBottom: 20, display: "block" }}
-          >
+          <Button type="text" style={{ marginRight: 50, marginBottom: 20, display: "block" }}>
             <span>文字按钮</span>
           </Button>
-          <Button
-            disabled
-            type="text"
-            style={{ marginRight: 50, display: "block" }}
-          >
+          <Button disabled type="text" style={{ marginRight: 50, display: "block" }}>
             <span>文字按钮</span>
           </Button>
         </div>

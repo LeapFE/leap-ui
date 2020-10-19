@@ -214,7 +214,11 @@ class TreeSearch extends React.Component<TreeSearchProps, TreeSearchState> {
 
   nullRender = () => {
     const { searchValue, showKeys = [] } = this.state;
-    if (searchValue && !showKeys.length) return <div className="tree_null"></div>;
+
+    if (searchValue && !showKeys.length) {
+      return <div className="tree_null"></div>;
+    }
+
     return null;
   };
 
@@ -256,10 +260,12 @@ class TreeSearch extends React.Component<TreeSearchProps, TreeSearchState> {
     );
   }
 
-  loopRender = (data?: TreeNodeNormal[]) => {
+  loopRender = (data?: TreeNodeNormal[], preKey?: string) => {
     if (!Array.isArray(data)) {
       return;
     }
+
+    const _preKey = preKey || "0";
 
     const { searchValue, showKeys = [] } = this.state;
 
@@ -273,9 +279,12 @@ class TreeSearch extends React.Component<TreeSearchProps, TreeSearchState> {
 
     const { keyName, childrenName } = nodeLabel;
 
-    return data.map((item) => {
+    return data.map((item, i) => {
+      const key = `${_preKey}-${i}`;
+      const itemKey = item[keyName as "key"] || key;
+
       let className = "";
-      if (searchValue && !showKeys.find((ele) => `${item[keyName as "key"]}` === `${ele}`)) {
+      if (searchValue && !showKeys.find((ele) => itemKey === ele)) {
         className = "hide";
       }
 
@@ -286,11 +295,11 @@ class TreeSearch extends React.Component<TreeSearchProps, TreeSearchState> {
           return (
             <TreeNode
               title={title}
-              key={item[keyName as "key"]}
+              key={itemKey}
               className={className}
               disabled={className === "hide"}
             >
-              {this.loopRender(item[childrenName as "children"])}
+              {this.loopRender(item[childrenName as "children"], key)}
             </TreeNode>
           );
         }
@@ -299,7 +308,7 @@ class TreeSearch extends React.Component<TreeSearchProps, TreeSearchState> {
       return (
         <TreeNode
           title={title}
-          key={item[keyName as "key"]}
+          key={itemKey}
           className={className}
           disabled={className === "hide"}
         />

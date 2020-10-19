@@ -110,6 +110,7 @@ class Checkable extends React.Component<CheckableProps, CheckableState> {
         checkedKeys: selectedKeys,
         visible: false,
       });
+
       if (typeof onChange === "function") {
         onChange(selectedKeys, null, null);
       }
@@ -123,13 +124,35 @@ class Checkable extends React.Component<CheckableProps, CheckableState> {
       this.setState({ checkedKeys });
     }
 
-    if (typeof onChange === "function") {
+    if (typeof onChange === "function" && this.treeFormat) {
+      const { allItem } = this.treeFormat;
+
       if (Array.isArray(checkedKeys)) {
-        onChange(checkedKeys, null, null);
+        const leafs = this.getLeafKeys(checkedKeys);
+        onChange(leafs, checkedKeys, allItem);
       } else {
-        onChange(checkedKeys.checked, null, null);
+        const leafs = this.getLeafKeys(checkedKeys.checked);
+        onChange(leafs, checkedKeys, allItem);
       }
     }
+  };
+
+  getLeafKeys = (keys: string[]) => {
+    if (this.treeFormat) {
+      const { leafs } = this.treeFormat;
+
+      const leafKeys = keys.reduce((res, current) => {
+        if (leafs[current]) {
+          res.push(leafs[current]);
+        }
+
+        return res;
+      }, [] as string[]);
+
+      return leafKeys;
+    }
+
+    return keys;
   };
 
   popoverContent = () => {
@@ -166,6 +189,7 @@ class Checkable extends React.Component<CheckableProps, CheckableState> {
     const { width = "" } = style;
 
     const { checkedKeys, visible, allKeys = [] } = this.state;
+
     return (
       <div className="checkable_tree" style={{ width }}>
         <Popover

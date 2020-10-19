@@ -41,15 +41,19 @@ class TreeFormat {
         if (typeof item.value === "string") {
           this.noLeafs[item.value] = true;
         }
-      } else if (typeof item.value === "string" && typeof parent.value === "string") {
-        this.leafs[item.value] = parent.value || item.value;
+      } else if (
+        typeof item.value === "string" &&
+        typeof parent.value === "string" &&
+        typeof item.key === "string"
+      ) {
+        this.leafs[item.key] = item.value || parent.value;
       }
 
       // @ts-ignore
       result[i].pid = parent.value || "";
 
-      if (typeof item.value === "string") {
-        this.allItem[item.value] = item;
+      if (typeof item.key === "string") {
+        this.allItem[item.key] = item;
       }
     });
 

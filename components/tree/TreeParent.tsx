@@ -88,9 +88,7 @@ class TreeParent extends React.Component<TreeParentProps, TreeParentState> {
       return allKeys;
     }
 
-    for (let i = 0; i < list.length; i++) {
-      const item = list[i];
-
+    list.forEach((item) => {
       allKeys.push(item[keyName as "key"]);
 
       if (Array.isArray(item[childrenName as "children"])) {
@@ -101,7 +99,7 @@ class TreeParent extends React.Component<TreeParentProps, TreeParentState> {
           expandedKeysObj[item[keyName as "key"]] = true;
         }
       }
-    }
+    });
 
     return {
       allKeys,
@@ -167,13 +165,17 @@ class TreeParent extends React.Component<TreeParentProps, TreeParentState> {
 
     const { searchValue, expandedKeys, autoExpandParent, selectedKeys } = this.state;
 
-    const loop = (data?: TreeNodeNormal[]) => {
+    const loop = (data?: TreeNodeNormal[], preKey?: string) => {
       if (!Array.isArray(data)) {
         return;
       }
 
-      return data.map((item) => {
-        const itemKey: string = item[keyName as "key"];
+      const _preKey = preKey || "0";
+
+      return data.map((item, i) => {
+        const key = `${_preKey}-${i}`;
+
+        const itemKey: string = item[keyName as "key"] || key;
         const itemChildren: TreeNodeNormal[] | undefined = item[childrenName as "children"];
 
         // 将所有节点存在 keysObj 对象中
@@ -192,7 +194,7 @@ class TreeParent extends React.Component<TreeParentProps, TreeParentState> {
         if (Array.isArray(itemChildren)) {
           return (
             <TreeNode title={title} key={itemKey} className={className}>
-              {loop(itemChildren)}
+              {loop(itemChildren, key)}
             </TreeNode>
           );
         }

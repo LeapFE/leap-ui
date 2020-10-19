@@ -117,12 +117,13 @@ class TreeSelect extends React.Component<TreeSelectProps, TreeSelectState> {
 
     if (this.treeFormat && showCheckedStrategy === TreeSelect.SHOW_ALL) {
       const { leafs = {} } = this.treeFormat;
-      const leafKeys = keys.reduce((result: string[], cur) => {
+      const leafKeys = keys.reduce((result, cur) => {
         if (leafs[cur]) {
-          result.push(cur);
+          result.push(leafs[cur]);
         }
+
         return result;
-      }, []);
+      }, [] as string[]);
       return leafKeys;
     }
 

@@ -17,6 +17,7 @@
     "format:check:ts": "prettier --check 'components/**/*.{ts,tsx}'",
     "format:style": "prettier --write 'components/**/*.{css,less}'",
     "format:ts": "prettier --write 'components/**/*.{ts,tsx}'",
+    "format:story": "prettier --write 'stories/**/*.{ts,tsx}'",
     "stylelint": "stylelint components/**/*.{css,less}",
     "prepublishOnly": "npm run build",
     "build": "npm run build:es && npm run build:cjs && npm run build:css",

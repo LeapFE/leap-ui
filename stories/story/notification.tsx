@@ -159,4 +159,6 @@ class NotificationRender extends React.Component {
   }
 }
 
-storiesOf("通用", module).add("notification 通知", () => <NotificationRender />, {  notes: { markdown }, });
+storiesOf("通用", module).add("notification 通知", () => <NotificationRender />, {
+  notes: { markdown },
+});
