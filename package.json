@@ -29,8 +29,8 @@
     "compile:story": "tsc -p tsconfig.story.json --noEmit --diagnostics",
     "compile:component": "tsc -p tsconfig.json --noEmit --diagnostics",
     "build-storybook": "build-storybook -c .storybook -o .out",
-    "publish:beta": "np prepatch --tag=beta --yolo",
-    "publish:latest": "np patch --tag=latest --yolo"
+    "release:pre": "np prerelease --tag=beta --yolo",
+    "release:prod": "np patch --tag=latest --yolo"
   },
   "keywords": [],
   "author": "",
