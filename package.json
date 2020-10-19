@@ -29,8 +29,8 @@
     "compile:story": "tsc -p tsconfig.story.json --noEmit --diagnostics",
     "compile:component": "tsc -p tsconfig.json --noEmit --diagnostics",
     "build-storybook": "build-storybook -c .storybook -o .out",
-    "release:pre": "np prerelease --tag=beta --yolo",
-    "release:prod": "np patch --tag=latest --yolo",
+    "release:pre": "np prerelease --tag=beta --yolo --no-2fa",
+    "release:prod": "np patch --tag=latest --yolo --no-2fa",
     "commit": "npm run eslint && npm run stylelint && npm run format:check:ts && npm run format:check:style && git cz"
   },
   "keywords": [],
